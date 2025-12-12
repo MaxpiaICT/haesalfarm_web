@@ -1,0 +1,57 @@
+:root{
+  --accent:#2b2b2b;
+  --muted: rgba(255,255,255,0.85);
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0;font-family:Inter, 'Noto Sans KR', system-ui, Arial}
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:18px 36px;position:relative;z-index:5}
+.site-header .logo{font-weight:700}
+.logo-img{height:44px}
+.logo-img[alt]{display:block}
+.main-nav a{margin-left:18px;color:#222;text-decoration:none;font-size:16px}
+.hero{position:relative;height:420px;display:flex;align-items:center;justify-content:center;color:var(--muted);overflow:hidden}
+
+.hero h1{font-size:36px;margin:0 0 8px;color:#111}
+.hero-sub{margin:0 0 16px;color:#222}
+.hero-cta{display:inline-block;background:#111;color:#fff;padding:12px 20px;border-radius:30px;text-decoration:none}
+
+.cards-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:48px 36px;background:linear-gradient(0deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9));margin-top:-60px;position:relative;z-index:6}
+.card{position:relative;border-radius:16px;overflow:hidden;min-height:240px;box-shadow:0 8px 30px rgba(8,10,15,0.08)}
+.card-bg{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));background-blend-mode:overlay}
+.card-body{position:relative;padding:20px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;height:100%}
+.card h3{font-size:20px;margin:0 0 12px;color:#fff}
+.card-btn{align-self:flex-start;background:rgba(255,255,255,0.95);color:#111;border:none;padding:10px 14px;border-radius:999px}
+
+/* Card-specific backgrounds */
+.card-1 .card-bg{background-image: url('/assets/card1.svg'); background-size:cover; background-position:center}
+.card-2 .card-bg{background-image: url('/assets/card2.svg'); background-size:cover; background-position:center}
+.card-3 .card-bg{background-image: url('/assets/card3.svg'); background-size:cover; background-position:center}
+
+.site-footer{text-align:center;padding:28px;color:#666}
+
+/* Responsive */
+@media (max-width: 900px){
+  .cards-wrap{grid-template-columns:repeat(2,1fr);padding:28px}
+  .hero{height:360px}
+}
+@media (max-width: 600px){
+  .main-nav{display:none}
+  .cards-wrap{grid-template-columns:1fr;padding:20px;margin-top:-40px}
+  .hero h1{font-size:24px}
+  .hero{height:300px}
+}
+
+/* Additional responsive tuning */
+@media (min-width: 1200px){
+  .hero h1{font-size:48px}
+  .hero-sub{font-size:18px}
+}
+@media (max-width: 900px){
+  .card h3{font-size:18px}
+  .card{min-height:220px}
+}
+@media (max-width: 480px){
+  .hero h1{font-size:20px}
+  .hero-cta{padding:10px 14px}
+  .card-btn{padding:8px 12px}
+}
