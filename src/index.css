@@ -1,0 +1,340 @@
+/* ===================================
+   Footer Custom (Top Section)
+=================================== */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+.site-footer-custom {
+  width: 100%;
+  background: #fff9f8;
+  padding: 50px 0 20px;
+  border-top: 1px solid #f2eaea;
+  font-family: 'Noto Sans KR', Arial, sans-serif;
+  color: #222;
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.footer-logo-col {
+  min-width: 220px;
+}
+
+.footer-policy-col {
+  text-align: right;
+  min-width: 260px;
+}
+
+.footer-title {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.footer-item {
+  font-size: 15px;
+  color: #444;
+}
+
+.footer-link {
+  color: #888;
+  text-decoration: underline;
+  margin: 0 4px;
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 40px auto 0;
+  padding: 0 32px 20px;
+  text-align: left;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Footer 모바일 */
+@media (max-width: 900px) {
+  .footer-inner { 
+    flex-direction: column; 
+    gap: 20px; 
+    padding: 0 20px; 
+  }
+  .footer-policy-col { text-align: left; }
+}
+
+
+/* ===================================
+   Tailwind Base / Components / Utilities
+=================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ===================================
+   Base Styles
+=================================== */
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-white text-slate-800 antialiased;
+    font-family: Inter, 'Noto Sans KR', system-ui, Arial;
+
+    /* 고정 헤더가 내용 가리는 것 방지 */
+    padding-top: 100px;
+    margin: 0;
+  }
+
+  a {
+    @apply text-slate-700;
+  }
+}
+
+
+/* ===================================
+   Components (Header / Hero / Cards)
+=================================== */
+@layer components {
+
+  /* ---------- Header ---------- */
+  .site-header {
+    @apply flex justify-between items-center px-14 py-8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 999;
+    font-family: 'Pretendard', Inter, 'Noto Sans KR', system-ui, Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    
+  }
+
+  .logo-img {
+    @apply h-8;
+  }
+
+  .main-nav a {
+    @apply ml-4 text-sm;
+    font-weight: 700;
+  }
+
+
+  /* ---------- Hero Section ---------- */
+.hero {
+  /* `h-[1080px]`를 제거하거나 더 유연하게 조정 */
+  @apply relative w-full min-h-[850px]; /* min-h로 변경하거나 제거 */
+}
+
+ .hero-bg {
+  @apply absolute inset-0 w-full h-full bg-cover bg-center; /* h-full로 변경 */
+  background-image: url('/assets/bg.jpg');
+  z-index: 0;
+}
+
+.hero-overlay {
+  @apply absolute inset-0 w-full h-full; /* h-full로 변경 */
+  background: rgba(255,255,255,0.45);
+  z-index: 1;
+}
+
+  .hero-content {
+  @apply relative z-10 text-center pt-[100px]; /* paddingTop으로 변경하여 body padding과 맞춤 */
+}
+
+  .hero h1 {
+    @apply text-5xl font-extrabold text-black/90;
+  }
+
+  .hero-sub {
+    @apply mt-4 text-black/70;
+  }
+
+  .hero-cta {
+    @apply inline-block bg-slate-900 text-white py-6 px-20 rounded-full mt-8 shadow-lg;
+    font-size: 20px;
+  }
+  .hero-cta .hero-cta-icon{
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    color: inherit;
+  }
+
+
+  /* ---------- Cards Section ---------- */
+  .cards-wrap {
+  @apply grid grid-cols-3 gap-8 px-20 py-10 z-20;
+  position: absolute;
+  top: 400px;   /* 원하는 만큼 위로 조절 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
+}
+
+  .card {
+    @apply relative rounded-2xl overflow-hidden min-h-[26rem] shadow-xl bg-black/20;
+    /* smoother lift animation */
+    transition: transform 420ms cubic-bezier(.2,.6,.2,1), box-shadow 420ms cubic-bezier(.2,.6,.2,1);
+    transform: translateY(0);
+  }
+
+  .card-bg {
+    @apply absolute inset-0 bg-cover bg-center;
+    /* Smooth scale on hover (slower for softer feeling) */
+    transition: transform 700ms cubic-bezier(.2,.6,.2,1);
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  /* Scale image slightly on hover */
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(8,10,15,0.18);
+  }
+
+  .card:hover .card-bg {
+    transform: scale(1.06);
+  }
+
+  .card-body {
+    @apply relative p-6 flex flex-col justify-between h-full text-white;
+  }
+
+  .card h3 {
+    @apply text-3xl font-bold;
+  }
+
+  .card-btn {
+    @apply inline-flex items-center bg-white/90 text-slate-900 rounded-full px-5 py-4 shadow-md;
+  }
+}
+
+
+/* ===================================
+   Card Background Images (Gradient)
+=================================== */
+.card-1 .card-bg {
+  background-image:
+    linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)),
+    url('/assets/card1.jpg');
+}
+
+.card-2 .card-bg {
+  background-image:
+    linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)),
+    url('/assets/card2.jpg');
+}
+
+.card-3 .card-bg {
+  background-image:
+    linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)),
+    url('/assets/card3.jpg');
+}
+
+
+/* ===================================
+   Responsive Styles
+=================================== */
+@media (max-width: 900px) {
+  .hero {
+    @apply h-[550px];
+  }
+
+  .cards-wrap {
+    @apply grid grid-cols-2 gap-6 px-10 py-10;
+    margin-top: -60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-nav {
+    display: none;
+  }
+
+  .hero {
+    @apply h-[420px];
+  }
+
+  .hero h1 {
+    @apply text-3xl;
+  }
+
+  .cards-wrap {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    margin-top: -30px;
+  }
+}
