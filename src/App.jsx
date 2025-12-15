@@ -1,30 +1,42 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
-
+import { Outlet, Link } from 'react-router-dom'
 import Footer from './components/Footer'
 
-export default function App(){
-  const cards = [
-    {title: '농사용\n하우스 시공', cta: '자세히 보기'},
-    {title: '팜\n수경재배키트', cta: '자세히 보기'},
-    {title: '농자재', cta: '자세히 보기'}
-  ]
-
+export default function App() {
   return (
     <div className="site-root">
       <header className="site-header">
         <div className="flex items-center gap-4">
-          <img src="/assets/logo.svg" alt="햇살농업건설" className="logo-img" />
+          {/* 로고 클릭 시 홈 */}
+          <Link to="/">
+            <img
+              src="/assets/logo.svg"
+              alt="햇살농업건설"
+              className="logo-img"
+            />
+          </Link>
         </div>
+
         <nav className="main-nav">
-          <a className="px-3">하우스 시공</a>
-          <a className="px-3">팜</a>
-          <a className="px-3">농자재</a>
-          <a className="px-3">회사소개</a>
-          <a className="px-3">로그인/회원가입</a>
+          <Link to="/construction" className="px-3">
+            하우스 시공
+          </Link>
+          <Link to="/farm" className="px-3">
+            팜
+          </Link>
+          <Link to="/materials" className="px-3">
+            농자재
+          </Link>
+          <Link to="/about" className="px-3">
+            회사소개
+          </Link>
+          <Link to="/login" className="px-3">
+            로그인/회원가입
+          </Link>
         </nav>
       </header>
 
+      {/* 여기서 페이지가 바뀜 */}
       <Outlet />
 
       <Footer />
