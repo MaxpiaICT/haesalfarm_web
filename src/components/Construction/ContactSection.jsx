@@ -1,4 +1,4 @@
-import './contactSection.css'
+import './ContactSection.css'
 
 
 export default function ContactSection() {

@@ -1,4 +1,4 @@
-import './processSection.css'
+import './ProcessSection.css'
 
 const steps = [
   '상담 및 현장 조사',
