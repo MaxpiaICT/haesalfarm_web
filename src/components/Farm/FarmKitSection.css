@@ -1,0 +1,255 @@
+/* ===============================
+   Farm Kit Section (Layout & Tabs)
+================================ */
+
+.farm-kit-section {
+  padding: 80px 20px;
+  margin-top: -40px;
+  text-align: center;
+}
+
+/* Tabs */
+.farm-kit-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.farm-kit-tabs .tab {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #e5e5e5;
+  font-size: 14px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.farm-kit-tabs .tab.active {
+  background: #22c55e;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===============================
+   ABOUT Tab Content
+================================ */
+
+.farm-kit-about {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+/* Section titles */
+.about-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  margin: 40px 0 16px;
+}
+
+/* ===============================
+   Grid System
+================================ */
+
+.about-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ===============================
+   Product Cards (Light)
+================================ */
+
+.about-card {
+  position: relative;
+  height: 400px;              /* ✅ 세로 크기 고정 */
+  padding: 28px 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  color: #fff;
+
+  display: flex;              /* 🔥 텍스트 정렬 안정화 */
+  flex-direction: column;
+  justify-content: flex-end;  /* 텍스트를 아래쪽으로 */
+
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 0;
+}
+
+.about-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-card strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.about-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0.95;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+}
+
+
+/* Product Images */
+.about-grid.light .about-card:nth-child(1) {
+  background-image: url('/public/assets/1-1.png');
+}
+
+.about-grid.light .about-card:nth-child(2) {
+  background-image: url('/public/assets/1-2.png');
+}
+
+.about-grid.light .about-card:nth-child(3) {
+  background-image: url('/public/assets/1-3.png');
+}
+
+.about-grid.light .about-card:nth-child(4) {
+  background-image: url('/public/assets/1-4.png');
+}
+
+
+/* ===============================
+   Steps (Green)
+================================ */
+
+.about-step {
+  background: #4fbf97;
+  color: #fff;
+  border-radius: 8px;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.about-step span {
+  font-size: 24px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.about-step p {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+
+/* ===============================
+   Features
+================================ */
+
+.about-feature {
+  background: #4fbf97;
+  color: #fff;
+  border-radius: 8px;
+  padding: 18px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+/* ===============================
+   Store Card
+================================ */
+
+.farm-kit-card {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.farm-kit-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+    url('/assets/farm1_bg.jpg') center / cover no-repeat;
+}
+
+.farm-kit-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: #fff;
+}
+
+.farm-kit-content h3 {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.farm-kit-icon img {
+  width: 48px;
+  height: auto;
+}
+
+.farm-kit-cta {
+  background: rgba(37,168,87,0.75);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 768px) {
+
+  .farm-kit-section {
+    padding: 40px 16px;
+    margin-top: -20px;
+  }
+
+  .about-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .farm-kit-tabs .tab {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
