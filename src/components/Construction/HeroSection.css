@@ -1,6 +1,6 @@
-.hero {
+.hero2 {
   position: relative;
-  min-height: 300px;          /* ✅ 여기서 세로 크기 조절 */
+  min-height: 500px;          /* ✅ 여기서 세로 크기 조절 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,7 @@
 }
 
 /* 배경 이미지 */
-.hero::before {
+.hero2::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -18,7 +18,7 @@
 }
 
 /* 어두운 오버레이 */
-.hero-overlay {
+.hero2-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
@@ -26,7 +26,7 @@
 }
 
 /* 콘텐츠 */
-.hero-content {
+.hero2-content {
   position: relative;
   z-index: 2;
   text-align: center;
@@ -35,13 +35,13 @@
   padding: 0 20px;
 }
 
-.hero-content h1 {
+.hero2-content h1 {
   font-size: 42px;
   font-weight: 700;
   margin-bottom: 20px;   /* 🔹 살짝 줄임 */
 }
 
-.hero-content p {
+.hero2-content p {
   font-size: 16px;
   opacity: 0.9;
   margin-bottom: 20px;   /* 🔹 살짝 줄임 */
