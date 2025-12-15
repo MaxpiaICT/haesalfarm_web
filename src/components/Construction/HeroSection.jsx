@@ -7,9 +7,9 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="hero">
-      <div className="hero-overlay" />
-      <div className="hero-content">
+    <section className="hero2">
+      <div className="hero2-overlay" />
+      <div className="hero2-content">
         <h1>농사용 하우스 시공</h1>
         <p>당신의 농장, 저희가 설계합니다.</p>
 
