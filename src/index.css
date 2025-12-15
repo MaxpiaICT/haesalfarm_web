@@ -211,6 +211,12 @@
 
 .hero-content {
   margin-top: 60px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 900px;
+  padding: 0 20px;
 }
 
 
