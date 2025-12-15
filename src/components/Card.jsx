@@ -1,3 +1,4 @@
+// src/components/Card.jsx
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -5,9 +6,10 @@ export default function Card({ title, cta, className = '' }) {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    // 농사용 하우스 시공 카드만 이동
     if (title.includes('하우스')) {
       navigate('/construction')
+    } else if (title.includes('팜')) {
+      navigate('/farm') // ✅ card2 연결
     }
   }
 
@@ -21,7 +23,10 @@ export default function Card({ title, cta, className = '' }) {
       <div className="card-body">
         <h3>
           {title.split('\n').map((line, i) => (
-            <span key={i}>{line}<br /></span>
+            <span key={i}>
+              {line}
+              <br />
+            </span>
           ))}
         </h3>
         <button className="card-btn">

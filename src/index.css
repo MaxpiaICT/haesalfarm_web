@@ -82,9 +82,6 @@
   min-width: 160px;
 }
 
-.footer-logo-col {
-  min-width: 220px;
-}
 
 .footer-policy-col {
   text-align: right;
@@ -116,14 +113,19 @@
   font-size: 14px;
 }
 
-/* Footer 모바일 */
-@media (max-width: 900px) {
-  .footer-inner { 
-    flex-direction: column; 
-    gap: 20px; 
-    padding: 0 20px; 
+.footer-logo {
+  width: 130px;
+  height: auto;
+}
+
+.footer-logo-col {
+  min-width: unset;
+}
+
+@media (max-width: 600px) {
+  .footer-logo {
+    width: 110px;
   }
-  .footer-policy-col { text-align: left; }
 }
 
 
