@@ -320,35 +320,36 @@
 
 
 /* ===================================
-   Responsive Styles
+   Responsive Styles (Mobile)
 =================================== */
-@media (max-width: 900px) {
-  .hero {
-    @apply h-[550px];
-  }
-
-  .cards-wrap {
-    @apply grid grid-cols-2 gap-6 px-10 py-10;
-    margin-top: -60px;
-  }
-}
-
 @media (max-width: 600px) {
+
   .main-nav {
     display: none;
   }
 
   .hero {
-    @apply h-[420px];
+    height: 420px;
+    padding-bottom: 20px;
   }
 
   .hero h1 {
-    @apply text-3xl;
+    font-size: 26px;
   }
 
   .cards-wrap {
+    position: static;
+    transform: none;
+
+    display: grid;
     grid-template-columns: 1fr;
-    padding: 20px;
-    margin-top: -30px;
+    gap: 16px;
+
+    padding: 16px 20px;
+    margin: 0;
+  }
+
+  .site-footer-custom {
+    padding-top: 20px;
   }
 }
