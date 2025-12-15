@@ -191,8 +191,10 @@
 
   /* ---------- Hero Section ---------- */
 .hero {
-  /* `h-[1080px]`를 제거하거나 더 유연하게 조정 */
-  @apply relative w-full min-h-[850px]; /* min-h로 변경하거나 제거 */
+  @apply relative w-full min-h-[850px];
+  display: flex;
+  align-items: flex-start;   /* 🔥 위쪽 기준 */
+  justify-content: center;
 }
 
  .hero-bg {
@@ -207,9 +209,10 @@
   z-index: 1;
 }
 
-  .hero-content {
-  @apply relative z-10 text-center pt-[100px]; /* paddingTop으로 변경하여 body padding과 맞춤 */
+.hero-content {
+  margin-top: 60px;
 }
+
 
   .hero h1 {
     @apply text-5xl font-extrabold text-black/90;
@@ -219,18 +222,23 @@
     @apply mt-4 text-black/70;
   }
 
-  .hero-cta {
-    @apply inline-block bg-slate-900 text-white py-6 px-20 rounded-full mt-8 shadow-lg;
-    font-size: 20px;
-  }
+ .hero-cta {
+  @apply inline-block bg-slate-900 text-white py-6 px-20 rounded-full mt-4 shadow-lg;
+  font-size: 20px;
+  transform: translateY(-6px);
+}
   .hero-cta .hero-cta-icon{
     width: 18px;
     height: 18px;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-right: 5px;
     color: inherit;
   }
+
+  .hero-text {
+  margin-top: 30px;   /* ← 이 값만 바꿔서 미세 조절 */
+}
 
 
   /* ---------- Cards Section ---------- */
