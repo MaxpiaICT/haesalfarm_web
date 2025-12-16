@@ -3,6 +3,11 @@ import { Outlet, Link } from 'react-router-dom'
 import Footer from './components/Footer'
 
 export default function App() {
+
+  const handleComingSoon = () => {
+    alert('🚧 업데이트 중입니다!\n조금만 기다려 주세요.')
+  }
+
   return (
     <div className="site-root">
       <header className="site-header">
@@ -17,12 +22,33 @@ export default function App() {
         </div>
 
         <nav className="main-nav">
-          <Link to="/construction" className="px-3">하우스 시공</Link>
-          <Link to="/farm" className="px-3">팜</Link>
-          <Link to="/materials" className="px-3">농자재</Link>
-          <Link to="/about" className="px-3">회사소개</Link>
-          <Link to="/login" className="px-3">로그인/회원가입</Link>
-        </nav>
+  {/* 🔹 가운데 메뉴 */}
+  <div className="nav-center">
+    <Link to="/construction">하우스 시공</Link>
+    <Link to="/farm">팜</Link>
+    <Link to="/materials">농자재</Link>
+  </div>
+
+  {/* 🔹 오른쪽 메뉴 */}
+  <div className="nav-right">
+    <button
+      type="button"
+      className="header-btn"
+      onClick={handleComingSoon}
+    >
+      회사소개
+    </button>
+
+    <button
+      type="button"
+      className="header-btn"
+      onClick={handleComingSoon}
+    >
+      로그인/회원가입
+    </button>
+  </div>
+</nav>
+
       </header>
 
       {/* 👇 여기서 페이지가 교체됨 */}

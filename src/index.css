@@ -232,19 +232,98 @@
 
   /* ---------- Header ---------- */
   .site-header {
-    @apply flex justify-between items-center px-14 py-8;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    z-index: 999;
-    font-family: 'Pretendard', Inter, 'Noto Sans KR', system-ui, Arial;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 700;
-    
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 56px;
+  background: #fff;
+  z-index: 999;
+}
+
+/* ===============================
+   Main Navigation
+================================ */
+
+/* ===============================
+   Header Navigation Layout
+================================ */
+
+.main-nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 🔥 좌우 분리 */
+}
+
+/* 가운데 메뉴 */
+.nav-center {
+  display: flex;
+  gap: 36px;
+  margin: 0 auto; /* 🔥 진짜 중앙 정렬 */
+}
+
+/* 오른쪽 메뉴 */
+.nav-right {
+  display: flex;
+  gap: 24px;
+}
+
+/* 공통 메뉴 스타일 */
+.main-nav a,
+.header-btn {
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+
+/* Hover 색상 */
+.main-nav a:hover,
+.header-btn:hover {
+  color: #22c55e;
+}
+
+/* 밑줄 효과 */
+.main-nav a::after,
+.header-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #22c55e;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.main-nav a:hover::after,
+.header-btn:hover::after {
+  transform: scaleX(1);
+}
+
+
+.main-nav a:hover {
+  color: #22c55e;
+}
+
+.main-nav a:hover::after {
+  transform: scaleX(1);
+}
+
 
   .logo-img {
     @apply h-8;
@@ -419,4 +498,17 @@
   .site-footer-custom {
     padding-top: 20px;
   }
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.header-btn:hover {
+  color: #22c55e;
 }
