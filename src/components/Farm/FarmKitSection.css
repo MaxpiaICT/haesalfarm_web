@@ -75,7 +75,7 @@
 /* Section titles */
 .about-title {
   text-align: center;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 700;
   color: #333;
   margin: 40px 0 16px;
@@ -97,7 +97,7 @@
 
 .about-card {
   position: relative;
-  height: 400px;              /* ✅ 세로 크기 고정 */
+  height: 300px;              /* ✅ 세로 크기 고정 */
   padding: 28px 24px;
   border-radius: 20px;
   overflow: hidden;
@@ -128,7 +128,7 @@
 
 .about-card strong {
   display: block;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 8px;
 }
@@ -170,7 +170,7 @@
   background: #4fbf97;
   color: #fff;
   border-radius: 8px;
-  padding: 20px 10px;
+  padding: 50px 10px;
   text-align: center;
 }
 
@@ -178,11 +178,11 @@
   font-size: 24px;
   font-weight: 700;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .about-step p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0;
 }
@@ -196,7 +196,7 @@
   background: #4fbf97;
   color: #fff;
   border-radius: 8px;
-  padding: 18px 10px;
+  padding: 50px 10px;
   font-size: 14px;
   font-weight: 600;
   text-align: center;

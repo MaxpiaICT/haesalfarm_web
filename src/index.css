@@ -215,7 +215,7 @@
     font-family: Inter, 'Noto Sans KR', system-ui, Arial;
 
     /* 고정 헤더가 내용 가리는 것 방지 */
-    padding-top: 100px;
+    padding-top: 50px;
     margin: 0;
   }
 
@@ -235,7 +235,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 44px;
+  padding: 30px 44px;
   position: fixed;
   top: 0;
   left: 0;
@@ -452,7 +452,7 @@
 }
 
 .hero-content {
-  margin-top: 60px;
+  margin-top: 100px;
   position: relative;
   z-index: 2;
   text-align: center;
@@ -673,6 +673,8 @@
    Header - Mobile
 =============================== */
 @media (max-width: 768px) {
+
+  
 
   /* 로고 가운데 */
   .header-logo {
