@@ -9,7 +9,9 @@ export default function Card({ title, cta, className = '' }) {
     if (title.includes('하우스')) {
       navigate('/construction')
     } else if (title.includes('팜')) {
-      navigate('/farm') // ✅ card2 연결
+      navigate('/farm')
+    } else if (title.includes('농자재')) {
+      navigate('/materials')   // ✅ 추가
     }
   }
 
