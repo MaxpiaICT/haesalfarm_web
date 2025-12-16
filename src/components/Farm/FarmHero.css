@@ -3,7 +3,7 @@
 .farm-hero {
   position: relative;
   width: 100%;
-  height: 450px; /* ✅ 요청한 세로 사이즈 */
+  height: 400px; /* ✅ 요청한 세로 사이즈 */
   display: flex;
   align-items: center;
   justify-content: center;
