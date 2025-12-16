@@ -55,6 +55,9 @@
   font-weight: 900;
   font-display: swap;
 }
+/* ===============================
+   Footer Base (Desktop)
+================================ */
 .site-footer-custom {
   width: 100%;
   background: #fff9f8;
@@ -69,7 +72,7 @@
   margin: 0 auto;
   padding: 0 32px;
 
-  display: flex;
+  display: flex;               /* ✅ 데스크톱: 가로 5컬럼 */
   justify-content: space-between;
   align-items: flex-start;
   gap: 48px;
@@ -81,7 +84,6 @@
   gap: 10px;
   min-width: 160px;
 }
-
 
 .footer-policy-col {
   text-align: right;
@@ -122,11 +124,74 @@
   min-width: unset;
 }
 
+/* ===============================
+   Tablet (900px 이하)
+   구조: 2 + 2 + 전체
+================================ */
+@media (max-width: 900px) {
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2열 */
+    gap: 24px;
+  }
+
+  /* 로고: 한 줄 전체 */
+  .footer-logo-col {
+    grid-column: 1 / -1;
+    align-items: center;
+  }
+
+  /* 정책/사업자 정보: 한 줄 전체 */
+  .footer-policy-col {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
+}
+
+/* ===============================
+   Mobile (600px 이하)
+   구조: 1열 스택
+================================ */
 @media (max-width: 600px) {
+  .site-footer-custom {
+    padding: 32px 0 16px;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;     /* ✅ 완전 1열 */
+    gap: 18px;
+    padding: 0 16px;
+  }
+
   .footer-logo {
     width: 110px;
   }
+
+  .footer-title {
+    font-size: 14px;
+  }
+
+  .footer-item {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .footer-policy-col {
+    text-align: left;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    margin-top: 12px;
+    padding: 0 16px 16px;
+  }
 }
+
 
 
 /* ===================================
