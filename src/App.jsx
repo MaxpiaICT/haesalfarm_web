@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop' // ✅ 사용됨
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const handleComingSoon = () => {
     alert('🚧 업데이트 중입니다!\n조금만 기다려 주세요.')
+    setMenuOpen(false)
   }
 
   return (
     <div className="site-root">
-      <header className="site-header">
+      {/* ✅ 페이지 이동 시 항상 상단으로 */}
+      <ScrollToTop />
 
-        {/* 🔹 모바일 햄버거 버튼 */}
+      <header className="site-header">
+        {/* 🔹 모바일 햄버거 (CSS에서 모바일만 노출) */}
         <button
           className="hamburger-btn"
           onClick={() => setMenuOpen(true)}
@@ -25,7 +29,7 @@ export default function App() {
         </button>
 
         {/* 🔹 로고 (모바일 중앙 / PC 좌측) */}
-        <Link to="/" className="header-logo">
+        <Link to="/" className="header-logo" onClick={() => setMenuOpen(false)}>
           <img
             src="/assets/logo.svg"
             alt="햇살농업건설"
@@ -63,7 +67,7 @@ export default function App() {
           />
 
           {/* 드로어 */}
-          <aside className={`mobile-drawer ${menuOpen ? 'open' : ''}`}>
+          <aside className="mobile-drawer open">
             <div className="mobile-drawer-top">
               <span className="mobile-drawer-title">메뉴</span>
               <button
@@ -75,7 +79,6 @@ export default function App() {
             </div>
 
             <nav className="mobile-links">
-              {/* 메인 카테고리 */}
               <Link to="/construction" onClick={() => setMenuOpen(false)}>
                 하우스 시공
               </Link>
@@ -86,7 +89,6 @@ export default function App() {
                 농자재
               </Link>
 
-              {/* 보조 메뉴 */}
               <button onClick={handleComingSoon}>회사소개</button>
               <button onClick={handleComingSoon}>로그인 / 회원가입</button>
             </nav>
