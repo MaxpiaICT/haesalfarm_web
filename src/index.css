@@ -1,5 +1,5 @@
 /* ===================================
-   Footer Custom (Top Section)
+   Fonts (Pretendard)
 =================================== */
 @font-face {
   font-family: 'Pretendard';
@@ -55,9 +55,33 @@
   font-weight: 900;
   font-display: swap;
 }
-/* ===============================
-   Footer Base (Desktop)
-================================ */
+
+/* ===================================
+   Tailwind (사용중이면 유지)
+=================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===================================
+   Base
+=================================== */
+@layer base {
+  html, body, #root { height: 100%; }
+
+  body {
+    @apply bg-white text-slate-800 antialiased;
+    font-family: Inter, 'Noto Sans KR', system-ui, Arial;
+    padding-top: 50px; /* 고정 헤더 공간 */
+    margin: 0;
+  }
+
+  a { @apply text-slate-700; }
+}
+
+/* ===================================
+   Footer
+=================================== */
 .site-footer-custom {
   width: 100%;
   background: #fff9f8;
@@ -71,8 +95,7 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 32px;
-
-  display: flex;               /* ✅ 데스크톱: 가로 5컬럼 */
+  display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 48px;
@@ -90,15 +113,8 @@
   min-width: 260px;
 }
 
-.footer-title {
-  font-weight: 700;
-  font-size: 17px;
-}
-
-.footer-item {
-  font-size: 15px;
-  color: #444;
-}
+.footer-title { font-weight: 700; font-size: 17px; }
+.footer-item { font-size: 15px; color: #444; }
 
 .footer-link {
   color: #888;
@@ -115,75 +131,45 @@
   font-size: 14px;
 }
 
-.footer-logo {
-  width: 130px;
-  height: auto;
-}
+.footer-logo { width: 130px; height: auto; }
+.footer-logo-col { min-width: unset; }
 
-.footer-logo-col {
-  min-width: unset;
-}
-
-/* ===============================
-   Tablet (900px 이하)
-   구조: 2 + 2 + 전체
-================================ */
+/* Footer Tablet */
 @media (max-width: 900px) {
   .footer-inner {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2열 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
 
-  /* 로고: 한 줄 전체 */
   .footer-logo-col {
     grid-column: 1 / -1;
     align-items: center;
   }
 
-  /* 정책/사업자 정보: 한 줄 전체 */
   .footer-policy-col {
     grid-column: 1 / -1;
     text-align: left;
   }
 
-  .footer-bottom {
-    text-align: center;
-  }
+  .footer-bottom { text-align: center; }
 }
 
-/* ===============================
-   Mobile (600px 이하)
-   구조: 1열 스택
-================================ */
+/* Footer Mobile */
 @media (max-width: 600px) {
-  .site-footer-custom {
-    padding: 32px 0 16px;
-  }
+  .site-footer-custom { padding: 32px 0 16px; }
 
   .footer-inner {
     display: flex;
-    flex-direction: column;     /* ✅ 완전 1열 */
+    flex-direction: column;
     gap: 18px;
     padding: 0 16px;
   }
 
-  .footer-logo {
-    width: 110px;
-  }
-
-  .footer-title {
-    font-size: 14px;
-  }
-
-  .footer-item {
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  .footer-policy-col {
-    text-align: left;
-  }
+  .footer-logo { width: 110px; }
+  .footer-title { font-size: 14px; }
+  .footer-item { font-size: 13px; line-height: 1.4; }
+  .footer-policy-col { text-align: left; }
 
   .footer-bottom {
     font-size: 12px;
@@ -192,84 +178,39 @@
   }
 }
 
-
-
 /* ===================================
-   Tailwind Base / Components / Utilities
+   Header
 =================================== */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-/* ===================================
-   Base Styles
-=================================== */
-@layer base {
-  html, body, #root {
-    height: 100%;
-  }
-
-  body {
-    @apply bg-white text-slate-800 antialiased;
-    font-family: Inter, 'Noto Sans KR', system-ui, Arial;
-
-    /* 고정 헤더가 내용 가리는 것 방지 */
-    padding-top: 50px;
-    margin: 0;
-  }
-
-  a {
-    @apply text-slate-700;
-  }
-}
-
-
-/* ===================================
-   Components (Header / Hero / Cards)
-=================================== */
-@layer components {
-
-  /* ---------- Header ---------- */
 .site-header {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 30px 44px;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   background: #fff;
   z-index: 999;
 }
 
-
-/* ===============================
-   Header Navigation Layout
-================================ */
-
 .main-nav {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 🔥 좌우 분리 */
+  justify-content: space-between;
 }
 
-/* 가운데 메뉴 */
 .nav-center {
   display: flex;
   gap: 36px;
-  margin: 0 auto; /* 🔥 진짜 중앙 정렬 */
+  margin: 0 auto;
 }
 
-/* 오른쪽 메뉴 */
 .nav-right {
   display: flex;
   gap: 24px;
 }
 
-/* 공통 메뉴 스타일 */
 .main-nav a,
 .header-btn {
   position: relative;
@@ -284,13 +225,9 @@
   transition: color 0.2s ease;
 }
 
-/* Hover 색상 */
 .main-nav a:hover,
-.header-btn:hover {
-  color: #22c55e;
-}
+.header-btn:hover { color: #22c55e; }
 
-/* 밑줄 효과 */
 .main-nav a::after,
 .header-btn::after {
   content: '';
@@ -306,27 +243,13 @@
 }
 
 .main-nav a:hover::after,
-.header-btn:hover::after {
-  transform: scaleX(1);
-}
+.header-btn:hover::after { transform: scaleX(1); }
 
-  .logo-img {
-      @apply h-8;
-    }
+.logo-img { @apply h-8; }
 
- 
-
-
-  /* ===== Header layout helpers ===== */
-.header-left {
-  display: flex;
-  align-items: center;
-}
-
-/* ===== Mobile hamburger button ===== */
+/* Hamburger */
 .hamburger-btn {
-  display: none; /* PC에서는 숨김 */
-  margin-left: auto;
+  display: none;
   width: 44px;
   height: 44px;
   border: 0;
@@ -346,7 +269,7 @@
   border-radius: 999px;
 }
 
-/* ===== Mobile overlay & drawer ===== */
+/* Mobile Drawer */
 .mobile-overlay {
   position: fixed;
   inset: 0;
@@ -359,8 +282,7 @@
 
 .mobile-drawer {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 0; right: 0;
   width: 78%;
   max-width: 320px;
   height: 100vh;
@@ -373,9 +295,7 @@
   flex-direction: column;
 }
 
-.mobile-drawer.open {
-  transform: translateX(0);
-}
+.mobile-drawer.open { transform: translateX(0); }
 
 .mobile-drawer-top {
   display: flex;
@@ -385,18 +305,8 @@
   border-bottom: 1px solid #eee;
 }
 
-.mobile-drawer-title {
-  font-weight: 800;
-  font-size: 16px;
-  color: #111;
-}
-
-.mobile-close {
-  border: 0;
-  background: transparent;
-  font-size: 20px;
-  cursor: pointer;
-}
+.mobile-drawer-title { font-weight: 800; font-size: 16px; color: #111; }
+.mobile-close { border: 0; background: transparent; font-size: 20px; cursor: pointer; }
 
 .mobile-links {
   padding: 14px 18px;
@@ -418,227 +328,162 @@
   cursor: pointer;
 }
 
-/* ===== Responsive switch ===== */
+/* Header Mobile */
 @media (max-width: 768px) {
-  .main-nav {
-    display: none; /* 모바일에서는 PC nav 숨김 */
+  .main-nav { display: none; }
+  .hamburger-btn { display: flex; }
+
+  .header-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .hamburger-btn {
-    display: flex; /* 모바일에서는 햄버거 보임 */
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
-
-
-  /* ---------- Hero Section ---------- */
+/* ===================================
+   Hero
+=================================== */
 .hero {
   @apply relative w-full min-h-[850px];
   display: flex;
-  align-items: flex-start;   /* 🔥 위쪽 기준 */
+  align-items: flex-start;
   justify-content: center;
 }
 
- .hero-bg {
-  @apply absolute inset-0 w-full h-full bg-cover bg-center; /* h-full로 변경 */
+.hero-bg {
+  @apply absolute inset-0 w-full h-full bg-cover bg-center;
   background-image: url('/assets/bg_1.png');
   z-index: 0;
 }
 
 .hero-overlay {
-  @apply absolute inset-0 w-full h-full; /* h-full로 변경 */
-  background: rgba(255,255,255,0.45);
+  @apply absolute inset-0 w-full h-full;
+  background: rgba(231, 225, 225, 0.45);
   z-index: 1;
 }
 
 .hero-content {
-  margin-top: 100px;
+  margin-top: 150px;
   position: relative;
   z-index: 2;
   text-align: center;
-  color: #fff;
   max-width: 900px;
   padding: 0 20px;
 }
 
+.hero h1 { @apply text-5xl font-extrabold text-black/90; }
+.hero-sub { @apply mt-4 text-black/70; }
 
-  .hero h1 {
-    @apply text-5xl font-extrabold text-black/90;
-  }
+/* ✅ 전화문의 CTA를 버튼처럼 보이게 */
+.hero-cta{
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
-  .hero-sub {
-    @apply mt-4 text-black/70;
-  }
+  background: #0f172a;
+  color: #fff !important;
+  text-decoration: none !important;
 
- .hero-cta {
-  @apply inline-block bg-slate-900 text-white py-6 px-20 rounded-full mt-4 shadow-lg;
-  font-size: 20px;
-  transform: translateY(-6px);
+  padding: 18px 46px;
+  border-radius: 999px;
+
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-  .hero-cta .hero-cta-icon{
-    width: 18px;
-    height: 18px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
-    color: inherit;
-  }
 
-  .hero-text {
-  margin-top: 30px;   /* ← 이 값만 바꿔서 미세 조절 */
+.hero-cta:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.22);
+}
+
+.hero-cta:visited{
+  color: #fff !important;
+}
+
+/* 아이콘 크기 고정 */
+.hero-cta-icon{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  display: block;
 }
 
 
-  /* ---------- Cards Section ---------- */
-  .cards-wrap {
+.hero-text { margin-top: 30px; }
+
+/* Cards wrap (기존 유지) */
+.cards-wrap {
   @apply grid grid-cols-3 gap-8 px-20 py-10 z-20;
   position: absolute;
-  top: 400px;   /* 원하는 만큼 위로 조절 */
+  top: 400px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 1400px;
 }
 
-  .card {
-    @apply relative rounded-2xl overflow-hidden min-h-[26rem] shadow-xl bg-black/20;
-    /* smoother lift animation */
-    transition: transform 420ms cubic-bezier(.2,.6,.2,1), box-shadow 420ms cubic-bezier(.2,.6,.2,1);
-    transform: translateY(0);
-  }
-
-  .card-bg {
-    @apply absolute inset-0 bg-cover bg-center;
-    /* Smooth scale on hover (slower for softer feeling) */
-    transition: transform 700ms cubic-bezier(.2,.6,.2,1);
-    transform-origin: center center;
-    will-change: transform;
-  }
-
-  /* Scale image slightly on hover */
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 24px 48px rgba(8,10,15,0.18);
-  }
-
-  .card:hover .card-bg {
-    transform: scale(1.06);
-  }
-
-  .card-body {
-    @apply relative p-6 flex flex-col justify-between h-full text-white;
-  }
-
-  .card h3 {
-    @apply text-3xl font-bold;
-  }
-
-  .card-btn {
-    @apply inline-flex items-center bg-white/90 text-slate-900 rounded-full px-5 py-4 shadow-md;
-  }
+/* 기존 card 스타일 유지 */
+.card {
+  @apply relative rounded-2xl overflow-hidden min-h-[26rem] shadow-xl bg-black/20;
+  transition: transform 420ms cubic-bezier(.2,.6,.2,1), box-shadow 420ms cubic-bezier(.2,.6,.2,1);
+  transform: translateY(0);
 }
 
+.card-bg {
+  @apply absolute inset-0 bg-cover bg-center;
+  transition: transform 700ms cubic-bezier(.2,.6,.2,1);
+  transform-origin: center center;
+  will-change: transform;
+}
 
-/* ===================================
-   Card Background Images (Gradient)
-=================================== */
+.card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(8,10,15,0.18); }
+.card:hover .card-bg { transform: scale(1.06); }
+
+/* 카드 배경 */
 .card-1 .card-bg {
-  background-image:
-    linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)),
-    url('/assets/card1.jpg');
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)), url('/assets/card1.jpg');
 }
-
 .card-2 .card-bg {
-  background-image:
-    linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)),
-    url('/assets/card2.jpg');
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)), url('/assets/card2.jpg');
 }
-
 .card-3 .card-bg {
-  background-image:
-    linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)),
-    url('/assets/crad_3.png');
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)), url('/assets/crad_3.png');
 }
 
-
-/* ===================================
-   Responsive Styles (Mobile)
-=================================== */
+/* Hero Mobile */
 @media (max-width: 600px) {
+  .hero{ min-height: auto; height: auto; padding: 28px 16px 18px; }
+  .hero-content{ margin-top: 16px; max-width: 100%; padding: 0; }
+  .hero h1{ font-size: 26px; line-height: 1.2; }
+  .hero-sub{ font-size: 14px; margin-top: 10px; }
+  .hero-cta{ width: 100%; max-width: 360px; padding: 14px 18px; font-size: 16px; transform: none; margin-top: 14px; }
 
-  /* hero: 높이를 고정하지 말고 콘텐츠 기반으로 */
-  .hero{
-    min-height: auto;      /* ✅ 기존 min-h 제거 */
-    height: auto;          /* ✅ 고정 높이 제거 */
-    padding: 28px 16px 18px;
-    align-items: flex-start;
-  }
-
-  /* 배경은 hero 영역만큼만 */
-  .hero-bg,
-  .hero-overlay{
-    height: 100%;
-  }
-
-  .hero-content{
-    margin-top: 16px;      /* ✅ 위 여백 줄임 */
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .hero h1{
-    font-size: 26px;
-    line-height: 1.2;
-  }
-
-  .hero-sub{
-    font-size: 14px;
-    margin-top: 10px;
-  }
-
-  /* CTA 크기/간격 */
-  .hero-cta{
-    width: 100%;
-    max-width: 360px;
-    padding: 14px 18px;
-    font-size: 16px;
-    transform: none;       /* ✅ 위로 뜨는 효과 제거 */
-    margin-top: 14px;
-  }
-
-  /* ✅ 카드 섹션을 hero 밑으로 자연 배치 */
   .cards-wrap{
-    position: static;      /* ✅ absolute 제거 */
-    top: auto;
-    left: auto;
+    position: static;
     transform: none;
-
-    display: grid;
     grid-template-columns: 1fr;
     gap: 14px;
-
     width: 100%;
     max-width: 560px;
-
     padding: 14px 16px 20px;
     margin: 0 auto;
   }
 
-  /* 카드 높이 줄이기 */
-  .card{
-    min-height: 220px;
-  }
-
-  .card h3{
-    font-size: 22px;
-  }
-
-  .card-btn{
-    padding: 12px 16px;
-  }
+  .card{ min-height: 220px; }
 }
-
-
 
 @media (max-width: 900px) and (min-width: 601px){
   .cards-wrap{
@@ -649,56 +494,87 @@
     margin: 0 auto;
     padding: 18px 20px 26px;
   }
-  .hero{
-    min-height: auto;
-    height: auto;
-    padding-bottom: 16px;
-  }
+  .hero{ min-height: auto; height: auto; padding-bottom: 16px; }
 }
-.header-btn {
-  background: none;
-  border: none;
+
+/* ===================================
+   Home Card UI (image + white bottom bar)
+=================================== */
+.home-card3{
+  position: relative;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  color: inherit;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.14);
+  transition: transform .25s ease, box-shadow .25s ease;
+  background: #000;
 }
 
-.header-btn:hover {
-  color: #22c55e;
+.home-card3:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 26px 60px rgba(0,0,0,0.18);
 }
 
+.home-card3-bg{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1);
+  transition: transform .35s ease;
+}
 
-/* ===============================
-   Header - Mobile
-=============================== */
-@media (max-width: 768px) {
+.home-card3:hover .home-card3-bg{ transform: scale(1.05); }
 
-  
+.home-card3-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
 
-  /* 로고 가운데 */
-  .header-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.home-card3-title{
+  position: absolute;
+  left: 22px;
+  top: 22px;
+  z-index: 2;
+  color: #fff;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.1;
+  text-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
 
-  
+.home-card3-bottom{
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 3;
+  background: #fff;
+  padding: 18px 22px;
+}
 
-  /* 햄버거 버튼 왼쪽 */
-  .hamburger-btn {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
+.home-card3-cta{
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+}
 
-  /* 데스크톱 메뉴 숨김 */
-  .main-nav {
-    display: none;
-  }
+.home-card3-arrow{ font-size: 20px; line-height: 1; }
+
+.card-1 .home-card3-bg{ background-image: url('/assets/card1.jpg'); }
+.card-2 .home-card3-bg{ background-image: url('/assets/card2.jpg'); }
+.card-3 .home-card3-bg{ background-image: url('/assets/crad_3.png'); }
+
+@media (max-width: 600px){
+  .home-card3{ height: 240px; border-radius: 22px; }
+  .home-card3-title{ left: 16px; top: 16px; font-size: 24px; }
+  .home-card3-bottom{ padding: 16px; }
+  .home-card3-cta{ font-size: 15px; }
 }
