@@ -40,16 +40,19 @@ const items = [
   },
 ]
 
-export default function MaterialsGrid({ activeCategory = '전체' }) {
+const PHONE_TEXT = '010-6471-9948'
+const PHONE_TEL = 'tel:01064719948' // ✅ 하이픈 없이
+
+export default function MaterialsGrid({ activeCategory }) {
   const filtered =
     activeCategory === '전체'
       ? items
-      : items.filter((item) => item.category === activeCategory)
+      : items.filter((i) => i.category === activeCategory)
 
   return (
     <section className="materials-grid">
       {filtered.map((item, i) => (
-        <article key={`${item.title}-${i}`} className="materials-card">
+        <article key={i} className="materials-card">
           <div
             className="materials-card-bg"
             style={{ backgroundImage: `url(${item.img})` }}
@@ -59,12 +62,14 @@ export default function MaterialsGrid({ activeCategory = '전체' }) {
           <div className="materials-card-body">
             <h3>{item.title}</h3>
 
-            {/* ✅ price 있을 때만 보여주기 */}
-            {item.price && (
-              <div className="materials-price">{item.price}</div>
-            )}
-
-            <button type="button">문의하기</button>
+            {/* ✅ 문의하기 클릭 시 바로 전화 연결 */}
+            <a
+              href={PHONE_TEL}
+              className="materials-call-btn"
+              aria-label={`전화문의 ${PHONE_TEXT}`}
+            >
+              문의하기
+            </a>
           </div>
         </article>
       ))}
