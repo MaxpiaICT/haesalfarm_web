@@ -21,12 +21,13 @@ export default function Footer() {
           <div className="footer-title">서비스</div>
           <div className="footer-item">비닐하우스</div>
           <div className="footer-item">팜</div>
+          <div className="footer-item">농자재</div>
         </div>
         {/* 4. 회사 */}
         <div className="footer-col">
           <div className="footer-title">회사</div>
           <div className="footer-item">회사 소개</div>
-          <div className="footer-item">뉴스</div>
+          <div className="footer-item"></div>
         </div>
         {/* 5. 정책 및 사업자 정보 */}
         <div className="footer-col footer-policy-col">

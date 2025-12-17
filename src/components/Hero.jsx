@@ -13,7 +13,7 @@ export default function Hero(){
 
       <div className="hero-content">
         {/* 🔽 노란 영역만 감싸는 래퍼 */}
-        <div className="hero-text">
+        <div className="">
           <h1>스마트 농업 솔루션의 모든 것</h1>
           <p className="hero-sub">
             하우스 시공 · 수경재배 키트 · 농자재까지 원스톱 서비스
@@ -22,8 +22,8 @@ export default function Hero(){
 
         <a
           className="hero-cta"
-          href="tel:000-000-000"
-          aria-label="전화 문의 000-000-000"
+          href="tel:01064719948"
+          aria-label="전화 문의 010-6471-9948"
         >
           <svg
             className="hero-cta-icon"
