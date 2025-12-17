@@ -578,3 +578,36 @@
   .home-card3-bottom{ padding: 16px; }
   .home-card3-cta{ font-size: 15px; }
 }
+
+/* ✅ 화면 전체 배경 섹션 */
+.benefits-section{
+  position: relative;
+  width: 100%;
+  margin-top: 80px;
+  padding: 80px 0;  /* 배경 위아래 여백 */
+
+  background-image: url('/assets/farm_12.png'); /* ✅ 배경 이미지 경로 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ✅ 배경 위에 덮는 오버레이(가독성) */
+.benefits-section::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.55); /* 더 진하게: 0.65 / 더 투명: 0.45 */
+  z-index: 0;
+}
+
+/* ✅ 컨텐츠는 가운데 박스 */
+.benefits-wrap{
+  position: relative;
+  z-index: 1;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;   /* 좌우 여백 */
+  text-align: center;
+}
