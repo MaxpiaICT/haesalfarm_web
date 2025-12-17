@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Hero(){
-  const bgUrl = "/assets/bg.jpg"
+export default function Hero() {
+  const bgUrl = '/assets/bg_1.png'
 
   return (
     <section className="hero">
@@ -12,19 +12,13 @@ export default function Hero(){
       <div className="hero-overlay" />
 
       <div className="hero-content">
-        {/* 🔽 노란 영역만 감싸는 래퍼 */}
-        <div className="">
-          <h1>스마트 농업 솔루션의 모든 것</h1>
-          <p className="hero-sub">
-            하우스 시공 · 수경재배 키트 · 농자재까지 원스톱 서비스
-          </p>
-        </div>
+        <h1>스마트 농업 솔루션의 모든 것</h1>
+        <p className="hero-sub">
+          하우스 시공 · 수경재배 키트 · 농자재까지 원스톱 서비스
+        </p>
 
-        <a
-          className="hero-cta"
-          href="tel:01064719948"
-          aria-label="전화 문의 010-6471-9948"
-        >
+        {/* ✅ CTA (전화 연결) */}
+        <a className="hero-cta" href="tel:01064719948">
           <svg
             className="hero-cta-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +32,8 @@ export default function Hero(){
           >
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12 1.05.37 2.06.73 3.03a2 2 0 0 1-.45 2L8.91 11.09a16 16 0 0 0 6 6l1.34-1.34a2 2 0 0 1 2-.45c.97.36 1.98.61 3.03.73A2 2 0 0 1 22 16.92z" />
           </svg>
-          <span>문의 하기 010-6471-9948</span>
+
+          <span>문의하기 010-6471-9948</span>
         </a>
       </div>
     </section>
