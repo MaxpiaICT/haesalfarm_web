@@ -335,3 +335,263 @@
     min-height: auto;
   }
 }
+
+/* ===============================
+   (추가) Benefits / Highlights / Personas
+   - "사용방법" 바로 밑 UI 섹션
+================================ */
+
+.benefits-wrap{
+  max-width: 1100px;
+  margin: 60px auto 0;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* 상단 문구 */
+.benefits-kicker{
+  font-size: 14px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin: 0 0 10px;
+}
+
+.benefits-head{
+  font-size: 34px;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 10px;
+}
+
+.benefits-sub{
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+  margin: 0 0 28px;
+}
+
+/* 4개 장점 카드 */
+.benefits-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 50px;
+}
+
+.benefit-card{
+  border-radius: 18px;
+  background: rgba(0,0,0,0.70);
+  color: #fff;
+  padding: 22px 22px;
+  box-shadow: 0 18px 44px rgba(65, 63, 63, 0.12);
+  text-align: center;
+}
+
+.benefit-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(26, 23, 23, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin: 0 auto 12px;
+}
+
+.benefit-title{
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 0 10px;
+}
+
+.benefit-desc{
+  font-size: 14px;
+  line-height: 1.6;
+  margin: ;
+  opacity: 0.95;
+}
+
+/* 강조 헤드 */
+.highlights-head{
+  margin: 180px 0 16px;
+  font-size: 22px;
+  font-weight: 900;
+  color: #111;
+}
+
+/* 3개 가로 배너 */
+.highlights-col{
+  display: grid;
+  gap: 14px;
+}
+
+.highlight-bar{
+  border-radius: 18px;
+  padding: 18px 22px;
+  color: #fff;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.highlight-title{
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.highlight-desc{
+  margin: 0;
+  font-size: px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* 톤(색) 3개 */
+.highlight-bar.tone-1{
+  background: rgba(30, 79, 97, 0.88);
+}
+.highlight-bar.tone-2{
+  background: rgba(27, 122, 108, 0.88);
+}
+.highlight-bar.tone-3{
+  background: rgba(36, 73, 140, 0.88);
+}
+
+/* 누구에게 좋을까요 */
+.persona-head{
+  margin: 52px 0 18px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #111;
+}
+
+/* 4개 카드 */
+.persona-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 50px;
+}
+
+.persona-card{
+  position: relative;
+  height: 160px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.12);
+  background: #222;
+}
+
+.persona-bg{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.9);
+  transform: scale(1);
+}
+
+.persona-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.persona-body{
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: left;
+  color: #fff;
+}
+
+.persona-title{
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.persona-desc{
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 1000px){
+  .persona-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px){
+  .benefits-wrap{
+    margin-top: 36px;
+    padding: 0 16px;
+  }
+
+  .benefits-head{
+    font-size: 26px;
+  }
+
+  .benefits-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .persona-grid{
+    grid-template-columns: repeat(, 1fr);
+  }
+
+  .persona-card{
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px){
+  .persona-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ✅ 화면 전체 배경 섹션 */
+.benefits-section{
+  position: relative;
+  width: 100%;
+  margin-top: 80px;
+  padding: 80px 0;  /* 배경 위아래 여백 */
+
+  background-image: url('/assets/farm_12.png'); /* ✅ 배경 이미지 경로 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ✅ 배경 위에 덮는 오버레이(가독성) */
+.benefits-section::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.55); /* 더 진하게: 0.65 / 더 투명: 0.45 */
+  z-index: 0;
+}
+
+/* ✅ 컨텐츠는 가운데 박스 */
+.benefits-wrap{
+  position: relative;
+  z-index: 1;
+
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 20px;   /* 좌우 여백 */
+  text-align: center;
+}
