@@ -14,7 +14,7 @@
 .farm-hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/public/assets/farm_bg.jpg'); /* ← 실제 이미지 경로 */
+  background-image: url('/public/assets/fram_bg_1.png'); /* ← 실제 이미지 경로 */
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -24,7 +24,7 @@
 .farm-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(12, 12, 12, 0.45);
+  background: rgba(20, 20, 20, 0.45);
   z-index: 1;
 }
 
