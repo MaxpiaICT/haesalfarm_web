@@ -32,8 +32,8 @@ root.render(
         <Route path="support" element={<Support />} />
 
         {/* ✅ 로그인/회원가입 */}
-       <Route path="login" element={<Login />} />
-  <Route path="signup" element={<Signup />} />
+       <Route path="Login" element={<Login />} />
+  <Route path="Signup" element={<Signup />} />
   <Route path="mypage" element={<MyPage />} />
 
         {/* ✅ 마이페이지(보호 라우트) */}
