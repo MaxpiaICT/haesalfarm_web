@@ -1,0 +1,234 @@
+/* =========================
+  MyPage (wrapper)
+========================= */
+.mypage-page{
+  width: 100%;
+  min-height: calc(100vh - 50px); /* 헤더 padding-top 50px 고려 */
+  background: #fff;
+}
+
+.mypage{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 44px 20px 80px;
+}
+
+/* =========================
+  Header
+========================= */
+.mypage-head{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.mypage-title{
+  font-size: 30px;
+  font-weight: 900;
+  color: #111;
+  margin: 0;
+}
+
+.mypage-sub{
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0 0;
+}
+
+.mypage-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+  Buttons
+========================= */
+.mypage-btn{
+  border: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, opacity .18s ease;
+}
+
+.mypage-btn.primary{
+  background: #22c55e;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(34,197,94,0.25);
+}
+.mypage-btn.primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(34,197,94,0.30);
+}
+
+.mypage-btn.ghost{
+  background: #f4f4f5;
+  color: #111;
+}
+.mypage-btn.ghost:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* 카드 안의 로그아웃 버튼(보조 버튼 느낌) */
+.mypage-logout{
+  width: 100%;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid #e7e7e7;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.mypage-logout:hover{
+  transform: translateY(-1px);
+  border-color: rgba(34,197,94,0.35);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+/* =========================
+  Grid (single mode)
+========================= */
+.mypage-grid{
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+/* single이면 카드 1개를 가운데로 */
+.mypage-grid.single{
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+/* =========================
+  Card
+========================= */
+.mypage-card{
+  width: min(760px, 100%);
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 22px;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.mypage-card .card-inner{
+  padding: 22px;
+}
+
+.mypage-card-title{
+  font-size: 16px;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mypage-card-title .dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+/* =========================
+  Profile row
+========================= */
+.profile-row{
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.profile-avatar{
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(34,197,94,0.20), rgba(34,197,94,0.05));
+  border: 1px solid rgba(34,197,94,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 20px;
+  color: #178a3f;
+}
+
+.profile-meta{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-name{
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0;
+  color: #111;
+}
+
+.profile-email{
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* badges */
+.profile-badges{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.badge{
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f4f4f5;
+  color: #111;
+}
+
+.badge.green{
+  background: rgba(34,197,94,0.14);
+  color: #178a3f;
+}
+
+/* =========================
+  Responsive
+========================= */
+@media (max-width: 700px){
+  .mypage{
+    padding: 28px 16px 60px;
+  }
+
+  .mypage-head{
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mypage-title{
+    font-size: 24px;
+  }
+
+  .mypage-card .card-inner{
+    padding: 18px;
+  }
+
+  .profile-avatar{
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+  }
+}
