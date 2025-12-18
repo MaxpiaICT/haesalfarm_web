@@ -1,0 +1,103 @@
+.login-page{
+  min-height: calc(100vh - 60px);
+  background: #fff;
+}
+
+.login-hero{
+  height: 150px;
+  background-image: url('/assets/login_banner.jpg'); /* 없으면 다른 이미지로 변경 */
+  background-size: cover;
+  background-position: center;
+}
+
+.login-wrap{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 34px 16px 80px;
+  text-align: center;
+}
+
+.login-title{
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0 0 14px;
+  color: #111;
+}
+
+.login-card{
+  max-width: 560px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 22px;
+  box-shadow: 0 18px 46px rgba(0,0,0,0.08);
+  padding: 22px;
+  display: grid;
+  gap: 14px;
+  text-align: left;
+}
+
+.login-label{
+  font-size: 13px;
+  font-weight: 900;
+  color: #222;
+  display: grid;
+  gap: 8px;
+}
+
+.login-input{
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid #e7e7e7;
+  padding: 0 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.login-input:focus{
+  border-color: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+}
+
+.login-error{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: #e11d48;
+}
+
+.login-btn{
+  height: 50px;
+  border: 0;
+  border-radius: 14px;
+  background: #1f5a3a;
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.login-btn:disabled{
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.login-join-text{
+  margin: 18px 0 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+.login-join-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: min(560px, 100%);
+  margin: 0 auto;
+  border-radius: 14px;
+  background: #000;
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
