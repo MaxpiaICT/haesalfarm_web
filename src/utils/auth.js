@@ -88,3 +88,6 @@ export function logout() {
 export function isLoggedIn() {
   return !!getCurrentUser()
 }
+
+
+
