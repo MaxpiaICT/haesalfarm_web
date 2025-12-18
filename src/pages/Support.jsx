@@ -16,7 +16,7 @@ export default function Support() {
   const onSubmit = (e) => {
     e.preventDefault()
     // ✅ 아직 DB/서버 없으면 여기서 alert만
-    alert('문의가 접수되었습니다! (현재는 테스트 상태)')
+    alert('문의가 접수되었습니다!')
   }
 
   return (
