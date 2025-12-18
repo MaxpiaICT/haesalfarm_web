@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { signup } from '../utils/auth'
-import './signup.css'
+import './Signup.css'
 
 export default function Signup() {
   const nav = useNavigate()
@@ -121,7 +121,7 @@ export default function Signup() {
           </button>
 
           <p className="signup-foot">
-            이미 계정이 있나요? <Link to="/login">로그인</Link>
+            이미 계정이 있나요? <Link to="/Login">로그인</Link>
           </p>
         </form>
       </div>
