@@ -70,9 +70,26 @@ export default function App() {
         {/* 데스크톱 네비 */}
         <nav className="main-nav">
           <div className="nav-center">
-            <Link to="/construction">하우스 시공</Link>
-            <Link to="/farm">팜</Link>
-            <Link to="/materials">농자재</Link>
+            <Link to="/construction" onClick={() => setAuthOpen(false)}>
+              하우스 시공
+            </Link>
+            <Link to="/farm" onClick={() => setAuthOpen(false)}>
+              팜
+            </Link>
+            <Link to="/materials" onClick={() => setAuthOpen(false)}>
+              농자재
+            </Link>
+
+            {/* ✅ 회사소개 추가 */}
+            <Link
+              to="/company"
+              onClick={() => {
+                setAuthOpen(false)
+                setMenuOpen(false)
+              }}
+            >
+              회사소개
+            </Link>
           </div>
 
           <div className="nav-right">
@@ -83,7 +100,7 @@ export default function App() {
             {/* ✅ 로그인 상태면: 마이페이지/로그아웃 */}
             {user ? (
               <>
-                <Link className="header-btn" to="/mypage">
+                <Link className="header-btn" to="/mypage" onClick={() => setAuthOpen(false)}>
                   마이페이지
                 </Link>
                 <button className="header-btn" onClick={onLogout}>
@@ -144,6 +161,12 @@ export default function App() {
               <Link to="/materials" onClick={() => setMenuOpen(false)}>
                 농자재
               </Link>
+
+              {/* ✅ 회사소개 추가 */}
+              <Link to="/company" onClick={() => setMenuOpen(false)}>
+                회사소개
+              </Link>
+
               <Link to="/support" onClick={() => setMenuOpen(false)}>
                 고객센터
               </Link>

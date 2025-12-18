@@ -1,0 +1,317 @@
+/* ====== Base ====== */
+.company2{
+  color:#111;
+  background:#fff;
+}
+
+.wrap2{
+  width:min(1100px, calc(100% - 40px));
+  margin:0 auto;
+  padding:64px 0;
+}
+
+/* ====== HERO ====== */
+.hero2{
+  position:relative;
+  min-height:420px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:url("/assets/2_bg_1.png") center/cover no-repeat;
+}
+
+.hero2__overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.72);
+}
+
+.hero2__inner{
+  position:relative;
+  z-index:1;
+  width:min(900px, calc(100% - 40px));
+  padding:56px 0;
+}
+
+.hero2__title{
+  font-size:clamp(22px, 3vw, 34px);
+  font-weight:800;
+  letter-spacing:-0.4px;
+  margin:0;
+}
+
+.hero2__desc{
+  margin:14px auto 0;
+  max-width:66ch;
+  color:#333;
+  line-height:1.7;
+  font-size:15px;
+}
+
+.hero2__btn{
+  margin:22px auto 0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:48px;
+  min-width:260px;
+  padding:0 18px;
+  border-radius:10px;
+  background:#1e5a36;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 10px 22px rgba(0,0,0,0.16);
+}
+
+/* ====== ABOUT ====== */
+.about2{
+  text-align:center;
+  padding:12px 0 6px;
+}
+.about2__title{
+  margin:0;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-0.4px;
+}
+.about2__desc{
+  margin:14px auto 0;
+  max-width:78ch;
+  color:#444;
+  line-height:1.75;
+  font-size:14px;
+}
+
+/* ====== Section Title (라인 + 텍스트) ====== */
+.sec-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin:0 0 26px;
+}
+.sec-title__line{
+  height:3px;
+  width:160px;
+  background:#2b6a63;
+  opacity:0.8;
+  border-radius:999px;
+}
+.sec-title__text{
+  margin:0;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:-0.4px;
+}
+
+/* ====== VALUES ====== */
+.grid4{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:16px;
+  margin-top:10px;
+}
+
+.valueCard{
+  border-radius:14px;
+  padding:18px;
+  min-height:120px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.06);
+}
+.valueCard h3{
+  margin:0 0 10px;
+  font-size:14px;
+  font-weight:900;
+}
+.valueCard p{
+  margin:0;
+  font-size:12.5px;
+  color:#444;
+  line-height:1.65;
+}
+
+/* 파스텔 4종 */
+.valueCard.v1{ background:#f2f2f2; }
+.valueCard.v2{ background:#eaf7ea; }
+.valueCard.v3{ background:#e8f6fb; }
+.valueCard.v4{ background:#f1ecff; }
+
+/* ====== SERVICES ====== */
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+}
+
+.svcCard{
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.06);
+  min-height:220px;
+}
+
+.svcCard__title{
+  margin:0 0 14px;
+  font-size:14px;
+  font-weight:900;
+}
+
+.svcCard.s1{ background:#f2f2f2; }
+.svcCard.s2{ background:#eaf7ea; }
+.svcCard.s3{ background:#eef0ff; }
+
+.flow{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  padding-top:2px;
+}
+.pill{
+  width:min(260px, 100%);
+  text-align:center;
+  padding:10px 12px;
+  border-radius:999px;
+  background:rgba(0,0,0,0.62);
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+}
+.arrow{
+  font-size:12px;
+  color:rgba(0,0,0,0.55);
+  font-weight:900;
+}
+
+/* ====== PROCESS ====== */
+.process{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:14px;
+  padding-top:8px;
+}
+
+.step{
+  background:#efefef;
+  border-radius:999px;
+  padding:12px 16px;
+  min-width:160px;
+  text-align:center;
+  box-shadow:0 6px 14px rgba(0,0,0,0.06);
+}
+.step__top{
+  font-weight:900;
+  font-size:13px;
+}
+.step__sub{
+  margin-top:6px;
+  font-size:11.5px;
+  color:#555;
+  line-height:1.4;
+}
+.chev{
+  color:rgba(0,0,0,0.35);
+  font-weight:900;
+}
+
+.step--wide{
+  width:100%;
+  max-width:560px;
+  background:#dedede;
+  border-radius:700px;
+  font-weight:900;
+  margin-top:10px;
+  padding:14px 18px;
+}
+.step--wideSub{
+  display:block;
+  margin-top:6px;
+  font-size:12px;
+  font-weight:20;
+  color:#666;
+}
+
+/* ====== TRUST BG SECTION ====== */
+.trustBg{
+  position:relative;
+  background:url("/assets/login_bg.png") center/cover no-repeat;
+  padding:84px 0;
+  margin-top:30px;
+}
+
+
+
+.trustBg__inner{
+  position:relative;
+  z-index:1;
+  width:min(1100px, calc(100% - 40px));
+  margin:0 auto;
+  text-align:center;
+}
+
+.trustBg__title{
+  margin:0 0 18px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.trustBg__desc{
+  margin:8px 0;
+  color:#333;
+  line-height:1.75;
+  font-weight:700;
+}
+
+/* ====== CTA ====== */
+.cta2{
+  text-align:center;
+  padding:72px 0 86px;
+}
+
+.cta2__title{
+  margin:0;
+  font-size:22px;
+  font-weight:900;
+}
+
+.cta2__desc{
+  margin:12px auto 22px;
+  max-width:70ch;
+  color:#444;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.cta2__btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:52px;
+  min-width:320px;
+  padding:0 18px;
+  border-radius:10px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:0 12px 26px rgba(0,0,0,0.22);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 980px){
+  .grid4{ grid-template-columns:repeat(2, 1fr); }
+  .grid3{ grid-template-columns:1fr; }
+  .sec-title__line{ width:110px; }
+  .hero2{ min-height:360px; }
+}
+
+@media (max-width: 520px){
+  .wrap2{ padding:52px 0; }
+  .grid4{ grid-template-columns:1fr; }
+  .hero2__btn{ min-width:220px; }
+  .cta2__btn{ min-width:240px; width:100%; }
+}

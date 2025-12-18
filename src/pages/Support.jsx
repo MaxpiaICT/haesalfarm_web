@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'   // ✅ 추가
 import './Support.css'
 
 export default function Support() {
+  const nav = useNavigate()                      // ✅ 추가
   const [tab, setTab] = useState('inquiry') // 'faq' | 'inquiry'
 
   const faqs = useMemo(
@@ -15,8 +17,10 @@ export default function Support() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    // ✅ 아직 DB/서버 없으면 여기서 alert만
     alert('문의가 접수되었습니다!')
+
+    nav('/', { replace: true })                  // ✅ 제출 후 메인으로 이동
+    window.scrollTo({ top: 0, behavior: 'smooth' }) // (선택) 메인 상단으로
   }
 
   return (

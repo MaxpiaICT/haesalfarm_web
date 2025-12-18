@@ -8,11 +8,11 @@ import Materials from './pages/Materials'
 import Detail from './pages/Detail'
 import Construction from './components/Construction/Construction'
 
-// ✅ 추가
-import Support from './pages/Support' // ✅ 추가
+import Support from './pages/Support'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import MyPage from './pages/MyPage'
+import Company from './pages/Company' // ✅ 회사소개 추가
 
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -31,12 +31,14 @@ root.render(
         <Route path="detail/:id" element={<Detail />} />
         <Route path="support" element={<Support />} />
 
-        {/* ✅ 로그인/회원가입 */}
-       <Route path="Login" element={<Login />} />
-  <Route path="Signup" element={<Signup />} />
-  <Route path="mypage" element={<MyPage />} />
+        {/* ✅ 회사소개 */}
+        <Route path="company" element={<Company />} />
 
-        {/* ✅ 마이페이지(보호 라우트) */}
+        {/* ✅ 로그인/회원가입 (경로 소문자 권장) */}
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+
+        {/* ✅ 마이페이지(보호 라우트) - 중복 제거 */}
         <Route
           path="mypage"
           element={
