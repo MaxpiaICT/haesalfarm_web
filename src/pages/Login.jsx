@@ -9,7 +9,8 @@ export default function Login() {
   const [err, setErr] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+  const onChange = (e) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -17,7 +18,7 @@ export default function Login() {
 
     try {
       setSubmitting(true)
-      login({ username: form.username, password: form.password })
+      login({ username: form.username.trim(), password: form.password })
       nav('/mypage')
     } catch (e2) {
       setErr(e2?.message || '로그인에 실패했습니다.')
@@ -28,8 +29,11 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      {/* 배너 */}
-      <div className="login-hero" />
+      <div className="login-hero">
+        <p className="login-hero-text">
+          더 간편한 서비스 이용을 위해 로그인을 해주세요.
+        </p>
+      </div>
 
       <div className="login-wrap">
         <h2 className="login-title">로그인</h2>
@@ -68,7 +72,9 @@ export default function Login() {
         </form>
 
         <p className="login-join-text">아직 회원이 아니신가요?</p>
-        <Link className="login-join-btn" to="/signup">회원가입</Link>
+        <Link className="login-join-btn" to="/signup">
+          회원가입
+        </Link>
       </div>
     </div>
   )
