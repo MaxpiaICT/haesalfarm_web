@@ -1,3 +1,29 @@
+
+나의 말:
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+
+
 /* ===============================
    설명 영상 탭
 ================================ */
@@ -359,23 +385,23 @@
 .benefits-head{
   font-size: 34px;
   font-weight: 900;
-  color: #111;
+  color: #1b1b1b;
   margin: 0 0 10px;
 }
 
 .benefits-sub{
   font-size: 14px;
   line-height: 1.7;
-  color: #555;
+  color: #292828;
   margin: 0 0 28px;
 }
 
 /* 4개 장점 카드 */
 .benefits-grid{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-top: 50px;
+  grid-template-columns: repeat(2, minmax(0, 360px)); /* 카드 최대폭 */
+  justify-content: center;  /* 가운데로 모으기 */
+  gap: 22px;                /* 카드 사이 간격 */
 }
 
 .benefit-card{
@@ -401,7 +427,7 @@
 
 .benefit-title{
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 700;
   margin: 0 0 10px;
 }
 
@@ -414,16 +440,20 @@
 
 /* 강조 헤드 */
 .highlights-head{
-  margin: 180px 0 16px;
-  font-size: 22px;
+  margin: 150px 0 16px;
+  margin-bottom: 58px;
+  font-size: 30px;
   font-weight: 900;
-  color: #111;
+  color: #2b2929;
 }
 
 /* 3개 가로 배너 */
 .highlights-col{
-  display: grid;
-  gap: 14px;
+ max-width: 750px;   /* ← 여기 줄이면 전체가 좁아짐 */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;      
 }
 
 .highlight-bar{
@@ -436,8 +466,9 @@
 
 .highlight-title{
   margin: 0 0 10px;
-  font-size: 14px;
-  font-weight: 900;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .highlight-desc{
@@ -460,23 +491,27 @@
 
 /* 누구에게 좋을까요 */
 .persona-head{
-  margin: 52px 0 18px;
-  font-size: 24px;
+    margin: 90px 0 36px;   /* ← 타이틀-카드 간격 조절 */
+  text-align: center;
+  font-size: 30px;
   font-weight: 900;
-  color: #111;
+  color: #302f2f;
 }
 
 /* 4개 카드 */
 .persona-grid{
+  width: min(900px, 100%);  /* ← 여기 숫자 줄이면 카드 더 작아짐 */
+  margin: 50px auto;
+  padding: 0 20px;
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 50px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;                 /* 카드 사이 간격 */
 }
 
 .persona-card{
   position: relative;
-  height: 160px;
+  height: 260px;
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 18px 44px rgba(0,0,0,0.12);
@@ -495,33 +530,47 @@
 .persona-overlay{
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.15)
+  );
 }
 
 .persona-body{
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
-  height: 100%;
-  padding: 14px;
+
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  text-align: left;
+  justify-content: space-between; /* 🔥 상단/하단 분리 */
+  padding: 16px;
   color: #fff;
+   text-align: left;      /* ✅ 왼쪽 정렬 */
+  align-items: flex-start; /* ✅ (혹시 가운데로 잡히는 경우 대비) */
 }
 
 .persona-title{
   margin: 0 0 8px;
-  font-size: 14px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 1.2;
 }
 
 .persona-desc{
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.45;
-  opacity: 0.92;
+ .persona-body{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 🔥 상단/하단 분리 */
+  padding: 16px;
+  font-weight: 600;
+  color: #fff;
+}
 }
 
 /* ===============================
@@ -581,7 +630,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.55); /* 더 진하게: 0.65 / 더 투명: 0.45 */
+  background: rgba(255, 251, 251, 1); /* 더 진하게: 0.65 / 더 투명: 0.45 */
   z-index: 0;
 }
 
@@ -594,4 +643,11 @@
   margin: 0 auto;
   padding: 0 20px;   /* 좌우 여백 */
   text-align: center;
+}
+
+
+.highlights-head,
+.persona-head{
+  font-family: 'GMarketSans', 'Noto Sans KR', system-ui, Arial, sans-serif !important;
+  font-weight: 700;
 }
