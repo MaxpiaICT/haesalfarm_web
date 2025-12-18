@@ -1,24 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import { getCurrentUser, logout } from './utils/auth' // ✅ 추가
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [authOpen, setAuthOpen] = useState(false)
+  const [user, setUser] = useState(getCurrentUser()) // ✅ 로그인 상태
   const authRef = useRef(null)
 
-  const closeAll = () => {
-    setMenuOpen(false)
-    setAuthOpen(false)
-  }
+  const nav = useNavigate()
+  const location = useLocation()
 
-  const handleComingSoon = () => {
-    alert('🚧 업데이트 중입니다!\n조금만 기다려 주세요.')
-    closeAll()
-  }
+  // ✅ 라우트 이동/로그인 직후 상태 반영(로컬스토리지 읽기)
+  useEffect(() => {
+    setUser(getCurrentUser())
+  }, [location.pathname])
 
-  // ✅ 드롭다운 바깥 클릭 시 닫기
+  // ✅ 드롭다운 바깥 클릭하면 닫기
   useEffect(() => {
     const onDown = (e) => {
       if (!authRef.current) return
@@ -27,6 +27,14 @@ export default function App() {
     document.addEventListener('mousedown', onDown)
     return () => document.removeEventListener('mousedown', onDown)
   }, [])
+
+  const onLogout = () => {
+    logout()
+    setUser(null)
+    setAuthOpen(false)
+    setMenuOpen(false)
+    nav('/')
+  }
 
   return (
     <div className="site-root">
@@ -48,56 +56,63 @@ export default function App() {
         </button>
 
         {/* 로고 */}
-        <Link to="/" className="header-logo" onClick={closeAll}>
+        <Link
+          to="/"
+          className="header-logo"
+          onClick={() => {
+            setMenuOpen(false)
+            setAuthOpen(false)
+          }}
+        >
           <img src="/assets/logo.svg" alt="햇살농업건설" className="logo-img" />
         </Link>
 
         {/* 데스크톱 네비 */}
         <nav className="main-nav">
           <div className="nav-center">
-            <Link to="/construction" onClick={() => setAuthOpen(false)}>
-              하우스 시공
-            </Link>
-            <Link to="/farm" onClick={() => setAuthOpen(false)}>
-              팜
-            </Link>
-            <Link to="/materials" onClick={() => setAuthOpen(false)}>
-              농자재
-            </Link>
+            <Link to="/construction">하우스 시공</Link>
+            <Link to="/farm">팜</Link>
+            <Link to="/materials">농자재</Link>
           </div>
 
           <div className="nav-right">
-            {/* 회사소개 */}
-            <button className="header-btn" onClick={handleComingSoon}>
-              회사소개
-            </button>
-
-            {/* 고객센터 */}
             <Link className="header-btn" to="/support" onClick={() => setAuthOpen(false)}>
               고객센터
             </Link>
 
-            {/* 로그인/회원가입 드롭다운 */}
-            <div className="auth-dropdown" ref={authRef}>
-              <button
-                type="button"
-                className={`header-btn auth-trigger ${authOpen ? 'open' : ''}`}
-                onClick={() => setAuthOpen((v) => !v)}
-              >
-                로그인/회원가입 <span className="auth-caret">▾</span>
-              </button>
+            {/* ✅ 로그인 상태면: 마이페이지/로그아웃 */}
+            {user ? (
+              <>
+                <Link className="header-btn" to="/mypage">
+                  마이페이지
+                </Link>
+                <button className="header-btn" onClick={onLogout}>
+                  로그아웃
+                </button>
+              </>
+            ) : (
+              /* ✅ 비로그인: 로그인/회원가입 드롭다운 */
+              <div className="auth-dropdown" ref={authRef}>
+                <button
+                  type="button"
+                  className={`header-btn auth-trigger ${authOpen ? 'open' : ''}`}
+                  onClick={() => setAuthOpen((v) => !v)}
+                >
+                  로그인/회원가입 <span className="auth-caret">▾</span>
+                </button>
 
-              {authOpen && (
-                <div className="auth-menu">
-                  <Link className="auth-item" to="/login" onClick={() => setAuthOpen(false)}>
-                    로그인
-                  </Link>
-                  <Link className="auth-item" to="/signup" onClick={() => setAuthOpen(false)}>
-                    회원가입
-                  </Link>
-                </div>
-              )}
-            </div>
+                {authOpen && (
+                  <div className="auth-menu">
+                    <Link className="auth-item" to="/login" onClick={() => setAuthOpen(false)}>
+                      로그인
+                    </Link>
+                    <Link className="auth-item" to="/signup" onClick={() => setAuthOpen(false)}>
+                      회원가입
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </nav>
       </header>
@@ -105,39 +120,52 @@ export default function App() {
       {/* 모바일 메뉴 */}
       {menuOpen && (
         <>
-          <button className="mobile-overlay" onClick={closeAll} aria-label="메뉴 닫기" />
+          <button
+            className="mobile-overlay"
+            onClick={() => setMenuOpen(false)}
+            aria-label="메뉴 닫기"
+          />
 
           <aside className="mobile-drawer open">
             <div className="mobile-drawer-top">
               <span className="mobile-drawer-title">메뉴</span>
-              <button className="mobile-close" onClick={closeAll}>
+              <button className="mobile-close" onClick={() => setMenuOpen(false)}>
                 ✕
               </button>
             </div>
 
             <nav className="mobile-links">
-              <Link to="/construction" onClick={closeAll}>
+              <Link to="/construction" onClick={() => setMenuOpen(false)}>
                 하우스 시공
               </Link>
-              <Link to="/farm" onClick={closeAll}>
+              <Link to="/farm" onClick={() => setMenuOpen(false)}>
                 팜
               </Link>
-              <Link to="/materials" onClick={closeAll}>
+              <Link to="/materials" onClick={() => setMenuOpen(false)}>
                 농자재
               </Link>
-
-              <button onClick={handleComingSoon}>회사소개</button>
-
-              <Link to="/support" onClick={closeAll}>
+              <Link to="/support" onClick={() => setMenuOpen(false)}>
                 고객센터
               </Link>
 
-              <Link to="/login" onClick={closeAll}>
-                로그인
-              </Link>
-              <Link to="/signup" onClick={closeAll}>
-                회원가입
-              </Link>
+              {/* ✅ 모바일도 로그인 상태 분기 */}
+              {user ? (
+                <>
+                  <Link to="/mypage" onClick={() => setMenuOpen(false)}>
+                    마이페이지
+                  </Link>
+                  <button onClick={onLogout}>로그아웃</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setMenuOpen(false)}>
+                    로그인
+                  </Link>
+                  <Link to="/signup" onClick={() => setMenuOpen(false)}>
+                    회원가입
+                  </Link>
+                </>
+              )}
             </nav>
           </aside>
         </>
