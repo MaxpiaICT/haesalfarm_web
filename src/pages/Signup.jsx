@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { signup } from '../utils/auth'
-import './signup.css'
+import './Signup.css'
 
 export default function Signup() {
   const nav = useNavigate()
