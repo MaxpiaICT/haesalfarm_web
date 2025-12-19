@@ -91,7 +91,7 @@
 .site-footer-custom {
   width: 100%;
   background: #fff9f8;
-  padding: 50px 0 20px;
+  padding: 30px 0 20px;
   border-top: 1px solid #f2eaea;
   font-family: 'Noto Sans KR', Arial, sans-serif;
   color: #222;
@@ -100,7 +100,7 @@
 .footer-inner {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -119,8 +119,8 @@
   min-width: 260px;
 }
 
-.footer-title { font-weight: 700; font-size: 17px; }
-.footer-item { font-size: 15px; color: #444; }
+.footer-title { font-weight: 700; font-size: 14px; }
+.footer-item { font-size: 12px; color: #444; }
 
 .footer-link {
   color: #888;
@@ -130,11 +130,11 @@
 
 .footer-bottom {
   max-width: 1400px;
-  margin: 40px auto 0;
+  margin: 20px auto 0;
   padding: 0 32px 20px;
-  text-align: left;
+  text-align: center;
   color: #888;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .footer-logo { width: 130px; height: auto; }
