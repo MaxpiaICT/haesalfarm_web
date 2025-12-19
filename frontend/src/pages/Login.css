@@ -202,3 +202,22 @@
   opacity: 0.55;
   cursor: not-allowed;
 }
+
+/* 비밀번호 찾기 링크 */
+.login-links {
+  margin-top: 12px;
+  text-align: right;
+}
+
+.login-forgot-link {
+  font-size: 13px;
+  color: #666;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.login-forgot-link:hover {
+  color: #22c55e;
+  text-decoration: underline;
+}

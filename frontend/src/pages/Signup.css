@@ -221,6 +221,31 @@
   text-decoration: underline;
 }
 
+/* 약관 링크 버튼 스타일 */
+.policy-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.policy-link:hover {
+  color: #22c55e;
+  text-decoration: underline;
+}
+
+.policy-link:focus {
+  outline: 2px solid #22c55e;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 @media (max-width: 720px){
   .signup-hero-title{ font-size: 30px; }
   .signup-grid{ grid-template-columns: 1fr; }

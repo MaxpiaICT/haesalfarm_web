@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { signup } from '../utils/auth'
+import PolicyModal from '../components/PolicyModal'
 import './Signup.css'
 
 export default function Signup() {
@@ -16,6 +17,8 @@ export default function Signup() {
   })
   const [err, setErr] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [policyModalOpen, setPolicyModalOpen] = useState(false)
+  const [policyTab, setPolicyTab] = useState('privacy') // 'privacy' or 'terms'
 
   const onChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -43,7 +46,7 @@ export default function Signup() {
     return { ok: Object.keys(errors).length === 0, errors }
   }, [form])
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     setErr('')
     if (!validate.ok) {
@@ -53,7 +56,7 @@ export default function Signup() {
 
     try {
       setSubmitting(true)
-      signup({
+      await signup({
         username: form.username,
         name: form.name,
         email: form.email,
@@ -65,6 +68,11 @@ export default function Signup() {
     } finally {
       setSubmitting(false)
     }
+  }
+
+  const openPolicyModal = (tab = 'privacy') => {
+    setPolicyTab(tab)
+    setPolicyModalOpen(true)
   }
 
   return (
@@ -110,7 +118,31 @@ export default function Signup() {
             <div className="agree full">
               <label className="agree-row">
                 <input type="checkbox" name="agree" checked={form.agree} onChange={onChange} />
-                <span>(필수) 개인정보 처리방침 및 이용약관 동의</span>
+                <span>
+                  (필수){' '}
+                  <button
+                    type="button"
+                    className="policy-link"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      openPolicyModal('privacy')
+                    }}
+                  >
+                    개인정보 처리방침
+                  </button>
+                  {' 및 '}
+                  <button
+                    type="button"
+                    className="policy-link"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      openPolicyModal('terms')
+                    }}
+                  >
+                    이용약관
+                  </button>
+                  {' 동의'}
+                </span>
               </label>
               {validate.errors.agree && <p className="error">{validate.errors.agree}</p>}
             </div>
@@ -125,6 +157,12 @@ export default function Signup() {
           </p>
         </form>
       </div>
+
+      <PolicyModal
+        open={policyModalOpen}
+        initialTab={policyTab}
+        onClose={() => setPolicyModalOpen(false)}
+      />
     </div>
   )
 }
