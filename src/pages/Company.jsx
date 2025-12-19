@@ -19,9 +19,9 @@ export default function Company() {
       <section className="hero2">
         <div className="hero2__overlay" />
         <div className="hero2__inner">
-          <h1 className="hero2__title">도시에서도 쉬운 수경재배, 공간에 맞춘 시공까지</h1>
+          <h1 className="hero2__title">도시·농촌 어디서든, 수경재배부터 농사하우스 시공까지</h1>
           <p className="hero2__desc">
-            아파트·베란다·소형 공간에 최적화된 수경재배 키트와 시공/자재 솔루션을 제공합니다.
+            아파트·베란다 소형 키트부터 하우스 제작/자재/시공 솔루션을 제공합니다.
           </p>
           <Link to="/support" className="hero2__btn">
             문의하기
@@ -109,30 +109,56 @@ export default function Company() {
       <section className="wrap2">
         <SectionTitle>진행 방식</SectionTitle>
 
-        <div className="process">
-          <div className="step">
-            <div className="step__top">문의 접수</div>
-            <div className="step__sub">폼/전화/카톡 등</div>
+        <div className="processGrid2">
+          {/* 1 */}
+          <div className="pCard2">
+            <img className="pIcon" src="/assets/icon_1.svg" alt="" />
+            <div className="pTitle2">문의 접수</div>
+            <div className="pDesc2">폼 / 전화 / 카톡 등</div>
           </div>
-          <div className="chev">➜</div>
-          <div className="step">
-            <div className="step__top">목적 확인</div>
-            <div className="step__sub">재배 목적, 공간 크기, 예산</div>
+          <div className="pArrow2" aria-hidden="true">➜</div>
+
+          {/* 2 */}
+          <div className="pCard2">
+            <img className="pIcon" src="/assets/icon_2.svg" alt="" />
+            <div className="pTitle2">목적 확인</div>
+            <div className="pDesc2">재배 목적, 공간 크기, 예산</div>
           </div>
-          <div className="chev">➜</div>
-          <div className="step">
-            <div className="step__top">제안/견적</div>
-            <div className="step__sub">구성, 납기, 비용 안내</div>
-          </div>
-          <div className="chev">➜</div>
-          <div className="step">
-            <div className="step__top">결제/일정 확정</div>
-            <div className="step__sub">설치/배송 일정 확정</div>
+          <div className="pArrow2" aria-hidden="true">➜</div>
+
+          {/* 3 */}
+          <div className="pCard2">
+            <img className="pIcon" src="/assets/icon_3.svg" alt="" />
+            <div className="pTitle2">제안/견적</div>
+            <div className="pDesc2">구성, 납기, 비용 안내</div>
           </div>
 
-          <div className="step step--wide">
-            결제/일정 설치/배송 + 사후 안내확정
-            <span className="step--wideSub">운영 가이드 제공</span>
+          {/* ✅ 3→4 화살표는 모바일에서만 필요 (웹에서는 줄 깨짐 방지) */}
+          <div className="pArrow2 pArrow2--mOnly" aria-hidden="true">➜</div>
+
+          {/* 4 */}
+          <div className="pCard2">
+            <img className="pIcon" src="/assets/icon_4.svg" alt="" />
+            <div className="pTitle2">결제/일정 확정</div>
+            <div className="pDesc2">설치/배송 일정 확정</div>
+          </div>
+          <div className="pArrow2" aria-hidden="true">➜</div>
+
+          {/* 5 */}
+          <div className="pCard2">
+            <img className="pIcon" src="/assets/icon_5.svg" alt="" />
+            <div className="pTitle2">설치/배송 진행</div>
+            <div className="pDesc2">설치 또는 제품 배송 진행</div>
+          </div>
+          <div className="pArrow2" aria-hidden="true">➜</div>
+
+          {/* 6 */}
+          <div className="pCard2">
+            <img className="pIcon" src="/assets/icon_6.svg" alt="" />
+            <div className="pTitle2">사후 안내 확정</div>
+            <div className="pDesc2">
+              운영 가이드 제공<br />/ 소모품 안내
+            </div>
           </div>
         </div>
       </section>
