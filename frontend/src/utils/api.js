@@ -7,11 +7,22 @@ const getApiBaseUrl = () => {
     return import.meta.env.VITE_API_URL
   }
   
-  // 배포 환경(PROD)에서는 환경 변수가 필수
+  // 배포 환경(PROD)에서 환경 변수가 없는 경우
   if (import.meta.env.PROD) {
-    console.error('❌ VITE_API_URL 환경 변수가 설정되지 않았습니다. 배포 환경에서는 반드시 설정해야 합니다.')
-    // 배포 환경에서는 환경 변수가 없으면 오류 발생
-    throw new Error('API URL이 설정되지 않았습니다. 관리자에게 문의하세요.')
+    // 배포 환경에서는 현재 호스트를 기반으로 API URL 생성
+    // 예: https://haesalfarm.com -> https://haesalfarm.com/api 또는 백엔드 서버 URL
+    const hostname = window.location.hostname
+    const protocol = window.location.protocol
+    
+    // 같은 도메인에서 API를 제공하는 경우
+    // 또는 별도의 백엔드 서버가 있는 경우 여기에 설정
+    // 예: Railway, Render, Heroku 등의 백엔드 URL
+    console.warn('⚠️ VITE_API_URL 환경 변수가 설정되지 않았습니다. 현재 호스트를 사용합니다.')
+    
+    // 같은 도메인에서 API를 제공하는 경우 (예: /api 경로)
+    // 또는 백엔드 서버가 별도로 있는 경우 해당 URL을 반환
+    // 기본적으로는 같은 도메인의 /api 경로를 사용
+    return `${protocol}//${hostname}/api`
   }
   
   // 개발 환경에서만 자동 감지 사용
