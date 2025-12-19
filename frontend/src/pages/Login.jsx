@@ -12,13 +12,13 @@ export default function Login() {
   const onChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     setErr('')
 
     try {
       setSubmitting(true)
-      login({ username: form.username.trim(), password: form.password })
+      await login({ username: form.username.trim(), password: form.password })
       nav('/mypage')
     } catch (e2) {
       setErr(e2?.message || '로그인에 실패했습니다.')
@@ -70,6 +70,12 @@ export default function Login() {
             {submitting ? '로그인 중...' : '로그인하기'}
           </button>
         </form>
+
+        <div className="login-links">
+          <Link to="/forgot-password" className="login-forgot-link">
+            비밀번호를 잊으셨나요?
+          </Link>
+        </div>
 
         <p className="login-join-text">아직 회원이 아니신가요?</p>
         <Link className="login-join-btn" to="/signup">
