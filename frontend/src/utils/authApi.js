@@ -117,7 +117,8 @@ export async function findPassword({ username, email }) {
     username,
     email,
   })
-  return response.tempPassword
+  // API 응답이 객체인 경우 그대로 반환, 문자열인 경우 기존 방식 유지
+  return response.tempPassword || response
 }
 
 // 비밀번호 변경
