@@ -1,6 +1,39 @@
 // src/utils/api.js
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+// 모바일 접근을 위해 현재 호스트의 IP 주소를 자동 감지
+const getApiBaseUrl = () => {
+  // 환경 변수가 설정되어 있으면 사용 (배포 환경에서는 필수)
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL
+  }
+  
+  // 배포 환경(PROD)에서는 환경 변수가 필수
+  if (import.meta.env.PROD) {
+    console.error('❌ VITE_API_URL 환경 변수가 설정되지 않았습니다. 배포 환경에서는 반드시 설정해야 합니다.')
+    // 배포 환경에서는 환경 변수가 없으면 오류 발생
+    throw new Error('API URL이 설정되지 않았습니다. 관리자에게 문의하세요.')
+  }
+  
+  // 개발 환경에서만 자동 감지 사용
+  if (import.meta.env.DEV) {
+    const hostname = window.location.hostname
+    // localhost가 아닌 경우 (모바일에서 접근 시) 현재 호스트 사용
+    // 단, PC에서 접근할 때는 localhost를 사용하여 로컬 네트워크 권한 팝업 방지
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1' && hostname.match(/^\d+\.\d+\.\d+\.\d+$/)) {
+      // IP 주소 형식인 경우에만 (모바일 접근) 현재 호스트 사용
+      return `http://${hostname}:3001/api`
+    }
+  }
+  
+  // 개발 환경 기본값: localhost (PC에서 접근 시)
+  return 'http://localhost:3001/api'
+}
+
+const API_BASE_URL = getApiBaseUrl()
+
+// #region agent log
+console.log('[API Config]', { API_BASE_URL, hostname: window.location.hostname, isDev: import.meta.env.DEV, isProd: import.meta.env.PROD, envUrl: import.meta.env.VITE_API_URL })
+// #endregion
 
 // 디버그 로깅 활성화 여부 (개발 환경에서만)
 const DEBUG_LOGGING_ENABLED = import.meta.env.DEV && import.meta.env.VITE_DEBUG_LOGGING !== 'false'
@@ -32,10 +65,16 @@ const apiRequest = async (endpoint, options = {}) => {
   try {
     const fullUrl = `${API_BASE_URL}${endpoint}`
     // #region agent log
+    console.log('[API Request]', { endpoint, fullUrl, API_BASE_URL, method: options.method || 'GET', hostname: window.location.hostname, isDev: import.meta.env.DEV, isProd: import.meta.env.PROD })
     if (DEBUG_LOGGING_ENABLED) {
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Full URL',data:{fullUrl},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Full URL',data:{fullUrl,API_BASE_URL,endpoint,method:options.method||'GET',hostname:window.location.hostname,isDev:import.meta.env.DEV,isProd:import.meta.env.PROD},timestamp:Date.now(),sessionId:'debug-session',runId:'mobile-signup',hypothesisId:'A'})}).catch(()=>{});
     }
     // #endregion
+    
+    // #region agent log
+    console.log('[API Request] Attempting fetch', { fullUrl, config: { method: config.method, headers: config.headers } })
+    // #endregion
+    
     const response = await fetch(fullUrl, config)
     // #region agent log
     if (DEBUG_LOGGING_ENABLED) {
@@ -56,10 +95,29 @@ const apiRequest = async (endpoint, options = {}) => {
     return data
   } catch (error) {
     // #region agent log
+    const errorDetails = {
+      endpoint,
+      fullUrl: `${API_BASE_URL}${endpoint}`,
+      API_BASE_URL,
+      error: error.message,
+      errorName: error.name,
+      stack: error.stack,
+      hostname: window.location.hostname,
+      isDev: import.meta.env.DEV,
+      isProd: import.meta.env.PROD,
+      userAgent: navigator.userAgent,
+    }
+    console.error('[API Error]', errorDetails)
     if (DEBUG_LOGGING_ENABLED) {
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Catch error',data:{errorMessage:error.message,errorName:error.name},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Catch error',data:errorDetails,timestamp:Date.now(),sessionId:'debug-session',runId:'mobile-signup',hypothesisId:'A'})}).catch(()=>{});
     }
     // #endregion
+    
+    // 네트워크 오류인 경우 더 명확한 메시지 제공
+    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+      throw new Error(`서버에 연결할 수 없습니다. (${API_BASE_URL})`)
+    }
+    
     if (error.message) {
       throw error
     }
