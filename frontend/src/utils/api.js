@@ -89,10 +89,70 @@ const apiRequest = async (endpoint, options = {}) => {
     const response = await fetch(fullUrl, config)
     // #region agent log
     if (DEBUG_LOGGING_ENABLED) {
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Response status',data:{status:response.status,statusText:response.statusText,url:response.url},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Response status',data:{status:response.status,statusText:response.statusText,url:response.url,contentType:response.headers.get('content-type')},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'A'})}).catch(()=>{});
     }
     // #endregion
-    const data = await response.json()
+    
+    // 응답 본문 확인
+    const contentType = response.headers.get('content-type')
+    const text = await response.text()
+    
+    // #region agent log
+    console.log('[API Response]', { 
+      status: response.status, 
+      contentType, 
+      textLength: text.length,
+      textPreview: text.substring(0, 200),
+      endpoint,
+      fullUrl 
+    })
+    if (DEBUG_LOGGING_ENABLED) {
+      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Response body',data:{status:response.status,contentType,textLength:text.length,textPreview:text.substring(0,200),endpoint,fullUrl},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'A'})}).catch(()=>{});
+    }
+    // #endregion
+    
+    // 빈 응답 처리
+    if (!text || text.trim().length === 0) {
+      // #region agent log
+      console.error('[API Error] Empty response', { endpoint, fullUrl, status: response.status })
+      if (DEBUG_LOGGING_ENABLED) {
+        fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Empty response',data:{endpoint,fullUrl,status:response.status},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'B'})}).catch(()=>{});
+      }
+      // #endregion
+      
+      if (!response.ok) {
+        throw new Error(`서버 오류 (${response.status}): 응답이 비어있습니다.`)
+      }
+      // 성공 응답이지만 본문이 없는 경우
+      return {}
+    }
+    
+    // JSON 파싱 시도
+    let data
+    try {
+      data = JSON.parse(text)
+    } catch (parseError) {
+      // #region agent log
+      console.error('[API Error] JSON parse failed', { 
+        endpoint, 
+        fullUrl, 
+        status: response.status,
+        contentType,
+        textPreview: text.substring(0, 200),
+        parseError: parseError.message 
+      })
+      if (DEBUG_LOGGING_ENABLED) {
+        fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'JSON parse failed',data:{endpoint,fullUrl,status:response.status,contentType,textPreview:text.substring(0,200),parseError:parseError.message},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'C'})}).catch(()=>{});
+      }
+      // #endregion
+      
+      // HTML 오류 페이지인 경우
+      if (contentType && contentType.includes('text/html')) {
+        throw new Error(`서버 오류 (${response.status}): HTML 오류 페이지가 반환되었습니다.`)
+      }
+      
+      throw new Error(`서버 응답을 파싱할 수 없습니다: ${parseError.message}`)
+    }
 
     if (!response.ok) {
       // #region agent log
