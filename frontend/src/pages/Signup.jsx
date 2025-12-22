@@ -56,14 +56,23 @@ export default function Signup() {
 
     try {
       setSubmitting(true)
+      // #region agent log
+      console.log('[Signup] Starting signup', { username: form.username, name: form.name, email: form.email })
+      // #endregion
       await signup({
         username: form.username,
         name: form.name,
         email: form.email,
         password: form.password,
       })
+      // #region agent log
+      console.log('[Signup] Success')
+      // #endregion
       nav('/mypage')
     } catch (e2) {
+      // #region agent log
+      console.error('[Signup] Error', { error: e2?.message, stack: e2?.stack })
+      // #endregion
       setErr(e2?.message || '회원가입에 실패했습니다.')
     } finally {
       setSubmitting(false)
