@@ -1,94 +1,56 @@
 .structure {
   position: relative;
   padding: 90px 36px;
-  background: url('/assets/greenhouse-bg.jpg') center / cover no-repeat;
+  background: #ffffff;
 }
 
-/* 위에 흐린 오버레이 */
-.structure::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.65);
-  z-index: 0;
-}
-
-.structure h2 {
+.structure-hero-text-container {
   position: relative;
   z-index: 1;
   text-align: center;
-  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.structure-hero-text-container h2 {
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 12px;
+  color: #2c3e50;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.structure-sub {
+.structure-hero-text-container .structure-sub {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #34495e;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.structure-hero {
   position: relative;
   z-index: 1;
   text-align: center;
-  font-size: 15px;
-  margin-bottom: 42px;
-  color: #333;
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* 카드 그리드 */
-.structure-grid {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+.structure-hero-img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-}
-
-/* 초록 반투명 카드 */
-.structure-card {
-  background: rgba(70, 110, 55, 0.85);
-  backdrop-filter: blur(6px);
-  border-radius: 18px;
-  padding: 26px 22px;
-  color: #fff;
-  min-height: 260px;
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.structure-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
-}
-
-.structure-card h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 14px;
-}
-
-.structure-card p {
-  font-size: 14px;
-  line-height: 1.6;
-  opacity: 0.95;
 }
 
 /* 모바일 대응 */
-@media (max-width: 1000px) {
-  .structure-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 520px) {
-  .structure {
-    padding: 60px 20px;
+  .structure-hero-text-container h2 {
+    font-size: 28px;
   }
 
-  .structure-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .structure-card {
-    min-height: auto;
+  .structure-hero-text-container .structure-sub {
+    font-size: 16px;
   }
 }

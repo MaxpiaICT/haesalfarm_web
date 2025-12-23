@@ -1,0 +1,323 @@
+/* 하우스 자재 선택 가이드 */
+.material-guide {
+  margin-top: 200px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.material-guide-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 100px;
+  color: #312f2f;
+}
+
+.material-guide-title::before,
+.material-guide-title::after {
+  content: '';
+  flex: 1;
+  max-width: 600px;
+  height: 2px;
+  background-color: #1a7e3b;
+  box-shadow: 0 0 4px rgba(26, 126, 59, 0.3);
+}
+
+.material-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.material-column {
+  background: #faf9f6;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.material-header {
+  
+  color: #242121;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.material-item {
+  margin-bottom: 32px;
+}
+
+.material-item:last-child {
+  margin-bottom: 0;
+}
+
+.material-item-image {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.material-item-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1a7e3b;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 10px 12px;
+  z-index: 10;
+  text-align: center;
+}
+
+.material-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.material-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.material-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.material-features li .check-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.material-features li span {
+  line-height: 1.5;
+}
+
+.material-options {
+  font-size: 13px;
+  color: #666;
+  margin-top: 12px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 6px;
+}
+
+.material-recommendation {
+  font-size: 13px;
+  color: #6c964d;
+  font-weight: 600;
+  margin-top: 12px;
+  padding: 10px;
+  background: #f0f7ed;
+  border-radius: 6px;
+  border-left: 3px solid #6c964d;
+}
+
+.material-note {
+  font-size: 13px;
+  color: #d97706;
+  font-weight: 600;
+  margin-top: 12px;
+  padding: 10px;
+  background: #fff7ed;
+  border-radius: 6px;
+  border-left: 3px solid #d97706;
+}
+
+.material-intro {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0d4637;
+  line-height: 1.6;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  padding: 0;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.material-detail,
+.material-spec,
+.material-problem {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.material-spec ul,
+.material-problem ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.material-spec li,
+.material-problem li {
+  margin-bottom: 4px;
+  padding-left: 4px;
+}
+
+.material-problem {
+  color: #dc2626;
+  padding: 12px;
+  background: #fef2f2;
+  border-radius: 6px;
+  border-left: 3px solid #dc2626;
+}
+
+/* 부자재 슬라이더 */
+.auxiliary-slider {
+  position: relative;
+  margin-top: 20px;
+}
+
+.slider-content {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.slider-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(108, 150, 77, 0.9);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slider-btn:hover {
+  background: rgba(108, 150, 77, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn-prev {
+  left: -20px;
+}
+
+.slider-btn-next {
+  right: -20px;
+}
+
+.slider-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicator-dot:hover {
+  background: #6c964d;
+  transform: scale(1.2);
+}
+
+.indicator-dot.active {
+  background: #6c964d;
+  width: 24px;
+  border-radius: 5px;
+}
+
+.slider-hint {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+/* 모바일 대응 */
+@media (max-width: 1200px) {
+  .material-guide-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 520px) {
+  .material-guide {
+    margin-top: 50px;
+  }
+
+  .material-guide-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .material-column {
+    padding: 18px;
+  }
+
+  .slider-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+
+  .slider-btn-prev {
+    left: -10px;
+  }
+
+  .slider-btn-next {
+    right: -10px;
+  }
+}
