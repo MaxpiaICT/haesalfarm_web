@@ -193,6 +193,7 @@
 .auxiliary-slider {
   position: relative;
   margin-top: 20px;
+  width: 100%;
 }
 
 .slider-content {
@@ -209,12 +210,19 @@
 
 .slider-slide {
   min-width: 100%;
+  max-width: 100%;
   flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.slider-slide .material-item {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .slider-btn {
   position: absolute;
-  top: 50%;
+  top: 20%;
   transform: translateY(-50%);
   background: rgba(108, 150, 77, 0.9);
   color: #fff;
@@ -231,6 +239,8 @@
   justify-content: center;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  line-height: 1;
+  padding: 0;
 }
 
 .slider-btn:hover {
@@ -280,7 +290,7 @@
   text-align: center;
   font-size: 14px;
   color: #666;
-  margin-top: 12px;
+  margin-top: px;
   margin-bottom: 8px;
   padding: 0;
 }
@@ -296,6 +306,7 @@
 @media (max-width: 520px) {
   .material-guide {
     margin-top: 50px;
+    padding: 0 16px;
   }
 
   .material-guide-title {
@@ -307,6 +318,32 @@
     padding: 18px;
   }
 
+  .auxiliary-slider {
+    margin-top: 16px;
+    padding: 0;
+  }
+
+  .slider-content {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .slider-track {
+    width: 100%;
+  }
+
+  .slider-slide {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .slider-slide .material-item {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   .slider-btn {
     width: 32px;
     height: 32px;
@@ -314,10 +351,10 @@
   }
 
   .slider-btn-prev {
-    left: -10px;
+    left: 5px;
   }
 
   .slider-btn-next {
-    right: -10px;
+    right: 5px;
   }
 }

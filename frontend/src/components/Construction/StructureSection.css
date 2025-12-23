@@ -46,11 +46,19 @@
 
 /* 모바일 대응 */
 @media (max-width: 520px) {
+  .structure {
+    padding: 60px 20px;
+  }
+
   .structure-hero-text-container h2 {
     font-size: 28px;
   }
 
   .structure-hero-text-container .structure-sub {
     font-size: 16px;
+  }
+
+  .structure-hero-img {
+    max-width: 95%;
   }
 }
