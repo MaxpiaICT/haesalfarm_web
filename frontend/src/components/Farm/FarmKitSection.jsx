@@ -34,7 +34,7 @@ export default function FarmKitSection() {
     { num: 4, title: '관리', desc: '정기적으로 물을 보충하고\nLED 조명 시간을 설정해요.' },
   ]
 
-  // ✅ (추가) 사용방법 아래에 넣을 “장점 4카드”
+  // ✅ (추가) 사용방법 아래에 넣을 "장점 4카드"
   const benefits = [
     {
       title: '물 관리 간편',
@@ -42,7 +42,7 @@ export default function FarmKitSection() {
         '초보자도 성공하는 자동 물 순환 시스템\n' +
         '일주일 한 번 물 보충이면 끝! 일정 간격으로 영양분과\n' +
         '물을 순환시켜 식물이 최적의 환경에서 자라요.',
-      icon: '💧',
+      icon: '/assets/1_icon.svg',
     },
     {
       title: '청결한 재배',
@@ -50,7 +50,7 @@ export default function FarmKitSection() {
         '아파트 실내에 최적화된 흙 없는 클린 재배\n' +
         '흙이 없어 벌레·먼지 걱정이 적고, 깔끔하고 위생적인\n' +
         '실내 환경에서 신선한 채소를 수확해요.',
-      icon: '🫧',
+      icon: '/assets/2_icon.svg',
     },
     {
       title: '계절 무관',
@@ -58,7 +58,7 @@ export default function FarmKitSection() {
         '365일 내내 신선함을 만드는 사계절 스마트팜\n' +
         '온도/빛/영양 공급을 안정적으로 유지해 사계절 내내\n' +
         '꾸준한 수확이 가능해요.',
-      icon: '❄️',
+      icon: '/assets/3_icon.svg',
     },
     {
       title: '인테리어 효과',
@@ -66,7 +66,7 @@ export default function FarmKitSection() {
         '모던 디자인으로 완성하는 플랜테리어\n' +
         '어디에 두어도 잘 어울리는 세련된 디자인으로 공간을\n' +
         '더욱 감각적으로 만들어줘요.',
-      icon: '🪴',
+      icon: '/assets/4_icon.svg',
     },
   ]
 
@@ -235,7 +235,9 @@ export default function FarmKitSection() {
     <div className="benefits-grid">
       {benefits.map((b, idx) => (
         <article key={idx} className="benefit-card">
-          <div className="benefit-icon">{b.icon}</div>
+          <div className="benefit-icon">
+            <img src={b.icon} alt={b.title} />
+          </div>
           <h4 className="benefit-title">{b.title}</h4>
           <p className="benefit-desc" style={{ whiteSpace: 'pre-line' }}>{b.desc}</p>
         </article>
