@@ -1,0 +1,146 @@
+/* 하우스 설계·자재 선택의 장점 */
+.advantages {
+  margin-top: 100px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.advantages-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: #111;
+}
+
+.advantages-title::before,
+.advantages-title::after {
+  content: '';
+  flex: 1;
+  max-width: 600px;
+  height: 2px;
+  background-color: #1a7e3b;
+  box-shadow: 0 0 4px rgba(26, 126, 59, 0.3);
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.advantage-box {
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advantage-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.advantage-light-green {
+  background-color: #e8f5e9;
+}
+
+.advantage-light-blue {
+  background-color: #e3f2fd;
+}
+
+.advantage-light-pink {
+  background-color: #fce4ec;
+}
+
+.advantage-light-purple {
+  background-color: #f3e5f5;
+}
+
+.advantage-light-yellow {
+  background-color: #fff9c4;
+}
+
+.advantage-heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a7e3b;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.advantage-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.advantage-description {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* 5번째 항목을 중앙에 배치 */
+.advantages-grid > .advantage-box:nth-child(5) {
+  grid-column: 1 / -1;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .advantages {
+    margin-top: 60px;
+    padding: 0 16px;
+  }
+
+  .advantages-title {
+    font-size: 24px;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .advantages-title::before,
+  .advantages-title::after {
+    max-width: 100px;
+  }
+
+  .advantages-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .advantages-grid > .advantage-box:nth-child(5) {
+    grid-column: 1;
+    max-width: 100%;
+  }
+
+  .advantage-box {
+    padding: 24px;
+  }
+
+  .advantage-heading {
+    font-size: 20px;
+  }
+
+  .advantage-subtitle {
+    font-size: 16px;
+  }
+
+  .advantage-description {
+    font-size: 14px;
+  }
+}
+
+
+

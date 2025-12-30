@@ -1,4 +1,5 @@
 import './DesignConsiderations.css'
+import Advantages from './Advantages'
 
 const considerations = [
   {
@@ -80,6 +81,8 @@ export default function DesignConsiderations() {
           </div>
         ))}
       </div>
+
+      <Advantages />
     </div>
   )
 }
