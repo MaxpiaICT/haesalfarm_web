@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 import { authenticate, isAdmin } from '../middleware/auth.js'
 import crypto from 'crypto'
-import { sendTempPasswordEmail } from '../utils/email.js'
 
 const router = express.Router()
 
@@ -150,30 +149,12 @@ router.post('/forgot-password', async (req, res) => {
 
     // 임시 비밀번호 생성
     const tempPassword = crypto.randomBytes(8).toString('hex')
-    
-    // 비밀번호 해싱
-    const bcrypt = await import('bcryptjs')
-    const hashedPassword = await bcrypt.default.hash(tempPassword, 10)
-    user.password = hashedPassword
+    user.password = tempPassword
     await user.save()
 
-    // 이메일 발송 시도
-    let emailSent = false
-    try {
-      const emailResult = await sendTempPasswordEmail(user.email, user.username, tempPassword)
-      emailSent = emailResult.sent
-    } catch (emailError) {
-      console.error('이메일 발송 오류:', emailError)
-      // 이메일 발송 실패해도 임시 비밀번호는 생성되었으므로 계속 진행
-    }
-
-    // 이메일 발송 성공 여부와 함께 응답
     res.json({
-      message: emailSent
-        ? '임시 비밀번호가 이메일로 발송되었습니다.'
-        : '임시 비밀번호가 생성되었습니다. 이메일 설정이 필요합니다.',
-      tempPassword: emailSent ? undefined : tempPassword, // 이메일 발송 성공 시 프론트엔드에 비밀번호 전달하지 않음
-      emailSent,
+      message: '임시 비밀번호가 발급되었습니다.',
+      tempPassword, // 실제 서비스에서는 이메일로 발송
     })
   } catch (error) {
     console.error('Forgot password error:', error)

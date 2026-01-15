@@ -9,7 +9,6 @@ export default function ForgotPassword() {
   const [err, setErr] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [tempPassword, setTempPassword] = useState(null)
-  const [emailSent, setEmailSent] = useState(false)
 
   const onChange = (e) => {
     const { name, value } = e.target
@@ -25,22 +24,11 @@ export default function ForgotPassword() {
 
     try {
       setSubmitting(true)
-      const result = await findPassword({
+      const password = await findPassword({
         username: form.username.trim(),
         email: form.email.trim(),
       })
-      
-      // API 응답이 객체인 경우 (이메일 발송 여부 포함)
-      if (typeof result === 'object' && result.emailSent !== undefined) {
-        setEmailSent(result.emailSent)
-        if (result.tempPassword) {
-          setTempPassword(result.tempPassword)
-        }
-      } else {
-        // 기존 방식 (문자열로 임시 비밀번호 반환)
-        setTempPassword(result)
-        setEmailSent(false)
-      }
+      setTempPassword(password)
     } catch (e2) {
       setErr(e2?.message || '비밀번호 찾기에 실패했습니다.')
     } finally {
@@ -59,43 +47,27 @@ export default function ForgotPassword() {
       <div className="forgot-password-wrap">
         <h2 className="forgot-password-title">비밀번호 찾기</h2>
 
-        {tempPassword || emailSent ? (
+        {tempPassword ? (
           <div className="forgot-password-result">
             <div className="result-success">
-              {emailSent ? (
-                <>
-                  <h3>임시 비밀번호가 이메일로 발송되었습니다.</h3>
-                  <p style={{ margin: '20px 0', color: '#666' }}>
-                    입력하신 이메일 주소(<strong>{form.email}</strong>)로 임시 비밀번호가 발송되었습니다.
-                    <br />
-                    이메일을 확인해주세요.
-                  </p>
-                  <p className="result-warning">
-                    ⚠️ 보안을 위해 로그인 후 반드시 비밀번호를 변경해주세요.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h3>임시 비밀번호가 발급되었습니다.</h3>
-                  <div className="temp-password-box">
-                    <label className="temp-password-label">임시 비밀번호:</label>
-                    <div className="temp-password-value">{tempPassword}</div>
-                    <button
-                      className="temp-password-copy-btn"
-                      onClick={() => {
-                        navigator.clipboard.writeText(tempPassword)
-                        alert('임시 비밀번호가 복사되었습니다.')
-                      }}
-                      type="button"
-                    >
-                      복사하기
-                    </button>
-                  </div>
-                  <p className="result-warning">
-                    ⚠️ 보안을 위해 로그인 후 반드시 비밀번호를 변경해주세요.
-                  </p>
-                </>
-              )}
+              <h3>임시 비밀번호가 발급되었습니다.</h3>
+              <div className="temp-password-box">
+                <label className="temp-password-label">임시 비밀번호:</label>
+                <div className="temp-password-value">{tempPassword}</div>
+                <button
+                  className="temp-password-copy-btn"
+                  onClick={() => {
+                    navigator.clipboard.writeText(tempPassword)
+                    alert('임시 비밀번호가 복사되었습니다.')
+                  }}
+                  type="button"
+                >
+                  복사하기
+                </button>
+              </div>
+              <p className="result-warning">
+                ⚠️ 보안을 위해 로그인 후 반드시 비밀번호를 변경해주세요.
+              </p>
               <div className="result-actions">
                 <Link className="result-btn primary" to="/login">
                   로그인하기

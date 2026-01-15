@@ -1,32 +1,37 @@
 # 햇살농업건설 백엔드 서버
 
-Node.js + Express + MongoDB 백엔드 서버입니다.
-
 ## 설치 및 실행
 
 ### 1. 의존성 설치
 ```bash
+cd server
 npm install
 ```
 
 ### 2. 환경 변수 설정
-`.env` 파일을 생성하고 다음 내용을 추가하세요:
+`.env.example` 파일을 복사하여 `.env` 파일을 생성하고 필요한 값들을 설정하세요.
 
-```env
-PORT=3001
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/haesalfarm?retryWrites=true&w=majority
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-ADMIN_USERNAME=haesalfarm
-ADMIN_PASSWORD=farm9948!!
-ADMIN_EMAIL=admin@haesalfarm.com
+```bash
+cp .env.example .env
 ```
 
-### 3. 관리자 계정 초기화
+### 3. MongoDB 설치 및 실행
+MongoDB가 설치되어 있어야 합니다.
+
+**Windows:**
+- MongoDB Community Server 다운로드: https://www.mongodb.com/try/download/community
+- 설치 후 MongoDB 서비스가 자동으로 실행됩니다.
+
+**또는 MongoDB Atlas (클라우드) 사용:**
+- https://www.mongodb.com/cloud/atlas 에서 무료 계정 생성
+- 클러스터 생성 후 연결 문자열을 `.env`의 `MONGODB_URI`에 설정
+
+### 4. 관리자 계정 초기화
 ```bash
 node scripts/initAdmin.js
 ```
 
-### 4. 서버 실행
+### 5. 서버 실행
 
 **개발 모드 (자동 재시작):**
 ```bash
@@ -38,11 +43,12 @@ npm run dev
 npm start
 ```
 
-서버는 `http://localhost:3001`에서 실행됩니다.
+서버는 기본적으로 `http://localhost:3001`에서 실행됩니다.
 
 ## API 엔드포인트
 
 ### 인증 API (`/api/auth`)
+
 - `POST /api/auth/signup` - 회원가입
 - `POST /api/auth/login` - 로그인
 - `GET /api/auth/me` - 현재 사용자 정보 (인증 필요)
@@ -52,13 +58,19 @@ npm start
 - `DELETE /api/auth/users/:userId` - 사용자 삭제 (관리자만)
 
 ### 문의 API (`/api/inquiries`)
+
 - `POST /api/inquiries` - 문의 생성
 - `GET /api/inquiries/my` - 내 문의 조회 (인증 필요)
 - `GET /api/inquiries/all` - 모든 문의 조회 (관리자만)
-- `PUT /api/inquiries/:inquiryId/answer` - 문의 답변 추가/수정 (관리자만)
 - `PUT /api/inquiries/:inquiryId/status` - 문의 상태 변경 (관리자만)
 - `DELETE /api/inquiries/:inquiryId` - 문의 삭제 (인증 필요)
 
-## MongoDB 설정
+## 환경 변수
 
-자세한 내용은 [MONGODB_INSTALL.md](./MONGODB_INSTALL.md)를 참고하세요.
+- `PORT`: 서버 포트 (기본값: 3001)
+- `MONGODB_URI`: MongoDB 연결 문자열
+- `JWT_SECRET`: JWT 토큰 시크릿 키
+- `ADMIN_USERNAME`: 관리자 아이디
+- `ADMIN_PASSWORD`: 관리자 비밀번호
+- `ADMIN_EMAIL`: 관리자 이메일
+
