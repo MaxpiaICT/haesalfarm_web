@@ -9,13 +9,13 @@ const getApiBaseUrl = () => {
   
   // 배포 환경(PROD)에서 환경 변수가 없는 경우
   if (import.meta.env.PROD) {
-    // Railway 백엔드 URL을 기본값으로 사용
-    const railwayBackendUrl = 'https://haesalfarmweb-production.up.railway.app/api'
+    // Fly.io 백엔드 URL을 기본값으로 사용
+    const flyBackendUrl = 'https://haesalfarm-backend.fly.dev/api'
     
-    console.warn('⚠️ VITE_API_URL 환경 변수가 설정되지 않았습니다. Railway 백엔드를 사용합니다.')
+    console.warn('⚠️ VITE_API_URL 환경 변수가 설정되지 않았습니다. Fly.io 백엔드를 사용합니다.')
     console.warn('💡 Vercel 환경 변수에 VITE_API_URL을 설정하는 것을 권장합니다.')
     
-    return railwayBackendUrl
+    return flyBackendUrl
   }
   
   // 개발 환경에서만 자동 감지 사용
