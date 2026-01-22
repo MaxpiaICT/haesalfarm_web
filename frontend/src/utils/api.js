@@ -36,7 +36,14 @@ const getApiBaseUrl = () => {
 const API_BASE_URL = getApiBaseUrl()
 
 // #region agent log
-console.log('[API Config]', { API_BASE_URL, hostname: window.location.hostname, isDev: import.meta.env.DEV, isProd: import.meta.env.PROD, envUrl: import.meta.env.VITE_API_URL })
+console.log('[API Config]', { 
+  API_BASE_URL, 
+  hostname: window.location.hostname, 
+  isDev: import.meta.env.DEV, 
+  isProd: import.meta.env.PROD, 
+  envUrl: import.meta.env.VITE_API_URL,
+  allEnvVars: Object.keys(import.meta.env).filter(key => key.startsWith('VITE_'))
+})
 // #endregion
 
 // 디버그 로깅 활성화 여부 (개발 환경에서만)
