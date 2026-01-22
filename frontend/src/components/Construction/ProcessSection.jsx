@@ -1,4 +1,5 @@
 import './ProcessSection.css'
+import MaterialGuide from './MaterialGuide'
 
 const steps = [
   '상담 및 현장 조사',
@@ -23,6 +24,8 @@ export default function ProcessSection() {
           </div>
         ))}
       </div>
+
+      <MaterialGuide />
     </section>
   )
 }

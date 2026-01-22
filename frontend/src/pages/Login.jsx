@@ -19,7 +19,7 @@ export default function Login() {
     try {
       setSubmitting(true)
       await login({ username: form.username.trim(), password: form.password })
-      nav('/mypage')
+      nav('/')
     } catch (e2) {
       setErr(e2?.message || '로그인에 실패했습니다.')
     } finally {

@@ -6,56 +6,41 @@ const getApiBaseUrl = () => {
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL
   }
-  
+
   // 배포 환경(PROD)에서 환경 변수가 없는 경우
   if (import.meta.env.PROD) {
     // Fly.io 백엔드 URL을 기본값으로 사용
     const flyBackendUrl = 'https://haesalfarm-backend.fly.dev/api'
-    
+
     console.warn('⚠️ VITE_API_URL 환경 변수가 설정되지 않았습니다. Fly.io 백엔드를 사용합니다.')
-    console.warn('💡 Vercel 환경 변수에 VITE_API_URL을 설정하는 것을 권장합니다.')
-    
+    console.warn('💡 배포 환경 변수에 VITE_API_URL을 설정하는 것을 권장합니다.')
+
     return flyBackendUrl
   }
-  
+
   // 개발 환경에서만 자동 감지 사용
   if (import.meta.env.DEV) {
     const hostname = window.location.hostname
-    // localhost가 아닌 경우 (모바일에서 접근 시) 현재 호스트 사용
-    // 단, PC에서 접근할 때는 localhost를 사용하여 로컬 네트워크 권한 팝업 방지
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1' && hostname.match(/^\d+\.\d+\.\d+\.\d+$/)) {
-      // IP 주소 형식인 경우에만 (모바일 접근) 현재 호스트 사용
+
+    // IP 주소 형식인 경우에만 (모바일 접근) 현재 호스트 사용
+    if (
+      hostname !== 'localhost' &&
+      hostname !== '127.0.0.1' &&
+      hostname.match(/^\d+\.\d+\.\d+\.\d+$/)
+    ) {
       return `http://${hostname}:3001/api`
     }
   }
-  
+
   // 개발 환경 기본값: localhost (PC에서 접근 시)
   return 'http://localhost:3001/api'
 }
 
 const API_BASE_URL = getApiBaseUrl()
 
-// #region agent log
-const apiConfig = { 
-  API_BASE_URL, 
-  hostname: window.location.hostname, 
-  isDev: import.meta.env.DEV, 
-  isProd: import.meta.env.PROD, 
-  envUrl: import.meta.env.VITE_API_URL,
-  allEnvVars: Object.keys(import.meta.env).filter(key => key.startsWith('VITE_')),
-  currentUrl: window.location.href
-}
-console.log('[API Config]', apiConfig)
-// 프로덕션에서 Railway URL 사용 시 경고
-if (import.meta.env.PROD && API_BASE_URL.includes('railway.app')) {
-  console.error('❌ [CRITICAL] Railway URL detected in production! Vercel environment variable may not be applied.')
-  console.error('Expected: https://haesalfarm-backend.fly.dev/api')
-  console.error('Actual:', API_BASE_URL)
-}
-// #endregion
-
 // 디버그 로깅 활성화 여부 (개발 환경에서만)
-const DEBUG_LOGGING_ENABLED = import.meta.env.DEV && import.meta.env.VITE_DEBUG_LOGGING !== 'false'
+const DEBUG_LOGGING_ENABLED =
+  import.meta.env.DEV && import.meta.env.VITE_DEBUG_LOGGING !== 'false'
 
 // 토큰 가져오기
 const getToken = () => {
@@ -65,7 +50,7 @@ const getToken = () => {
 // API 요청 헬퍼
 const apiRequest = async (endpoint, options = {}) => {
   const token = getToken()
-  
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -75,132 +60,40 @@ const apiRequest = async (endpoint, options = {}) => {
     ...options,
   }
 
-  // #region agent log
+  const fullUrl = `${API_BASE_URL}${endpoint}`
+
   if (DEBUG_LOGGING_ENABLED) {
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'API request',data:{endpoint,method:options.method||'GET',hasToken:!!token},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    console.log('[API Request]', {
+      fullUrl,
+      endpoint,
+      method: options.method || 'GET',
+      hasToken: !!token,
+    })
   }
-  // #endregion
 
   try {
-    const fullUrl = `${API_BASE_URL}${endpoint}`
-    // #region agent log
-    console.log('[API Request]', { endpoint, fullUrl, API_BASE_URL, method: options.method || 'GET', hostname: window.location.hostname, isDev: import.meta.env.DEV, isProd: import.meta.env.PROD })
-    if (DEBUG_LOGGING_ENABLED) {
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Full URL',data:{fullUrl,API_BASE_URL,endpoint,method:options.method||'GET',hostname:window.location.hostname,isDev:import.meta.env.DEV,isProd:import.meta.env.PROD},timestamp:Date.now(),sessionId:'debug-session',runId:'mobile-signup',hypothesisId:'A'})}).catch(()=>{});
-    }
-    // #endregion
-    
-    // #region agent log
-    console.log('[API Request] Attempting fetch', { fullUrl, config: { method: config.method, headers: config.headers } })
-    // #endregion
-    
     const response = await fetch(fullUrl, config)
-    // #region agent log
-    if (DEBUG_LOGGING_ENABLED) {
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Response status',data:{status:response.status,statusText:response.statusText,url:response.url,contentType:response.headers.get('content-type')},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'A'})}).catch(()=>{});
-    }
-    // #endregion
-    
-    // 응답 본문 확인
-    const contentType = response.headers.get('content-type')
-    const text = await response.text()
-    
-    // #region agent log
-    console.log('[API Response]', { 
-      status: response.status, 
-      contentType, 
-      textLength: text.length,
-      textPreview: text.substring(0, 200),
-      endpoint,
-      fullUrl 
-    })
-    if (DEBUG_LOGGING_ENABLED) {
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Response body',data:{status:response.status,contentType,textLength:text.length,textPreview:text.substring(0,200),endpoint,fullUrl},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'A'})}).catch(()=>{});
-    }
-    // #endregion
-    
-    // 빈 응답 처리
-    if (!text || text.trim().length === 0) {
-      // #region agent log
-      console.error('[API Error] Empty response', { endpoint, fullUrl, status: response.status })
-      if (DEBUG_LOGGING_ENABLED) {
-        fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Empty response',data:{endpoint,fullUrl,status:response.status},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'B'})}).catch(()=>{});
-      }
-      // #endregion
-      
-      if (!response.ok) {
-        throw new Error(`서버 오류 (${response.status}): 응답이 비어있습니다.`)
-      }
-      // 성공 응답이지만 본문이 없는 경우
-      return {}
-    }
-    
-    // JSON 파싱 시도
-    let data
-    try {
-      data = JSON.parse(text)
-    } catch (parseError) {
-      // #region agent log
-      console.error('[API Error] JSON parse failed', { 
-        endpoint, 
-        fullUrl, 
-        status: response.status,
-        contentType,
-        textPreview: text.substring(0, 200),
-        parseError: parseError.message 
-      })
-      if (DEBUG_LOGGING_ENABLED) {
-        fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'JSON parse failed',data:{endpoint,fullUrl,status:response.status,contentType,textPreview:text.substring(0,200),parseError:parseError.message},timestamp:Date.now(),sessionId:'debug-session',runId:'login-error',hypothesisId:'C'})}).catch(()=>{});
-      }
-      // #endregion
-      
-      // HTML 오류 페이지인 경우
-      if (contentType && contentType.includes('text/html')) {
-        throw new Error(`서버 오류 (${response.status}): HTML 오류 페이지가 반환되었습니다.`)
-      }
-      
-      throw new Error(`서버 응답을 파싱할 수 없습니다: ${parseError.message}`)
+
+    let data = null
+    const contentType = response.headers.get('content-type') || ''
+    if (contentType.includes('application/json')) {
+      data = await response.json()
+    } else {
+      // JSON이 아닌 응답도 안전하게 처리
+      const text = await response.text()
+      data = { message: text }
     }
 
     if (!response.ok) {
-      // #region agent log
-      if (DEBUG_LOGGING_ENABLED) {
-        fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Response error',data:{error:data.error,status:response.status},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-      }
-      // #endregion
-      throw new Error(data.error || '요청에 실패했습니다.')
+      throw new Error(data?.error || data?.message || '요청에 실패했습니다.')
     }
 
     return data
   } catch (error) {
-    // #region agent log
-    const errorDetails = {
-      endpoint,
-      fullUrl: `${API_BASE_URL}${endpoint}`,
-      API_BASE_URL,
-      error: error.message,
-      errorName: error.name,
-      stack: error.stack,
-      hostname: window.location.hostname,
-      isDev: import.meta.env.DEV,
-      isProd: import.meta.env.PROD,
-      userAgent: navigator.userAgent,
-    }
-    console.error('[API Error]', errorDetails)
     if (DEBUG_LOGGING_ENABLED) {
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'api.js:apiRequest',message:'Catch error',data:errorDetails,timestamp:Date.now(),sessionId:'debug-session',runId:'mobile-signup',hypothesisId:'A'})}).catch(()=>{});
+      console.error('[API Error]', error)
     }
-    // #endregion
-    
-    // 네트워크 오류인 경우 더 명확한 메시지 제공
-    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      throw new Error(`서버에 연결할 수 없습니다. (${API_BASE_URL})`)
-    }
-    
-    if (error.message) {
-      throw error
-    }
-    throw new Error('네트워크 오류가 발생했습니다.')
+    throw error?.message ? error : new Error('네트워크 오류가 발생했습니다.')
   }
 }
 
@@ -231,4 +124,3 @@ export const put = (endpoint, data, options) => {
 export const del = (endpoint, options) => {
   return apiRequest(endpoint, { method: 'DELETE', ...options })
 }
-

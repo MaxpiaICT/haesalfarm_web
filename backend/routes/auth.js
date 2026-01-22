@@ -4,7 +4,9 @@ import User from '../models/User.js'
 import EmailVerification from '../models/EmailVerification.js'
 import { authenticate, isAdmin } from '../middleware/auth.js'
 import crypto from 'crypto'
+
 import { sendVerificationCode, sendTempPassword } from '../utils/email.js'
+
 
 const router = express.Router()
 
@@ -276,6 +278,7 @@ router.post('/forgot-password', async (req, res) => {
     user.password = tempPassword
     await user.save()
 
+
     // 이메일 발송 시도
     let emailSent = false
     try {
@@ -287,12 +290,10 @@ router.post('/forgot-password', async (req, res) => {
     }
 
     // 이메일 발송 성공 여부와 함께 응답
+ main
     res.json({
-      message: emailSent
-        ? '임시 비밀번호가 이메일로 발송되었습니다.'
-        : '임시 비밀번호가 생성되었습니다. 이메일 설정이 필요합니다.',
-      tempPassword: emailSent ? undefined : tempPassword, // 이메일 발송 성공 시 프론트엔드에 비밀번호 전달하지 않음
-      emailSent,
+      message: '임시 비밀번호가 발급되었습니다.',
+      tempPassword, // 실제 서비스에서는 이메일로 발송
     })
   } catch (error) {
     console.error('Forgot password error:', error)

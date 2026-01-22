@@ -35,3 +35,5 @@ VITE_USE_LOCAL_STORAGE=false
 2. 브라우저 개발자 도구에서 콘솔 오류 확인
 3. API 연결 확인
 
+
+

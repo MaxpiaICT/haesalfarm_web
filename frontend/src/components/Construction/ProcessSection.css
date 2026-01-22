@@ -51,3 +51,21 @@
   outline: 3px solid #1e90ff;
   outline-offset: -3px;
 }
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .process {
+    padding: 60px 20px;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .process-box {
+    min-height: 70px;
+    padding: 20px 16px;
+    font-size: 15px;
+  }
+}
