@@ -11,7 +11,13 @@ const app = express()
 const PORT = process.env.PORT || 3001
 
 // 미들웨어
-app.use(cors())
+// CORS 설정 - 모든 origin 허용 (프로덕션에서는 특정 도메인만 허용하도록 수정 권장)
+app.use(cors({
+  origin: '*', // 모든 origin 허용
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
