@@ -24,9 +24,11 @@
 Vercel 대시보드 → Settings → Environment Variables에서 다음 변수를 설정하세요:
 
 ```
-VITE_API_URL=https://your-backend-url.com/api
+VITE_API_URL=https://haesalfarm-backend.fly.dev/api
 VITE_USE_LOCAL_STORAGE=false
 ```
+
+**중요**: 환경 변수 설정 후 반드시 **재배포**해야 빌드 시점에 환경 변수가 주입됩니다.
 
 ## 배포 후 확인
 
