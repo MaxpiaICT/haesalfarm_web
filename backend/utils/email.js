@@ -1,87 +1,96 @@
-// 이메일 발송 유틸리티
 import nodemailer from 'nodemailer'
 
-// 이메일 전송기 생성
+// 네이버 SMTP 설정
 const createTransporter = () => {
-  // 네이버 메일 SMTP 설정
   return nodemailer.createTransport({
+    service: 'Naver',
     host: 'smtp.naver.com',
     port: 465,
-    secure: true, // SSL 사용
+    secure: true, // 465 포트는 true
     auth: {
-      user: process.env.EMAIL_USER, // 네이버 메일 주소
-      pass: process.env.EMAIL_PASSWORD, // 네이버 메일 비밀번호 또는 메일 전용 비밀번호
+      user: process.env.EMAIL_USER, // 네이버 이메일 주소
+      pass: process.env.EMAIL_PASSWORD, // 네이버 앱 비밀번호
     },
   })
 }
 
-/**
- * 임시 비밀번호 이메일 발송
- * @param {string} to - 수신자 이메일 주소
- * @param {string} username - 사용자 아이디
- * @param {string} tempPassword - 임시 비밀번호
- */
-export async function sendTempPasswordEmail(to, username, tempPassword) {
+// 이메일 인증 코드 발송
+export const sendVerificationCode = async (email, code) => {
   try {
-    // 이메일 발송이 설정되지 않은 경우
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-      console.warn('⚠️ 이메일 설정이 없어 이메일을 발송하지 않습니다.')
-      return { sent: false, message: '이메일 설정이 필요합니다.' }
-    }
-
     const transporter = createTransporter()
 
     const mailOptions = {
       from: `"햇살농업건설" <${process.env.EMAIL_USER}>`,
-      to: to,
-      subject: '[햇살농업건설] 임시 비밀번호 발급',
+      to: email,
+      subject: '[햇살농업건설] 이메일 인증 코드',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #2c3e50;">임시 비밀번호가 발급되었습니다</h2>
-          
-          <p>안녕하세요, <strong>${username}</strong>님.</p>
-          
-          <p>요청하신 임시 비밀번호가 발급되었습니다.</p>
-          
-          <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0;">
-            <p style="margin: 0; font-size: 14px; color: #666;">임시 비밀번호:</p>
-            <p style="margin: 10px 0 0 0; font-size: 24px; font-weight: bold; color: #2c3e50; letter-spacing: 2px;">
-              ${tempPassword}
+          <h2 style="color: #2c5530; margin-bottom: 20px;">이메일 인증</h2>
+          <p style="font-size: 16px; line-height: 1.6; color: #333;">
+            안녕하세요, 햇살농업건설입니다.
+          </p>
+          <p style="font-size: 16px; line-height: 1.6; color: #333;">
+            회원가입을 위한 이메일 인증 코드입니다.
+          </p>
+          <div style="background-color: #f5f5f5; padding: 20px; margin: 20px 0; text-align: center; border-radius: 8px;">
+            <p style="font-size: 14px; color: #666; margin-bottom: 10px;">인증 코드</p>
+            <p style="font-size: 32px; font-weight: bold; color: #2c5530; letter-spacing: 4px; margin: 0;">
+              ${code}
             </p>
           </div>
-          
-          <p style="color: #e74c3c; font-weight: bold;">
-            ⚠️ 보안을 위해 로그인 후 반드시 비밀번호를 변경해주세요.
-          </p>
-          
-          <p style="margin-top: 30px; color: #666; font-size: 12px;">
-            이 이메일은 자동으로 발송된 메일입니다.<br>
-            문의사항이 있으시면 고객센터로 연락해주세요.
+          <p style="font-size: 14px; color: #999; margin-top: 20px;">
+            이 코드는 10분간 유효합니다.<br/>
+            본인이 요청하지 않은 경우 이 이메일을 무시하셔도 됩니다.
           </p>
         </div>
-      `,
-      text: `
-임시 비밀번호가 발급되었습니다
-
-안녕하세요, ${username}님.
-
-요청하신 임시 비밀번호가 발급되었습니다.
-
-임시 비밀번호: ${tempPassword}
-
-⚠️ 보안을 위해 로그인 후 반드시 비밀번호를 변경해주세요.
-
-이 이메일은 자동으로 발송된 메일입니다.
-문의사항이 있으시면 고객센터로 연락해주세요.
       `,
     }
 
     const info = await transporter.sendMail(mailOptions)
-    console.log('✅ 이메일 발송 성공:', info.messageId)
-    return { sent: true, messageId: info.messageId }
+    console.log('이메일 발송 성공:', info.messageId)
+    return { success: true, messageId: info.messageId }
   } catch (error) {
-    console.error('❌ 이메일 발송 실패:', error)
+    console.error('이메일 발송 실패:', error)
     throw new Error('이메일 발송에 실패했습니다.')
   }
 }
 
+// 임시 비밀번호 발송
+export const sendTempPassword = async (email, tempPassword) => {
+  try {
+    const transporter = createTransporter()
+
+    const mailOptions = {
+      from: `"햇살농업건설" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: '[햇살농업건설] 임시 비밀번호',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #2c5530; margin-bottom: 20px;">임시 비밀번호 발급</h2>
+          <p style="font-size: 16px; line-height: 1.6; color: #333;">
+            안녕하세요, 햇살농업건설입니다.
+          </p>
+          <p style="font-size: 16px; line-height: 1.6; color: #333;">
+            요청하신 임시 비밀번호입니다. 로그인 후 비밀번호를 변경해주세요.
+          </p>
+          <div style="background-color: #f5f5f5; padding: 20px; margin: 20px 0; text-align: center; border-radius: 8px;">
+            <p style="font-size: 14px; color: #666; margin-bottom: 10px;">임시 비밀번호</p>
+            <p style="font-size: 24px; font-weight: bold; color: #2c5530; letter-spacing: 2px; margin: 0;">
+              ${tempPassword}
+            </p>
+          </div>
+          <p style="font-size: 14px; color: #999; margin-top: 20px;">
+            보안을 위해 로그인 후 즉시 비밀번호를 변경해주세요.
+          </p>
+        </div>
+      `,
+    }
+
+    const info = await transporter.sendMail(mailOptions)
+    console.log('임시 비밀번호 이메일 발송 성공:', info.messageId)
+    return { success: true, messageId: info.messageId }
+  } catch (error) {
+    console.error('임시 비밀번호 이메일 발송 실패:', error)
+    throw new Error('이메일 발송에 실패했습니다.')
+  }
+}

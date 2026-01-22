@@ -30,7 +30,7 @@ ADMIN_USERNAME=haesalfarm
 ADMIN_PASSWORD=farm9948!!
 ADMIN_EMAIL=admin@haesalfarm.com
 EMAIL_USER=haesalfarm@naver.com
-EMAIL_PASSWORD=farm9948!!
+EMAIL_PASSWORD=T368G78JBHES
 ```
 
 **중요 사항:**

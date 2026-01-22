@@ -28,9 +28,27 @@ function safeUser(u) {
   return rest
 }
 
-export async function signup({ username, name, email, password }) {
+// 이메일 인증 코드 발송
+export async function sendVerificationCode(email) {
   if (USE_API) {
-    return await authApi.signup({ username, name, email, password })
+    return await authApi.sendVerificationCode(email)
+  }
+  // 로컬 스토리지 모드에서는 검증 없이 성공 처리
+  return { message: '인증 코드가 발송되었습니다. (로컬 모드)' }
+}
+
+// 이메일 인증 코드 검증
+export async function verifyEmailCode(email, code) {
+  if (USE_API) {
+    return await authApi.verifyEmailCode(email, code)
+  }
+  // 로컬 스토리지 모드에서는 검증 없이 성공 처리
+  return { message: '이메일 인증이 완료되었습니다. (로컬 모드)' }
+}
+
+export async function signup({ username, name, email, password, verificationCode }) {
+  if (USE_API) {
+    return await authApi.signup({ username, name, email, password, verificationCode })
   }
 
   // 로컬 스토리지 모드

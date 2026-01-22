@@ -46,7 +46,6 @@ fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71', {
 
 // Mongoose 버퍼링 설정 - 연결이 완료될 때까지 쿼리 대기
 mongoose.set('bufferCommands', true) // 버퍼링 활성화
-mongoose.set('bufferMaxEntries', 0) // 버퍼 크기 제한 없음
 
 mongoose
   .connect(MONGODB_URI, {
@@ -56,7 +55,6 @@ mongoose
     retryWrites: true,
     w: 'majority',
     bufferCommands: true, // 연결 완료까지 쿼리 버퍼링
-    bufferMaxEntries: 0, // 버퍼 크기 제한 없음
   })
   .then(() => {
     // #region agent log

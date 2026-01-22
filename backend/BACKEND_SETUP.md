@@ -29,7 +29,15 @@ JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 ADMIN_USERNAME=haesalfarm
 ADMIN_PASSWORD=farm9948!!
 ADMIN_EMAIL=admin@haesalfarm.com
+
+# 네이버 이메일 설정 (이메일 인증 기능 사용 시 필수)
+EMAIL_USER=your-email@naver.com
+EMAIL_PASSWORD=your-app-password-16-digits
 ```
+
+**이메일 설정 참고:**
+- 네이버 앱 비밀번호 생성 방법은 `EMAIL_SETUP.md` 파일을 참고하세요.
+- `EMAIL_PASSWORD`는 네이버 일반 비밀번호가 아닌 **앱 비밀번호**입니다.
 
 ### 3단계: MongoDB 설치 및 실행
 

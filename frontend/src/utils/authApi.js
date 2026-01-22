@@ -21,14 +21,35 @@ const saveUser = (user) => {
   localStorage.setItem(USER_KEY, JSON.stringify(user))
 }
 
+// 이메일 인증 코드 발송
+export async function sendVerificationCode(email) {
+  try {
+    const response = await post('/auth/send-verification-code', { email })
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
+// 이메일 인증 코드 검증
+export async function verifyEmailCode(email, code) {
+  try {
+    const response = await post('/auth/verify-email-code', { email, code })
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
 // 회원가입
-export async function signup({ username, name, email, password }) {
+export async function signup({ username, name, email, password, verificationCode }) {
   try {
     const response = await post('/auth/signup', {
       username,
       name,
       email,
       password,
+      verificationCode,
     })
 
     saveToken(response.token)
