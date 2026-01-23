@@ -6,7 +6,7 @@ import './Support.css'
 
 export default function Support() {
   const nav = useNavigate()
-  const [tab, setTab] = useState('inquiry') // 'faq' | 'inquiry'
+  const [tab, setTab] = useState('faq') // 'faq' | 'inquiry'
   const [user, setUser] = useState(getCurrentUserSync())
   const [formData, setFormData] = useState({
     name: '',
@@ -74,6 +74,9 @@ export default function Support() {
         <a className="support-call" href="tel:01064719948">
           전화문의 : 010 - 6471 - 9948
         </a>
+        <a className="support-email" href="mailto:haesalfarm@naver.com">
+          haesalfarm@naver.com
+        </a>
       </section>
 
       {/* 탭 */}
@@ -86,13 +89,14 @@ export default function Support() {
           자주 묻는 질문(FAQ)
         </button>
 
-        <button
+        {/* 1:1 문의 탭 주석처리 */}
+        {/* <button
           className={`support-tab ${tab === 'inquiry' ? 'active' : ''}`}
           onClick={() => setTab('inquiry')}
           type="button"
         >
           1:1 문의
-        </button>
+        </button> */}
       </div>
 
       <div className="support-body">
@@ -108,8 +112,8 @@ export default function Support() {
           </div>
         )}
 
-        {/* 1:1 문의 */}
-        {tab === 'inquiry' && (
+        {/* 1:1 문의 - 주석처리 */}
+        {/* {tab === 'inquiry' && (
           <form className="inquiry-form" onSubmit={onSubmit}>
             <div className="inquiry-grid">
               <div className="field">
@@ -185,7 +189,7 @@ export default function Support() {
               {submitting ? '처리 중...' : '문의하기'}
             </button>
           </form>
-        )}
+        )} */}
       </div>
     </div>
   )
