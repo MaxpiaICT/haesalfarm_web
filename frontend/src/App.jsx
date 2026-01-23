@@ -45,16 +45,10 @@ export default function App() {
   }, [])
 
   const onLogout = () => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:onLogout',message:'onLogout called',data:{currentUser:!!user},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     logout()
     setUser(null)
     setAuthOpen(false)
     setMenuOpen(false)
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:onLogout',message:'after logout',data:{hasToken:!!localStorage.getItem('auth_token'),hasUser:!!localStorage.getItem('haesal_user'),hasSession:!!localStorage.getItem('haesal_session')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     nav('/', { replace: true })
     // 페이지 강제 새로고침으로 상태 완전 초기화
     setTimeout(() => {

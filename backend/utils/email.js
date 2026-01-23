@@ -19,14 +19,8 @@ const createTransporter = () => {
 
 // 이메일 인증 코드 발송
 export const sendVerificationCode = async (email, code) => {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'email.js:sendVerificationCode',message:'Function called',data:{email,hasEmailUser:!!process.env.EMAIL_USER,hasEmailPassword:!!process.env.EMAIL_PASSWORD,emailUser:process.env.EMAIL_USER?.substring(0,10)+'...'},timestamp:Date.now(),sessionId:'debug-session',runId:'email-send',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
   try {
     const transporter = createTransporter()
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'email.js:sendVerificationCode',message:'Transporter created',data:{host:'smtp.naver.com',port:587},timestamp:Date.now(),sessionId:'debug-session',runId:'email-send',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
 
     const mailOptions = {
       from: `"햇살농업건설" <${process.env.EMAIL_USER}>`,
@@ -55,19 +49,10 @@ export const sendVerificationCode = async (email, code) => {
       `,
     }
 
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'email.js:sendVerificationCode',message:'Before sendMail',data:{to:email,from:process.env.EMAIL_USER},timestamp:Date.now(),sessionId:'debug-session',runId:'email-send',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
     const info = await transporter.sendMail(mailOptions)
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'email.js:sendVerificationCode',message:'Email sent successfully',data:{messageId:info.messageId},timestamp:Date.now(),sessionId:'debug-session',runId:'email-send',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
     console.log('이메일 발송 성공:', info.messageId)
     return { success: true, messageId: info.messageId }
   } catch (error) {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'email.js:sendVerificationCode',message:'Email send failed',data:{errorMessage:error.message,errorCode:error.code,errorName:error.name,stack:error.stack?.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'email-send',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     console.error('이메일 발송 실패:', error)
     throw new Error('이메일 발송에 실패했습니다.')
   }

@@ -101,13 +101,7 @@ export async function getCurrentUser() {
 
 // 로그아웃
 export function logout() {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'authApi.js:logout',message:'logout called',data:{hasToken:!!localStorage.getItem(AUTH_TOKEN_KEY),hasUser:!!localStorage.getItem(USER_KEY)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-  // #endregion
   removeToken()
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'authApi.js:logout',message:'removeToken called',data:{hasToken:!!localStorage.getItem(AUTH_TOKEN_KEY),hasUser:!!localStorage.getItem(USER_KEY)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-  // #endregion
 }
 
 // 로그인 상태 확인

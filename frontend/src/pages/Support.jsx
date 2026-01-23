@@ -113,8 +113,10 @@ export default function Support() {
           <form className="inquiry-form" onSubmit={onSubmit}>
             <div className="inquiry-grid">
               <div className="field">
-                <label className="label">이름/상호명*</label>
+                <label htmlFor="support-name" className="label">이름/상호명*</label>
                 <input
+                  id="support-name"
+                  autoComplete="name"
                   className="input"
                   name="name"
                   value={formData.name}
@@ -125,8 +127,10 @@ export default function Support() {
               </div>
 
               <div className="field">
-                <label className="label">연락처*</label>
+                <label htmlFor="support-phone" className="label">연락처*</label>
                 <input
+                  id="support-phone"
+                  autoComplete="tel"
                   className="input"
                   name="phone"
                   value={formData.phone}
@@ -137,8 +141,10 @@ export default function Support() {
               </div>
 
               <div className="field">
-                <label className="label">이메일</label>
+                <label htmlFor="support-email" className="label">이메일</label>
                 <input
+                  id="support-email"
+                  autoComplete="email"
                   className="input"
                   type="email"
                   name="email"
@@ -149,8 +155,10 @@ export default function Support() {
               </div>
 
               <div className="field">
-                <label className="label">소속</label>
+                <label htmlFor="support-affiliation" className="label">소속</label>
                 <input
+                  id="support-affiliation"
+                  autoComplete="organization"
                   className="input"
                   name="affiliation"
                   value={formData.affiliation}
@@ -160,8 +168,9 @@ export default function Support() {
               </div>
 
               <div className="field full">
-                <label className="label">문의 사항*</label>
+                <label htmlFor="support-content" className="label">문의 사항*</label>
                 <textarea
+                  id="support-content"
                   className="textarea"
                   name="content"
                   value={formData.content}

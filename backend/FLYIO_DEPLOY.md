@@ -48,7 +48,7 @@ fly launch
 
 ### 1. 환경 변수 추가
 ```bash
-fly secrets set MONGODB_URI="mongodb+srv://maxpiaictntec_db_user:Z3LNFlejPCP43R7X@haesalfarm.grpmle4.mongodb.net/haesalfarm?retryWrites=true&w=majority"
+fly secrets set MONGODB_URI="mongodb+srv://maxpiaictntec_db_user:UyjFpzYPjWy3djme@haesalfarm.grpmle4.mongodb.net/haesalfarm?retryWrites=true&w=majority"
 ```
 
 ```bash

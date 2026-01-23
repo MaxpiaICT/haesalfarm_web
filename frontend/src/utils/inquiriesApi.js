@@ -33,13 +33,7 @@ export async function updateInquiryStatus(inquiryId, status) {
 
 // 문의 답변 추가/수정 (관리자용)
 export async function updateInquiryAnswer(inquiryId, answer) {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'inquiriesApi.js:35',message:'updateInquiryAnswer called',data:{inquiryId,answerLength:answer?.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
   const response = await put(`/inquiries/${inquiryId}/answer`, { answer })
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'inquiriesApi.js:37',message:'updateInquiryAnswer response',data:{success:!!response},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
   return response.inquiry
 }
 

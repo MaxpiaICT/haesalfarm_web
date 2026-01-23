@@ -7,33 +7,20 @@ const getApiBaseUrl = () => {
     return import.meta.env.VITE_API_URL
   }
 
-  // 배포 환경(PROD)에서 환경 변수가 없는 경우
-  if (import.meta.env.PROD) {
-    // Fly.io 백엔드 URL을 기본값으로 사용
-    const flyBackendUrl = 'https://haesalfarm-backend.fly.dev/api'
+  // Fly.io 백엔드 URL을 기본값으로 사용 (개발/배포 환경 모두)
+  const flyBackendUrl = 'https://haesalfarm-backend.fly.dev/api'
 
+  // 개발 환경에서도 Fly.io 백엔드를 기본값으로 사용
+  // (로컬 서버를 사용하려면 VITE_API_URL 환경 변수 설정 필요)
+  if (import.meta.env.DEV) {
+    console.log('🌐 개발 환경: Fly.io 백엔드를 사용합니다:', flyBackendUrl)
+    console.log('💡 로컬 서버를 사용하려면 VITE_API_URL=http://localhost:3001/api 환경 변수를 설정하세요.')
+  } else {
     console.warn('⚠️ VITE_API_URL 환경 변수가 설정되지 않았습니다. Fly.io 백엔드를 사용합니다.')
     console.warn('💡 배포 환경 변수에 VITE_API_URL을 설정하는 것을 권장합니다.')
-
-    return flyBackendUrl
   }
 
-  // 개발 환경에서만 자동 감지 사용
-  if (import.meta.env.DEV) {
-    const hostname = window.location.hostname
-
-    // IP 주소 형식인 경우에만 (모바일 접근) 현재 호스트 사용
-    if (
-      hostname !== 'localhost' &&
-      hostname !== '127.0.0.1' &&
-      hostname.match(/^\d+\.\d+\.\d+\.\d+$/)
-    ) {
-      return `http://${hostname}:3001/api`
-    }
-  }
-
-  // 개발 환경 기본값: localhost (PC에서 접근 시)
-  return 'http://localhost:3001/api'
+  return flyBackendUrl
 }
 
 const API_BASE_URL = getApiBaseUrl()

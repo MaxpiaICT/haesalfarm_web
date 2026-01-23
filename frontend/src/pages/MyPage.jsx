@@ -146,9 +146,6 @@ export default function MyPage() {
 
   // 답변 저장
   const handleSaveAnswer = async (inquiryId) => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'MyPage.jsx:handleSaveAnswer',message:'handleSaveAnswer called',data:{inquiryId,answerTextLength:answerText.trim().length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     if (!answerText.trim()) {
       alert('답변 내용을 입력해주세요.')
       return
@@ -162,9 +159,6 @@ export default function MyPage() {
       setAnswerText('')
       alert('답변이 저장되었습니다.')
     } catch (error) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'MyPage.jsx:handleSaveAnswer',message:'handleSaveAnswer error',data:{errorMessage:error.message,inquiryId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-      // #endregion
       alert(error.message || '답변 저장에 실패했습니다.')
     }
   }
