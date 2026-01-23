@@ -439,7 +439,7 @@
 .benefit-desc{
   font-size: 14px;
   line-height: 1.6;
-  margin: ;
+  
   opacity: 0.95;
 }
 
@@ -592,7 +592,7 @@
     margin-top: 36px;
     padding: 0 16px;
   }
-
+}
   .benefits-head{
     font-size: 26px;
   }
@@ -601,14 +601,12 @@
     grid-template-columns: 1fr;
   }
 
-  .persona-grid{
-    grid-template-columns: repeat(, 1fr);
-  }
+
 
   .persona-card{
     height: 150px;
   }
-}
+ 
 
 @media (max-width: 480px){
   .persona-grid{
