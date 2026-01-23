@@ -42,14 +42,13 @@ export async function verifyEmailCode(email, code) {
 }
 
 // 회원가입
-export async function signup({ username, name, email, password, verificationCode }) {
+export async function signup({ username, name, email, password }) {
   try {
     const response = await post('/auth/signup', {
       username,
       name,
       email,
       password,
-      verificationCode,
     })
 
     saveToken(response.token)

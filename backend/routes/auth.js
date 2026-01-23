@@ -110,10 +110,10 @@ router.post('/verify-email-code', async (req, res) => {
   }
 })
 
-// 회원가입 (이메일 인증 필수)
+// 회원가입
 router.post('/signup', async (req, res) => {
   try {
-    const { username, name, email, password, verificationCode } = req.body
+    const { username, name, email, password } = req.body
 
     if (!username || !name || !password) {
       return res.status(400).json({ error: '필수 항목(아이디/이름/비밀번호)을 입력해주세요.' })
@@ -127,7 +127,7 @@ router.post('/signup', async (req, res) => {
       return res.status(400).json({ error: '비밀번호는 8자 이상으로 입력해주세요.' })
     }
 
-    // 이메일이 제공된 경우 이메일 인증 확인
+    // 이메일이 제공된 경우 형식만 검증
     if (email) {
       const emailLower = email.toLowerCase().trim()
 
@@ -136,24 +136,6 @@ router.post('/signup', async (req, res) => {
       if (!emailRegex.test(emailLower)) {
         return res.status(400).json({ error: '올바른 이메일 형식이 아닙니다.' })
       }
-
-      // 이메일 인증 코드 확인
-      if (!verificationCode) {
-        return res.status(400).json({ error: '이메일 인증이 필요합니다.' })
-      }
-
-      const verification = await EmailVerification.findOne({
-        email: emailLower,
-        code: verificationCode,
-        verified: true,
-      })
-
-      if (!verification) {
-        return res.status(400).json({ error: '이메일 인증이 완료되지 않았습니다. 인증 코드를 확인해주세요.' })
-      }
-
-      // 인증 코드 삭제 (일회용)
-      await EmailVerification.deleteOne({ _id: verification._id })
     }
 
     // 중복 체크

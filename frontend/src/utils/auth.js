@@ -46,9 +46,9 @@ export async function verifyEmailCode(email, code) {
   return { message: '이메일 인증이 완료되었습니다. (로컬 모드)' }
 }
 
-export async function signup({ username, name, email, password, verificationCode }) {
+export async function signup({ username, name, email, password }) {
   if (USE_API) {
-    return await authApi.signup({ username, name, email, password, verificationCode })
+    return await authApi.signup({ username, name, email, password })
   }
 
   // 로컬 스토리지 모드
