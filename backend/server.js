@@ -25,10 +25,27 @@ app.use(express.urlencoded({ extended: true }))
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/haesalfarm'
 
 // #region agent log
+// 연결 문자열에서 사용자 이름 추출 (디버깅용)
+let mongoUsername = 'unknown'
+let mongoPasswordMasked = '***'
+try {
+  if (MONGODB_URI.includes('mongodb+srv://')) {
+    const match = MONGODB_URI.match(/mongodb\+srv:\/\/([^:]+):([^@]+)@/)
+    if (match) {
+      mongoUsername = match[1]
+      mongoPasswordMasked = match[2].substring(0, 3) + '***' + match[2].substring(match[2].length - 3)
+    }
+  }
+} catch (e) {
+  // 파싱 실패 무시
+}
+
 console.log('[MongoDB] 연결 시도 시작', {
   hasUri: !!MONGODB_URI,
   uriLength: MONGODB_URI?.length,
   uriPrefix: MONGODB_URI?.substring(0, 20) + '...',
+  username: mongoUsername,
+  passwordMasked: mongoPasswordMasked,
   timestamp: Date.now(),
 })
 fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71', {
@@ -41,11 +58,13 @@ fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71', {
       hasUri: !!MONGODB_URI,
       uriLength: MONGODB_URI?.length,
       uriPrefix: MONGODB_URI?.substring(0, 30),
+      username: mongoUsername,
+      passwordMasked: mongoPasswordMasked,
     },
     timestamp: Date.now(),
     sessionId: 'debug-session',
     runId: 'mongodb-connection',
-    hypothesisId: 'B',
+    hypothesisId: 'A',
   }),
 }).catch(() => {})
 // #endregion
@@ -88,6 +107,8 @@ mongoose
       name: err.name,
       code: err.code,
       stack: err.stack?.substring(0, 200),
+      username: mongoUsername,
+      passwordMasked: mongoPasswordMasked,
     })
     fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71', {
       method: 'POST',
@@ -99,6 +120,9 @@ mongoose
           errorMessage: err.message,
           errorName: err.name,
           errorCode: err.code,
+          username: mongoUsername,
+          passwordMasked: mongoPasswordMasked,
+          isAuthError: err.message?.includes('auth') || err.message?.includes('authentication'),
         },
         timestamp: Date.now(),
         sessionId: 'debug-session',
@@ -109,6 +133,8 @@ mongoose
     // #endregion
     console.error('❌ MongoDB 연결 실패:', err.message)
     console.error('연결 문자열 확인:', MONGODB_URI ? '설정됨' : '설정되지 않음')
+    console.error('사용자 이름:', mongoUsername)
+    console.error('비밀번호 (마스킹):', mongoPasswordMasked)
     
     // 30초 후 자동 재연결 시도
     setTimeout(() => {
@@ -273,16 +299,22 @@ const reconnectMongoDB = async () => {
         data: {
           errorMessage: error.message,
           errorName: error.name,
+          errorCode: error.code,
+          username: mongoUsername,
+          passwordMasked: mongoPasswordMasked,
+          isAuthError: error.message?.includes('auth') || error.message?.includes('authentication'),
         },
         timestamp: Date.now(),
         sessionId: 'debug-session',
         runId: 'mongodb-reconnect',
-        hypothesisId: 'C',
+        hypothesisId: 'B',
       }),
     }).catch(() => {})
     // #endregion
 
     console.error('❌ MongoDB 재연결 실패:', error.message)
+    console.error('사용자 이름:', mongoUsername)
+    console.error('비밀번호 (마스킹):', mongoPasswordMasked)
     return { success: false, message: error.message }
   }
 }

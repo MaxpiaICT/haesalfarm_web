@@ -24,7 +24,7 @@ Railway 대시보드 → 서비스 → Variables 탭에서 다음 환경 변수�
 
 ```env
 PORT=3001
-MONGODB_URI=mongodb+srv://maxpiaictntec_db_user:Z3LNFlejPCP43R7X@haesalfarm.grpmle4.mongodb.net/haesalfarm?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://maxpiaictntec_db_user:UyjFpzYPjWy3djme@haesalfarm.grpmle4.mongodb.net/haesalfarm?retryWrites=true&w=majority
 JWT_SECRET=657f0cdb952e5f760c86a16bf1e14c025620d9d2ca87eb766fb52891dcf717c1
 ADMIN_USERNAME=haesalfarm
 ADMIN_PASSWORD=farm9948!!

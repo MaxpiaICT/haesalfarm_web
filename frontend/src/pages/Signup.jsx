@@ -128,9 +128,6 @@ export default function Signup() {
 
     try {
       setSubmitting(true)
-      // #region agent log
-      console.log('[Signup] Starting signup', { username: form.username, name: form.name, email: form.email })
-      // #endregion
       await signup({
         username: form.username,
         name: form.name,
@@ -138,14 +135,8 @@ export default function Signup() {
         password: form.password,
         verificationCode: form.verificationCode,
       })
-      // #region agent log
-      console.log('[Signup] Success')
-      // #endregion
       nav('/mypage')
     } catch (e2) {
-      // #region agent log
-      console.error('[Signup] Error', { error: e2?.message, stack: e2?.stack })
-      // #endregion
       setErr(e2?.message || '회원가입에 실패했습니다.')
     } finally {
       setSubmitting(false)
@@ -168,27 +159,43 @@ export default function Signup() {
         <form className="signup-form" onSubmit={onSubmit}>
           <div className="signup-grid">
             <div className="field">
-              <label>아이디 *</label>
-              <input name="username" value={form.username} onChange={onChange} placeholder="4자 이상" />
+              <label htmlFor="signup-username">아이디 *</label>
+              <input 
+                id="signup-username"
+                name="username" 
+                value={form.username} 
+                onChange={onChange} 
+                placeholder="4자 이상"
+                autoComplete="username"
+              />
               {validate.errors.username && <p className="error">{validate.errors.username}</p>}
             </div>
 
             <div className="field">
-              <label>이름 *</label>
-              <input name="name" value={form.name} onChange={onChange} placeholder="이름" />
+              <label htmlFor="signup-name">이름 *</label>
+              <input 
+                id="signup-name"
+                name="name" 
+                value={form.name} 
+                onChange={onChange} 
+                placeholder="이름"
+                autoComplete="name"
+              />
               {validate.errors.name && <p className="error">{validate.errors.name}</p>}
             </div>
 
             <div className="field full">
-              <label>이메일 *</label>
+              <label htmlFor="signup-email">이메일 *</label>
               <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
                 <input
+                  id="signup-email"
                   name="email"
                   value={form.email}
                   onChange={onChange}
                   placeholder="example@domain.com"
                   style={{ flex: 1 }}
                   disabled={emailVerified}
+                  autoComplete="email"
                 />
                 <button
                   type="button"
@@ -207,14 +214,17 @@ export default function Signup() {
               {validate.errors.email && <p className="error">{validate.errors.email}</p>}
               {codeSent && !emailVerified && (
                 <div className="field full" style={{ marginTop: '8px' }}>
+                  <label htmlFor="signup-verification-code" style={{ display: 'block', marginBottom: '4px' }}>인증 코드 *</label>
                   <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
                     <input
+                      id="signup-verification-code"
                       name="verificationCode"
                       value={form.verificationCode}
                       onChange={onChange}
                       placeholder="인증 코드 6자리"
                       style={{ flex: 1 }}
                       maxLength={6}
+                      autoComplete="one-time-code"
                     />
                     <button
                       type="button"
@@ -239,14 +249,30 @@ export default function Signup() {
             </div>
 
             <div className="field">
-              <label>비밀번호 *</label>
-              <input type="password" name="password" value={form.password} onChange={onChange} placeholder="8자 이상" />
+              <label htmlFor="signup-password">비밀번호 *</label>
+              <input 
+                id="signup-password"
+                type="password" 
+                name="password" 
+                value={form.password} 
+                onChange={onChange} 
+                placeholder="8자 이상"
+                autoComplete="new-password"
+              />
               {validate.errors.password && <p className="error">{validate.errors.password}</p>}
             </div>
 
             <div className="field">
-              <label>비밀번호 확인 *</label>
-              <input type="password" name="password2" value={form.password2} onChange={onChange} placeholder="다시 입력" />
+              <label htmlFor="signup-password2">비밀번호 확인 *</label>
+              <input 
+                id="signup-password2"
+                type="password" 
+                name="password2" 
+                value={form.password2} 
+                onChange={onChange} 
+                placeholder="다시 입력"
+                autoComplete="new-password"
+              />
               {validate.errors.password2 && <p className="error">{validate.errors.password2}</p>}
             </div>
 

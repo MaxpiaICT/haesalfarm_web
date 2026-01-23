@@ -48,7 +48,7 @@ fly launch
 ### 5단계: 환경 변수 설정
 
 ```powershell
-fly secrets set MONGODB_URI="mongodb+srv://maxpiaictntec_db_user:Z3LNFlejPCP43R7X@haesalfarm.grpmle4.mongodb.net/haesalfarm?retryWrites=true&w=majority"
+fly secrets set MONGODB_URI="mongodb+srv://maxpiaictntec_db_user:UyjFpzYPjWy3djme@haesalfarm.grpmle4.mongodb.net/haesalfarm?retryWrites=true&w=majority"
 ```
 
 ```powershell

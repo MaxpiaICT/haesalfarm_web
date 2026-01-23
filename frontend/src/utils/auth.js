@@ -136,20 +136,11 @@ export function getCurrentUserSync() {
 }
 
 export function logout() {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'auth.js:logout',message:'logout called',data:{useApi:USE_API},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
   if (USE_API) {
     authApi.logout()
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'auth.js:logout',message:'authApi.logout called',data:{hasToken:!!localStorage.getItem('auth_token'),hasUser:!!localStorage.getItem('haesal_user')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
     return
   }
   localStorage.removeItem(SESSION_KEY)
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'auth.js:logout',message:'localStorage cleared',data:{hasSession:!!localStorage.getItem(SESSION_KEY)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
 }
 
 export function isLoggedIn() {
