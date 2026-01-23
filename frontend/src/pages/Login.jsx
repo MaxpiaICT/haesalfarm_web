@@ -1,9 +1,12 @@
+// 주석처리됨
+/*
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { login } from '../utils/auth'
 import './Login.css'
 
 export default function Login() {
+*/
   const nav = useNavigate()
   const [form, setForm] = useState({ username: '', password: '' })
   const [err, setErr] = useState('')
@@ -85,3 +88,4 @@ export default function Login() {
     </div>
   )
 }
+*/

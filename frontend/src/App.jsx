@@ -128,27 +128,28 @@ export default function App() {
                 </button>
               </>
             ) : (
-              /* ✅ 비로그인: 로그인/회원가입 드롭다운 */
-              <div className="auth-dropdown" ref={authRef}>
-                <button
-                  type="button"
-                  className={`header-btn auth-trigger ${authOpen ? 'open' : ''}`}
-                  onClick={() => setAuthOpen((v) => !v)}
-                >
-                  로그인/회원가입 <span className="auth-caret">▾</span>
-                </button>
+              /* ✅ 비로그인: 로그인/회원가입 드롭다운 - 주석처리 */
+              null
+              // <div className="auth-dropdown" ref={authRef}>
+              //   <button
+              //     type="button"
+              //     className={`header-btn auth-trigger ${authOpen ? 'open' : ''}`}
+              //     onClick={() => setAuthOpen((v) => !v)}
+              //   >
+              //     로그인/회원가입 <span className="auth-caret">▾</span>
+              //   </button>
 
-                {authOpen && (
-                  <div className="auth-menu">
-                    <Link className="auth-item" to="/login" onClick={() => setAuthOpen(false)}>
-                      로그인
-                    </Link>
-                    <Link className="auth-item" to="/signup" onClick={() => setAuthOpen(false)}>
-                      회원가입
-                    </Link>
-                  </div>
-                )}
-              </div>
+              //   {authOpen && (
+              //     <div className="auth-menu">
+              //       <Link className="auth-item" to="/login" onClick={() => setAuthOpen(false)}>
+              //         로그인
+              //       </Link>
+              //       <Link className="auth-item" to="/signup" onClick={() => setAuthOpen(false)}>
+              //         회원가입
+              //       </Link>
+              //     </div>
+              //   )}
+              // </div>
             )}
           </div>
         </nav>
@@ -191,7 +192,7 @@ export default function App() {
                 고객센터
               </Link>
 
-              {/* ✅ 모바일도 로그인 상태 분기 */}
+              {/* ✅ 모바일도 로그인 상태 분기 - 주석처리 */}
               {user ? (
                 <>
                   <Link to="/mypage" onClick={() => setMenuOpen(false)}>
@@ -200,14 +201,15 @@ export default function App() {
                   <button onClick={onLogout}>로그아웃</button>
                 </>
               ) : (
-                <>
-                  <Link to="/login" onClick={() => setMenuOpen(false)}>
-                    로그인
-                  </Link>
-                  <Link to="/signup" onClick={() => setMenuOpen(false)}>
-                    회원가입
-                  </Link>
-                </>
+                null
+                // <>
+                //   <Link to="/login" onClick={() => setMenuOpen(false)}>
+                //     로그인
+                //   </Link>
+                //   <Link to="/signup" onClick={() => setMenuOpen(false)}>
+                //     회원가입
+                //   </Link>
+                // </>
               )}
             </nav>
           </aside>

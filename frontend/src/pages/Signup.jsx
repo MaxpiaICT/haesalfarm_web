@@ -1,3 +1,5 @@
+// 주석처리됨
+/*
 import React, { useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { signup } from '../utils/auth'
@@ -5,6 +7,7 @@ import PolicyModal from '../components/PolicyModal'
 import './Signup.css'
 
 export default function Signup() {
+*/
   const nav = useNavigate()
 
   const [form, setForm] = useState({
@@ -88,19 +91,11 @@ export default function Signup() {
           <div className="signup-grid">
             <div className="field">
               <label htmlFor="signup-username">아이디 *</label>
-
               <input
                 id="signup-username"
                 name="username"
                 value={form.username}
                 onChange={onChange}
-
-
-                id="signup-username"
-                name="username" 
-                value={form.username} 
-                onChange={onChange} 
-
                 placeholder="4자 이상"
                 autoComplete="username"
               />
@@ -109,18 +104,11 @@ export default function Signup() {
 
             <div className="field">
               <label htmlFor="signup-name">이름 *</label>
-
               <input
                 id="signup-name"
                 name="name"
                 value={form.name}
                 onChange={onChange}
-
-                id="signup-name"
-                name="name" 
-                value={form.name} 
-                onChange={onChange} 
-
                 placeholder="이름"
                 autoComplete="name"
               />
@@ -129,7 +117,6 @@ export default function Signup() {
 
             <div className="field full">
               <label htmlFor="signup-email">이메일 *</label>
-
               <input
                 id="signup-email"
                 name="email"
@@ -139,87 +126,16 @@ export default function Signup() {
                 autoComplete="email"
               />
               {validate.errors.email && <p className="error">{validate.errors.email}</p>}
-
-              <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                <input
-                  id="signup-email"
-                  name="email"
-                  value={form.email}
-                  onChange={onChange}
-                  placeholder="example@domain.com"
-                  style={{ flex: 1 }}
-                  disabled={emailVerified}
-                  autoComplete="email"
-                />
-                <button
-                  type="button"
-                  onClick={handleSendCode}
-                  disabled={sendingCode || countdown > 0 || emailVerified || !form.email.trim()}
-                  style={{
-                    padding: '8px 16px',
-                    whiteSpace: 'nowrap',
-                    cursor: sendingCode || countdown > 0 || emailVerified || !form.email.trim() ? 'not-allowed' : 'pointer',
-                    opacity: sendingCode || countdown > 0 || emailVerified || !form.email.trim() ? 0.6 : 1,
-                  }}
-                >
-                  {sendingCode ? '발송중...' : countdown > 0 ? `${Math.floor(countdown / 60)}:${String(countdown % 60).padStart(2, '0')}` : '인증코드 발송'}
-                </button>
-              </div>
-              {validate.errors.email && <p className="error">{validate.errors.email}</p>}
-              {codeSent && !emailVerified && (
-                <div className="field full" style={{ marginTop: '8px' }}>
-                  <label htmlFor="signup-verification-code" style={{ display: 'block', marginBottom: '4px' }}>인증 코드 *</label>
-                  <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                    <input
-                      id="signup-verification-code"
-                      name="verificationCode"
-                      value={form.verificationCode}
-                      onChange={onChange}
-                      placeholder="인증 코드 6자리"
-                      style={{ flex: 1 }}
-                      maxLength={6}
-                      autoComplete="one-time-code"
-                    />
-                    <button
-                      type="button"
-                      onClick={handleVerifyCode}
-                      disabled={verifyingCode || emailVerified || !form.verificationCode.trim()}
-                      style={{
-                        padding: '8px 16px',
-                        whiteSpace: 'nowrap',
-                        cursor: verifyingCode || emailVerified || !form.verificationCode.trim() ? 'not-allowed' : 'pointer',
-                        opacity: verifyingCode || emailVerified || !form.verificationCode.trim() ? 0.6 : 1,
-                      }}
-                    >
-                      {verifyingCode ? '확인중...' : emailVerified ? '인증완료' : '인증확인'}
-                    </button>
-                  </div>
-                  {emailVerified && (
-                    <p style={{ color: '#2c5530', fontSize: '14px', marginTop: '4px' }}>✓ 이메일 인증이 완료되었습니다.</p>
-                  )}
-                  {validate.errors.emailVerified && <p className="error">{validate.errors.emailVerified}</p>}
-                </div>
-              )}
-
             </div>
 
             <div className="field">
               <label htmlFor="signup-password">비밀번호 *</label>
-
               <input
                 id="signup-password"
                 type="password"
                 name="password"
                 value={form.password}
                 onChange={onChange}
-
-
-                id="signup-password"
-                type="password" 
-                name="password" 
-                value={form.password} 
-                onChange={onChange} 
-
                 placeholder="8자 이상"
                 autoComplete="new-password"
               />
@@ -228,21 +144,12 @@ export default function Signup() {
 
             <div className="field">
               <label htmlFor="signup-password2">비밀번호 확인 *</label>
-
               <input
                 id="signup-password2"
                 type="password"
                 name="password2"
                 value={form.password2}
                 onChange={onChange}
-
-              <input 
-                id="signup-password2"
-                type="password" 
-                name="password2" 
-                value={form.password2} 
-                onChange={onChange} 
-
                 placeholder="다시 입력"
                 autoComplete="new-password"
               />
@@ -300,3 +207,4 @@ export default function Signup() {
     </div>
   )
 }
+*/

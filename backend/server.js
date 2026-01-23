@@ -36,6 +36,33 @@ app.use(express.urlencoded({ extended: true }))
 // Fly 헬스체크용: DB 상태와 무관하게 항상 200
 app.get('/healthz', (req, res) => {
   res.status(200).send('OK')
+})
+
+// API 헬스 체크: DB 상태 포함
+app.get('/api/health', (req, res) => {
+  const mongoStatus = mongoose.connection.readyState
+  const statusMap = {
+    0: 'disconnected',
+    1: 'connected',
+    2: 'connecting',
+    3: 'disconnecting',
+  }
+
+  res.json({
+    status: 'ok',
+    message: 'Server is running',
+    mongodb: {
+      status: statusMap[mongoStatus] || 'unknown',
+      readyState: mongoStatus,
+    },
+  })
+})
+
+// =========================
+// MongoDB
+// =========================
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/haesalfarm'
 
 // #region agent log
 // 연결 문자열에서 사용자 이름 추출 (디버깅용)
@@ -83,18 +110,18 @@ fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71', {
 // #endregion
 
 // Mongoose 버퍼링 설정 - 연결이 완료될 때까지 쿼리 대기
-mongoose.set('bufferCommands', true) // 버퍼링 활성화
+mongoose.set('bufferCommands', true)
 
-mongoose
-  .connect(MONGODB_URI, {
-    serverSelectionTimeoutMS: 30000, // 30초 타임아웃
-    socketTimeoutMS: 45000,
-    connectTimeoutMS: 30000,
-    retryWrites: true,
-    w: 'majority',
-    bufferCommands: true, // 연결 완료까지 쿼리 버퍼링
-  })
-  .then(() => {
+const connectMongoDB = async () => {
+  try {
+    await mongoose.connect(MONGODB_URI, {
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 30000,
+      retryWrites: true,
+      w: 'majority',
+      bufferCommands: true,
+    })
     // #region agent log
     console.log('[MongoDB] 연결 성공')
     fetch('http://127.0.0.1:7242/ingest/39db32e4-d4a7-4209-ba06-4c9e4293ad71', {
@@ -112,8 +139,7 @@ mongoose
     }).catch(() => {})
     // #endregion
     console.log('✅ MongoDB 연결 성공')
-  })
-  .catch((err) => {
+  } catch (err) {
     // #region agent log
     console.error('[MongoDB] 연결 실패 상세:', {
       message: err.message,
@@ -148,66 +174,6 @@ mongoose
     console.error('연결 문자열 확인:', MONGODB_URI ? '설정됨' : '설정되지 않음')
     console.error('사용자 이름:', mongoUsername)
     console.error('비밀번호 (마스킹):', mongoPasswordMasked)
-    
-    // 30초 후 자동 재연결 시도
-    setTimeout(() => {
-      console.log('🔄 MongoDB 자동 재연결 시도...')
-      reconnectMongoDB()
-    }, 30000)
-  })
-
-// MongoDB 연결 끊김 감지 및 자동 재연결
-mongoose.connection.on('disconnected', () => {
-  console.log('⚠️ MongoDB 연결이 끊어졌습니다. 재연결을 시도합니다...')
-  setTimeout(() => {
-    reconnectMongoDB()
-  }, 5000)
-
-})
-
-// API 헬스 체크: DB 상태 포함
-app.get('/api/health', (req, res) => {
-  const mongoStatus = mongoose.connection.readyState
-  const statusMap = {
-    0: 'disconnected',
-    1: 'connected',
-    2: 'connecting',
-    3: 'disconnecting',
-  }
-
-  res.json({
-    status: 'ok',
-    message: 'Server is running',
-    mongodb: {
-      status: statusMap[mongoStatus] || 'unknown',
-      readyState: mongoStatus,
-    },
-  })
-})
-
-// =========================
-// MongoDB
-// =========================
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/haesalfarm'
-
-// Mongoose 버퍼링 설정 - 연결이 완료될 때까지 쿼리 대기
-mongoose.set('bufferCommands', true)
-
-const connectMongoDB = async () => {
-  try {
-    await mongoose.connect(MONGODB_URI, {
-      serverSelectionTimeoutMS: 30000,
-      socketTimeoutMS: 45000,
-      connectTimeoutMS: 30000,
-      retryWrites: true,
-      w: 'majority',
-      bufferCommands: true,
-    })
-    console.log('✅ MongoDB 연결 성공')
-  } catch (err) {
-    console.error('❌ MongoDB 연결 실패:', err.message)
-    console.error('연결 문자열 확인:', MONGODB_URI ? '설정됨' : '설정되지 않음')
 
     // 30초 후 자동 재연결 시도
     setTimeout(() => {

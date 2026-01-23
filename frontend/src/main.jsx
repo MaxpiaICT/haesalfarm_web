@@ -9,8 +9,8 @@ import Detail from './pages/Detail'
 import Construction from './components/Construction/Construction'
 
 import Support from './pages/Support'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
+// import Login from './pages/Login'
+// import Signup from './pages/Signup'
 import MyPage from './pages/MyPage'
 import Company from './pages/Company' // ✅ 회사소개 추가
 import Admin from './pages/Admin' // ✅ 관리자 페이지 추가
@@ -43,9 +43,9 @@ root.render(
         {/* ✅ 회사소개 */}
         <Route path="company" element={<Company />} />
 
-        {/* ✅ 로그인/회원가입 (경로 소문자 권장) */}
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+        {/* ✅ 로그인/회원가입 (경로 소문자 권장) - 주석처리 */}
+        {/* <Route path="login" element={<Login />} /> */}
+        {/* <Route path="signup" element={<Signup />} /> */}
         <Route path="forgot-password" element={<ForgotPassword />} />
         
         {/* ✅ 비밀번호 변경 (보호 라우트) */}
