@@ -1,0 +1,71 @@
+.process {
+  padding: 90px 36px;
+  background: #ffffff;
+}
+
+.process h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 46px;
+  color: #111;
+}
+
+/* 4 x 2 그리드 */
+.process-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* 박스 스타일 */
+.process-box {
+  background: #6c964d; /* 스샷과 유사한 그린 */
+  color: #fff;
+  border-radius: 18px;
+  padding: 26px 18px;
+  min-height: 88px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.35;
+
+  transition: all 0.25s ease;
+}
+
+/* hover 시 강조 */
+.process-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
+/* 선택된 것처럼 보이는 효과 (옵션) */
+.process-box.active {
+  outline: 3px solid #1e90ff;
+  outline-offset: -3px;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .process {
+    padding: 60px 20px;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .process-box {
+    min-height: 70px;
+    padding: 20px 16px;
+    font-size: 15px;
+  }
+}

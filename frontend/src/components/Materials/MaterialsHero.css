@@ -1,0 +1,17 @@
+.materials-hero {
+  background: #15803d;
+  color: #fff;
+  padding: 80px 20px 60px;
+  text-align: center;
+}
+
+.materials-hero h1 {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.materials-hero p {
+  margin-top: 12px;
+  font-size: 16px;
+  opacity: 0.9;
+}

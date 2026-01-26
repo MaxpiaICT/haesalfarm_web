@@ -1,0 +1,27 @@
+.materials-bulk {
+  background: #15803d;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  margin-top: 60px;
+}
+
+.materials-bulk a {
+  display: inline-block;
+  margin-top: 16px;
+  background: #fff;
+  color: #15803d;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .materials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materials-hero h1 {
+    font-size: 28px;
+  }
+}

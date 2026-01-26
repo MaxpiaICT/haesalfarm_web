@@ -1,0 +1,107 @@
+.hero2 {
+  position: relative;
+  min-height: 500px;          /* ✅ 여기서 세로 크기 조절 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 배경 이미지 */
+.hero2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/public/assets/Hero_bg.jpg') center / cover no-repeat;
+  transform: scale(1.03);
+  z-index: 0;
+}
+
+/* 어두운 오버레이 */
+.hero2-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* 콘텐츠 */
+.hero2-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.hero2-content h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 20px;   /* 🔹 살짝 줄임 */
+}
+
+.hero2-content p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 20px;   /* 🔹 살짝 줄임 */
+}
+
+/* 버튼 영역 */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* 공통 버튼 */
+.hero-buttons button {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 26px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+/* primary */
+.hero-buttons .primary {
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+}
+
+.hero-buttons .primary:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-2px);
+}
+
+/* secondary */
+.hero-buttons .secondary {
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+}
+
+.hero-buttons .secondary:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translateY(-2px);
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 260px;   /* ✅ height ❌ → min-height ✅ */
+  }
+
+  .hero-content h1 {
+    font-size: 26px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

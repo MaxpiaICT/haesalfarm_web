@@ -20,7 +20,15 @@
     "mongoose": "^8.0.3",
     "nodemailer": "^7.0.11"
   },
+<<<<<<< HEAD
   "keywords": ["express", "mongodb", "api"],
+=======
+  "keywords": [
+    "express",
+    "mongodb",
+    "api"
+  ],
+>>>>>>> origin/dev
   "author": "",
   "license": "ISC"
 }

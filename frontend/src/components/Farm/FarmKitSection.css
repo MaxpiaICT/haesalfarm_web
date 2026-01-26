@@ -1,0 +1,658 @@
+/* GMarket Sans 폰트 */
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+
+
+/* ===============================
+   설명 영상 탭
+================================ */
+.farm-kit-video {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.video-wrapper iframe,
+.video-wrapper video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===============================
+   Farm Kit Section (Layout & Tabs)
+================================ */
+.farm-kit-section {
+  padding: 80px 20px;
+  margin-top: -40px;
+  text-align: center;
+}
+
+.farm-kit-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.farm-kit-tabs .tab {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #e5e5e5;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.farm-kit-tabs .tab.active {
+  background: #22c55e;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ===============================
+   STORE 카드
+================================ */
+.farm-kit-card {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.farm-kit-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+    url('/assets/fram_bg_1.png') center / cover no-repeat;
+}
+
+.farm-kit-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.farm-kit-content h3 {
+  font-size: 36px;
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.1;
+}
+
+.farm-kit-icon img {
+  width: 48px;
+  height: auto;
+}
+
+.farm-kit-cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(37,168,87,0.80);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ===============================
+   ABOUT (새 UI)
+================================ */
+.farm-kit-about {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 10px;
+  text-align: left;
+}
+
+/* 섹션 헤더: "제품구성 ───" */
+.kit-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0 14px;
+}
+
+.kit-head.mt {
+  margin-top: 48px;
+}
+
+.kit-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #111;
+  margin: 0;
+}
+
+.kit-line {
+  height: 4px;
+  width: 90px;
+  border-radius: 999px;
+  background: #bfe6cf;
+  display: inline-block;
+}
+
+/* ===============================c
+   제품구성: 이미지 + 텍스트 카드 (4개)
+================================ */
+.kit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.kit-item {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+
+
+/* 썸네일 */
+.kit-thumb {
+  width: 100%;
+  height: 240px;
+  background: #f3f3f3;
+  overflow: hidden;
+}
+
+.kit-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform .25s ease;
+}
+
+
+
+/* 텍스트 */
+.kit-body {
+  padding: 14px 14px 16px;
+}
+
+.kit-item-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 6px;
+}
+
+.kit-item-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+
+/* ===============================
+   사용방법: step 카드 (연결 라인 느낌)
+================================ */
+.steps-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* 가운데 연결 라인 */
+.steps-row::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 46px;
+  height: 8px;
+  background: #bfe6cf;
+  border-radius: 999px;
+  z-index: 0;
+}
+
+.step-card {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 14px;
+  padding: 18px 16px 16px;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.06);
+  min-height: 150px;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #e9f7ef;
+  color: #2f7d56;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  color: #111;
+}
+
+.step-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #666;
+  margin: 0;
+  white-space: pre-line; /* \n 줄바꿈 반영 */
+}
+
+/* ===============================
+   차별점 pill
+================================ */
+.feature-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.feature-pill {
+  background: #4fbf97;
+  color: #fff;
+  border-radius: 999px;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 1024px) {
+  .kit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps-row::before {
+    display: none; /* 2열부터는 라인 숨김 */
+  }
+}
+
+@media (max-width: 768px) {
+  .farm-kit-section {
+    padding: 40px 16px;
+    margin-top: -20px;
+  }
+
+  .farm-kit-tabs .tab {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .kit-title {
+    font-size: 18px;
+  }
+
+  .kit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-row {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    min-height: auto;
+  }
+}
+
+/* ===============================
+   (추가) Benefits / Highlights / Personas
+   - "사용방법" 바로 밑 UI 섹션
+================================ */
+
+.benefits-wrap{
+  max-width: 1100px;
+  margin: 60px auto 0;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* 상단 문구 */
+.benefits-kicker{
+  font-size: 14px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin: 0 0 10px;
+}
+
+.benefits-head{
+  font-size: 34px;
+  font-weight: 900;
+  color: #1b1b1b;
+  margin: 0 0 10px;
+}
+
+.benefits-sub{
+  font-size: 14px;
+  line-height: 1.7;
+  color: #292828;
+  margin: 0 0 28px;
+}
+
+/* 4개 장점 카드 */
+.benefits-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 360px)); /* 카드 최대폭 */
+  justify-content: center;  /* 가운데로 모으기 */
+  gap: 22px;                /* 카드 사이 간격 */
+}
+
+.benefit-card{
+  border-radius: 18px;
+  background: rgba(0,0,0,0.70);
+  color: #fff;
+  padding: 22px 22px;
+  box-shadow: 0 18px 44px rgba(65, 63, 63, 0.12);
+  text-align: center;
+}
+
+.benefit-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin: 0 auto 12px;
+}
+
+.benefit-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.benefit-title{
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.benefit-desc{
+  font-size: 14px;
+  line-height: 1.6;
+  margin: ;
+  opacity: 0.95;
+}
+
+/* 강조 헤드 */
+.highlights-head{
+  margin: 150px 0 16px;
+  margin-bottom: 58px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #2b2929;
+}
+
+/* 3개 가로 배너 */
+.highlights-col{
+ max-width: 750px;   /* ← 여기 줄이면 전체가 좁아짐 */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;      
+}
+
+.highlight-bar{
+  border-radius: 18px;
+  padding: 18px 22px;
+  color: #fff;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.highlight-title{
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.highlight-desc{
+  margin: 0;
+  font-size: px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* 톤(색) 3개 */
+.highlight-bar.tone-1{
+  background: rgba(30, 79, 97, 0.88);
+}
+.highlight-bar.tone-2{
+  background: rgba(27, 122, 108, 0.88);
+}
+.highlight-bar.tone-3{
+  background: rgba(36, 73, 140, 0.88);
+}
+
+/* 누구에게 좋을까요 */
+.persona-head{
+    margin: 90px 0 36px;   /* ← 타이틀-카드 간격 조절 */
+  text-align: center;
+  font-size: 30px;
+  font-weight: 900;
+  color: #302f2f;
+}
+
+/* 4개 카드 */
+.persona-grid{
+  width: min(900px, 100%);  /* ← 여기 숫자 줄이면 카드 더 작아짐 */
+  margin: 50px auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;                 /* 카드 사이 간격 */
+}
+
+.persona-card{
+  position: relative;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.12);
+  background: #222;
+}
+
+.persona-bg{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.9);
+  transform: scale(1);
+}
+
+.persona-overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.15)
+  );
+}
+
+.persona-body{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 🔥 상단/하단 분리 */
+  padding: 16px;
+  color: #fff;
+   text-align: left;      /* ✅ 왼쪽 정렬 */
+  align-items: flex-start; /* ✅ (혹시 가운데로 잡히는 경우 대비) */
+}
+
+.persona-title{
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.persona-desc{
+ .persona-body{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 🔥 상단/하단 분리 */
+  padding: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 1000px){
+  .persona-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px){
+  .benefits-wrap{
+    margin-top: 36px;
+    padding: 0 16px;
+  }
+
+  .benefits-head{
+    font-size: 26px;
+  }
+
+  .benefits-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .persona-grid{
+    grid-template-columns: repeat(, 1fr);
+  }
+
+  .persona-card{
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px){
+  .persona-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ✅ 화면 전체 배경 섹션 */
+.benefits-section{
+  position: relative;
+  width: 100%;
+  margin-top: 80px;
+  padding: 80px 0;  /* 배경 위아래 여백 */
+
+  background-image: url('/assets/farm_12.png'); /* ✅ 배경 이미지 경로 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ✅ 배경 위에 덮는 오버레이(가독성) */
+.benefits-section::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 251, 251, 1); /* 더 진하게: 0.65 / 더 투명: 0.45 */
+  z-index: 0;
+}
+
+/* ✅ 컨텐츠는 가운데 박스 */
+.benefits-wrap{
+  position: relative;
+  z-index: 1;
+
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 20px;   /* 좌우 여백 */
+  text-align: center;
+}
+
+
+.highlights-head,
+.persona-head{
+  font-family: 'GMarketSans', 'Noto Sans KR', system-ui, Arial, sans-serif !important;
+  font-weight: 700;
+}

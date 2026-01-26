@@ -1,0 +1,203 @@
+/* 설계시 고려 요소 */
+.design-considerations {
+  margin-top: 200px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.design-considerations-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+.design-considerations-title::before,
+.design-considerations-title::after {
+  content: '';
+  flex: 1;
+  max-width: 600px;
+  height: 2px;
+  background-color: #1a7e3b;
+  box-shadow: 0 0 4px rgba(26, 126, 59, 0.3);
+}
+
+.design-considerations-intro {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0d4637;
+  line-height: 1.6;
+  margin-bottom: 50px;
+  padding: 0;
+}
+
+.considerations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.consideration-item {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.consideration-image-wrapper {
+  position: relative;
+  flex: 0 0 48%;
+  max-width: 440px;
+}
+
+.consideration-number {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #1a7e3b;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.consideration-image {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #e8e8e8;
+}
+
+.consideration-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.consideration-content {
+  flex: 1;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  justify-content: space-between;
+}
+
+.consideration-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #d0d0d0;
+}
+
+.consideration-divider:first-child {
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.consideration-divider:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.consideration-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a7e3b;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.consideration-description {
+  margin-bottom: 0;
+}
+
+.consideration-description-line {
+  font-size: 17px;
+  color: #2c2c2c;
+  line-height: 1.9;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.consideration-description-line:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .design-considerations {
+    margin-top: 60px;
+    padding: 0 16px;
+  }
+
+  .design-considerations-title {
+    font-size: 24px;
+    gap: 15px;
+  }
+
+  .design-considerations-title::before,
+  .design-considerations-title::after {
+    max-width: 100px;
+  }
+
+  .design-considerations-intro {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .considerations-list {
+    gap: 30px;
+  }
+
+  .consideration-item {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .consideration-image-wrapper {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .consideration-number {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    top: -10px;
+    left: -10px;
+  }
+
+  .consideration-content {
+    padding-top: 10px;
+    min-height: auto;
+  }
+
+  .consideration-title {
+    font-size: 20px;
+  }
+
+  .consideration-description {
+    font-size: 14px;
+  }
+
+  .consideration-image {
+    height: 250px;
+  }
+}

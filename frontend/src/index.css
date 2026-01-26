@@ -1,0 +1,723 @@
+/* ===================================
+   Fonts (Pretendard)
+=================================== */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* ===================================
+   Tailwind (사용중이면 유지)
+=================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===================================
+   Base
+=================================== */
+@layer base {
+  body {
+    @apply bg-white text-slate-800 antialiased;
+    font-family: Inter, 'Noto Sans KR', system-ui, Arial;
+    /* 0px에서 헤더 높이만큼 수정 (보통 80px~100px 사이) */
+    padding-top: 100px; 
+    margin: 0;
+  }
+}
+
+/* 모바일에서는 헤더 높이가 달라질 수 있으므로 조정 */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px; /* 모바일 헤더 높이에 맞춤 */
+  }
+}
+
+
+
+/* ===================================
+   Footer
+=================================== */
+.site-footer-custom {
+  width: 100%;
+  background: #fff9f8;
+  padding: 30px 0 20px;
+  border-top: 1px solid #f2eaea;
+  font-family: 'Noto Sans KR', Arial, sans-serif;
+  color: #222;
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.footer-policy-col {
+  text-align: right;
+  min-width: 260px;
+}
+
+.footer-title { font-weight: 700; font-size: 14px; }
+.footer-item { font-size: 12px; color: #444; }
+
+.footer-link {
+  color: #888;
+  text-decoration: underline;
+  margin: 0 4px;
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 20px auto 0;
+  padding: 0 32px 20px;
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+}
+
+.footer-logo { width: 130px; height: auto; }
+.footer-logo-col { min-width: unset; }
+
+/* Footer Tablet */
+@media (max-width: 900px) {
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .footer-logo-col {
+    grid-column: 1 / -1;
+    align-items: center;
+  }
+
+  .footer-policy-col {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .footer-bottom { text-align: center; }
+}
+
+/* Footer Mobile */
+@media (max-width: 600px) {
+  .site-footer-custom { padding: 32px 0 16px; }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0 16px;
+  }
+
+  .footer-logo { width: 110px; }
+  .footer-title { font-size: 14px; }
+  .footer-item { font-size: 13px; line-height: 1.4; }
+  .footer-policy-col { text-align: left; }
+
+  .footer-bottom {
+    font-size: 12px;
+    margin-top: 12px;
+    padding: 0 16px 16px;
+  }
+}
+
+/* ===================================
+   Header
+=================================== */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 44px;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 999;
+}
+
+.main-nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-center {
+  display: flex;
+  gap: 36px;
+  margin: 0 auto;
+}
+
+.nav-right {
+  display: flex;
+  gap: 24px;
+}
+
+.main-nav a,
+.header-btn {
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover,
+.header-btn:hover { color: #22c55e; }
+
+.main-nav a::after,
+.header-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #22c55e;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.main-nav a:hover::after,
+.header-btn:hover::after { transform: scaleX(1); }
+
+.logo-img { @apply h-8; }
+
+/* Hamburger */
+.hamburger-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-direction: column;
+}
+
+.hamburger-line {
+  width: 22px;
+  height: 2px;
+  background: #111;
+  display: block;
+  border-radius: 999px;
+}
+
+/* Mobile Drawer */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  z-index: 998;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  width: 78%;
+  max-width: 320px;
+  height: 100vh;
+  background: #fff;
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 220ms ease;
+  box-shadow: -18px 0 40px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-drawer.open { transform: translateX(0); }
+
+.mobile-drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 18px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-drawer-title { font-weight: 800; font-size: 16px; color: #111; }
+.mobile-close { border: 0; background: transparent; font-size: 20px; cursor: pointer; }
+
+.mobile-links {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-links a,
+.mobile-links button {
+  text-align: left;
+  border: 0;
+  background: #f6f6f6;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  cursor: pointer;
+}
+
+/* Header Mobile */
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .hamburger-btn { display: flex; }
+
+  .header-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hamburger-btn {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/* ===================================
+   Hero
+=================================== */
+.hero {
+  @apply relative w-full min-h-[850px];
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.hero-bg {
+  @apply absolute inset-0 w-full h-full bg-cover bg-center;
+  background-image: url('/assets/bg_1.png');
+  z-index: 0;
+}
+
+.hero-overlay {
+  @apply absolute inset-0 w-full h-full;
+  background: rgba(231, 225, 225, 0.45);
+  z-index: 1;
+}
+
+.hero-content {
+  margin-top: 150px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.hero h1 { @apply text-5xl font-extrabold text-black/90; }
+.hero-sub { @apply mt-4 text-black/70; }
+
+/* ✅ 전화문의 CTA를 버튼처럼 보이게 */
+.hero-cta{
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: #0f172a;
+  color: #fff !important;
+  text-decoration: none !important;
+
+  padding: 18px 46px;
+  border-radius: 999px;
+
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.hero-cta:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.22);
+}
+
+.hero-cta:visited{
+  color: #fff !important;
+}
+
+/* 아이콘 크기 고정 */
+.hero-cta-icon{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  display: block;
+}
+
+
+.hero-text { margin-top: 30px; }
+
+/* Cards wrap (기존 유지) */
+.cards-wrap {
+  @apply grid grid-cols-3 gap-8 px-20 py-10 z-20;
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* 기존 card 스타일 유지 */
+.card {
+  @apply relative rounded-2xl overflow-hidden min-h-[26rem] shadow-xl bg-black/20;
+  transition: transform 420ms cubic-bezier(.2,.6,.2,1), box-shadow 420ms cubic-bezier(.2,.6,.2,1);
+  transform: translateY(0);
+}
+
+.card-bg {
+  @apply absolute inset-0 bg-cover bg-center;
+  transition: transform 700ms cubic-bezier(.2,.6,.2,1);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(8,10,15,0.18); }
+.card:hover .card-bg { transform: scale(1.06); }
+
+/* 카드 배경 */
+.card-1 .card-bg {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)), url('/assets/card1.jpg');
+}
+.card-2 .card-bg {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)), url('/assets/card2.jpg');
+}
+.card-3 .card-bg {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)), url('/assets/crad_3.png');
+}
+
+/* Hero Mobile */
+@media (max-width: 600px) {
+  .hero{ min-height: auto; height: auto; padding: 28px 16px 18px; }
+  .hero-content{ margin-top: 16px; max-width: 100%; padding: 0; }
+  .hero h1{ font-size: 26px; line-height: 1.2; }
+  .hero-sub{ font-size: 14px; margin-top: 10px; }
+  .hero-cta{ width: 100%; max-width: 360px; padding: 14px 18px; font-size: 16px; transform: none; margin-top: 14px; }
+
+  .cards-wrap{
+    position: static;
+    transform: none;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    width: 100%;
+    max-width: 560px;
+    padding: 14px 16px 20px;
+    margin: 0 auto;
+  }
+
+  .card{ min-height: 220px; }
+}
+
+@media (max-width: 900px) and (min-width: 601px){
+  .cards-wrap{
+    position: static;
+    transform: none;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 18px 20px 26px;
+  }
+  .hero{ min-height: auto; height: auto; padding-bottom: 16px; }
+}
+
+/* ===================================
+   Home Card UI (image + white bottom bar)
+=================================== */
+.home-card3{
+  position: relative;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.14);
+  transition: transform .25s ease, box-shadow .25s ease;
+  background: #000;
+}
+
+.home-card3:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 26px 60px rgba(0,0,0,0.18);
+}
+
+.home-card3-bg{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1);
+  transition: transform .35s ease;
+}
+
+.home-card3:hover .home-card3-bg{ transform: scale(1.05); }
+
+.home-card3-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.home-card3-title{
+  position: absolute;
+  left: 22px;
+  top: 22px;
+  z-index: 2;
+  color: #fff;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.1;
+  text-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
+
+.home-card3-bottom{
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 3;
+  background: #fff;
+  padding: 18px 22px;
+}
+
+.home-card3-cta{
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+}
+
+.home-card3-arrow{ font-size: 20px; line-height: 1; }
+
+.card-1 .home-card3-bg{ background-image: url('/assets/card1.jpg'); }
+.card-2 .home-card3-bg{ background-image: url('/assets/card2.jpg'); }
+.card-3 .home-card3-bg{ background-image: url('/assets/crad_3.png'); }
+
+@media (max-width: 600px){
+  .home-card3{ height: 240px; border-radius: 22px; }
+  .home-card3-title{ left: 16px; top: 16px; font-size: 24px; }
+  .home-card3-bottom{ padding: 16px; }
+  .home-card3-cta{ font-size: 15px; }
+}
+
+/* =========================
+   Auth Dropdown (Desktop)
+========================= */
+.auth-dropdown{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.auth-trigger .auth-caret{
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: .85;
+}
+
+.auth-trigger.open .auth-caret{
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+.auth-menu{
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 160px;
+
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  padding: 8px;
+  z-index: 1200;
+}
+
+.auth-item{
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
+}
+
+.auth-item:hover{
+  background: #f3f4f6;
+  color: #22c55e;
+}
+
+/* 모바일에서는 드롭다운 자체 숨김 (햄버거 메뉴로만 사용) */
+@media (max-width: 768px){
+  .auth-dropdown{ display: none; }
+}
+
+
+.auth-page{
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 40px 18px;
+}
+
+.auth-title{
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.auth-form{
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.auth-label{
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+  display: grid;
+  gap: 8px;
+}
+
+.auth-input,
+.auth-select{
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 0 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+.auth-input:focus,
+.auth-select:focus{
+  border-color: #22c55e;
+}
+
+.auth-submit{
+  height: 46px;
+  border-radius: 999px;
+  border: 0;
+  background: #22c55e;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.auth-help{
+  font-size: 13px;
+  color: #666;
+}
+
+
+/* ✅ 로그인/회원가입 드롭다운 */
+.header-auth-select{
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  cursor: pointer;
+  outline: none;
+}
+
+.header-auth-select:hover{
+  border-color: #22c55e;
+}
+
+
+
+
