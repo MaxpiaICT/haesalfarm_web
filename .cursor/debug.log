@@ -13194,3 +13194,5 @@
 {"location":"server.js:reconnectMongoDB","message":"재연결 성공","data":{"connected":true},"timestamp":1769386226867,"sessionId":"debug-session","runId":"mongodb-reconnect","hypothesisId":"C"}
 {"location":"server.js:reconnectMongoDB","message":"재연결 시도","data":{"timestamp":1769386227821},"timestamp":1769386227821,"sessionId":"debug-session","runId":"mongodb-reconnect","hypothesisId":"C"}
 {"location":"server.js:reconnectMongoDB","message":"재연결 성공","data":{"connected":true},"timestamp":1769386228287,"sessionId":"debug-session","runId":"mongodb-reconnect","hypothesisId":"C"}
+{"location":"server.js:MongoDB 연결","message":"연결 시도 시작","data":{"hasUri":true,"uriLength":122,"uriPrefix":"mongodb+srv://maxpiaictntec_db","username":"maxpiaictntec_db_user","passwordMasked":"Uyj***jme"},"timestamp":1769392264302,"sessionId":"debug-session","runId":"mongodb-connection","hypothesisId":"A"}
+{"location":"server.js:MongoDB 연결","message":"연결 성공","data":{"connected":true},"timestamp":1769392264867,"sessionId":"debug-session","runId":"mongodb-connection","hypothesisId":"B"}
