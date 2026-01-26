@@ -23,57 +23,34 @@ const saveUser = (user) => {
 
 // 이메일 인증 코드 발송
 export async function sendVerificationCode(email) {
-  try {
-    const response = await post('/auth/send-verification-code', { email })
-    return response
-  } catch (error) {
-    throw error
-  }
+  return await post('/auth/send-verification-code', { email })
 }
 
 // 이메일 인증 코드 검증
 export async function verifyEmailCode(email, code) {
-  try {
-    const response = await post('/auth/verify-email-code', { email, code })
-    return response
-  } catch (error) {
-    throw error
-  }
+  return await post('/auth/verify-email-code', { email, code })
 }
 
 // 회원가입
 export async function signup({ username, name, email, password, verificationCode }) {
-  try {
-    const response = await post('/auth/signup', {
-      username,
-      name,
-      email,
-      password,
-      verificationCode,
-    })
-
-    saveToken(response.token)
-    saveUser(response.user)
-    return response.user
-  } catch (error) {
-    throw error
-  }
+  const response = await post('/auth/signup', {
+    username,
+    name,
+    email,
+    password,
+    verificationCode,
+  })
+  saveToken(response.token)
+  saveUser(response.user)
+  return response.user
 }
 
 // 로그인
 export async function login({ username, password }) {
-  try {
-    const response = await post('/auth/login', {
-      username,
-      password,
-    })
-
-    saveToken(response.token)
-    saveUser(response.user)
-    return response.user
-  } catch (error) {
-    throw error
-  }
+  const response = await post('/auth/login', { username, password })
+  saveToken(response.token)
+  saveUser(response.user)
+  return response.user
 }
 
 // 현재 사용자 정보 조회
