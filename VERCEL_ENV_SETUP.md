@@ -4,6 +4,14 @@ Vercel 대시보드 → **Settings** → **Environment Variables**에서 아래 
 
 ---
 
+## 백엔드–Vercel 연동
+
+- **`api/[...path].js`**가 `/api/*` 요청을 `backend/server.js`(Express)로 넘깁니다.  
+- **`vercel.json`** rewrites는 **`/api`로 시작하는 경로를 제외**하고 SPA용 `/index.html`로 보냅니다.  
+- **VITE_API_URL=/api**를 Vercel에 설정해야, 배포된 프론트가 같은 도메인의 `/api`를 호출해 이 서버리스와 연결됩니다.
+
+---
+
 ## 1. 프론트엔드
 
 ### VITE_API_URL

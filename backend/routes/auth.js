@@ -17,100 +17,17 @@ const generateToken = (userId) => {
   })
 }
 
-// 이메일 인증 코드 발송
+// [이메일 인증 코드 발송] — 주석: 인증 없이 회원가입 가능하도록 비활성화
 router.post('/send-verification-code', async (req, res) => {
-  try {
-    const { email } = req.body
-
-    if (!email) {
-      return res.status(400).json({ error: '이메일을 입력해주세요.' })
-    }
-
-    // 이메일 형식 검증
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: '올바른 이메일 형식이 아닙니다.' })
-    }
-
-    const emailLower = email.toLowerCase().trim()
-
-    // 이미 가입된 이메일인지 확인
-    const existingUser = await User.findOne({ email: emailLower })
-    if (existingUser) {
-      return res.status(400).json({ error: '이미 가입된 이메일입니다.' })
-    }
-
-    // 6자리 인증 코드 생성
-    const code = Math.floor(100000 + Math.random() * 900000).toString()
-
-    // 기존 인증 코드 삭제 (같은 이메일로 재요청 시)
-    await EmailVerification.deleteMany({ email: emailLower })
-
-    // 인증 코드 저장 (10분 유효)
-    const expiresAt = new Date()
-    expiresAt.setMinutes(expiresAt.getMinutes() + 10)
-
-    await EmailVerification.create({
-      email: emailLower,
-      code,
-      expiresAt,
-    })
-
-    // 이메일 발송
-    try {
-      await sendVerificationCode(emailLower, code)
-      res.json({ message: '인증 코드가 이메일로 발송되었습니다.' })
-    } catch (emailError) {
-      console.error('이메일 발송 실패:', emailError)
-      // 인증 코드는 생성되었으므로 사용자에게 알림
-      res.status(500).json({ error: '이메일 발송에 실패했습니다. 이메일 설정을 확인해주세요.' })
-    }
-  } catch (error) {
-    console.error('Send verification code error:', error)
-    res.status(500).json({ error: '인증 코드 발송에 실패했습니다.' })
-  }
+  res.status(503).json({ error: '이메일 인증 기능이 비활성화되었습니다. 이메일 인증 없이 회원가입할 수 있습니다.' })
 })
 
-// 이메일 인증 코드 검증
+// [이메일 인증 코드 검증] — 주석: 인증 없이 회원가입 가능하도록 비활성화
 router.post('/verify-email-code', async (req, res) => {
-  try {
-    const { email, code } = req.body
-
-    if (!email || !code) {
-      return res.status(400).json({ error: '이메일과 인증 코드를 입력해주세요.' })
-    }
-
-    const emailLower = email.toLowerCase().trim()
-
-    // 인증 코드 확인
-    const verification = await EmailVerification.findOne({
-      email: emailLower,
-      code,
-      verified: false,
-    })
-
-    if (!verification) {
-      return res.status(400).json({ error: '인증 코드가 올바르지 않거나 만료되었습니다.' })
-    }
-
-    // 만료 시간 확인
-    if (new Date() > verification.expiresAt) {
-      await EmailVerification.deleteOne({ _id: verification._id })
-      return res.status(400).json({ error: '인증 코드가 만료되었습니다.' })
-    }
-
-    // 인증 완료 처리
-    verification.verified = true
-    await verification.save()
-
-    res.json({ message: '이메일 인증이 완료되었습니다.' })
-  } catch (error) {
-    console.error('Verify email code error:', error)
-    res.status(500).json({ error: '인증 코드 검증에 실패했습니다.' })
-  }
+  res.status(503).json({ error: '이메일 인증 기능이 비활성화되었습니다. 이메일 인증 없이 회원가입할 수 있습니다.' })
 })
 
-// 회원가입 (이메일 인증 필수)
+// 회원가입 (이메일 인증 없이 가능)
 router.post('/signup', async (req, res) => {
   try {
     const { username, name, email, password, verificationCode } = req.body
@@ -127,33 +44,18 @@ router.post('/signup', async (req, res) => {
       return res.status(400).json({ error: '비밀번호는 8자 이상으로 입력해주세요.' })
     }
 
-    // 이메일이 제공된 경우 이메일 인증 확인
+    // 이메일이 제공된 경우 형식만 검증 (인증 코드 검증 비활성화)
     if (email) {
       const emailLower = email.toLowerCase().trim()
-
-      // 이메일 형식 검증
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       if (!emailRegex.test(emailLower)) {
         return res.status(400).json({ error: '올바른 이메일 형식이 아닙니다.' })
       }
-
-      // 이메일 인증 코드 확인
-      if (!verificationCode) {
-        return res.status(400).json({ error: '이메일 인증이 필요합니다.' })
-      }
-
-      const verification = await EmailVerification.findOne({
-        email: emailLower,
-        code: verificationCode,
-        verified: true,
-      })
-
-      if (!verification) {
-        return res.status(400).json({ error: '이메일 인증이 완료되지 않았습니다. 인증 코드를 확인해주세요.' })
-      }
-
-      // 인증 코드 삭제 (일회용)
-      await EmailVerification.deleteOne({ _id: verification._id })
+      // [이메일 인증 코드 확인] — 주석: 인증 없이 회원가입
+      // if (!verificationCode) return res.status(400).json({ error: '이메일 인증이 필요합니다.' })
+      // const verification = await EmailVerification.findOne({ email: emailLower, code: verificationCode, verified: true })
+      // if (!verification) return res.status(400).json({ error: '이메일 인증이 완료되지 않았습니다. 인증 코드를 확인해주세요.' })
+      // await EmailVerification.deleteOne({ _id: verification._id })
     }
 
     // 중복 체크
@@ -290,7 +192,6 @@ router.post('/forgot-password', async (req, res) => {
     }
 
     // 이메일 발송 성공 여부와 함께 응답
- main
     res.json({
       message: '임시 비밀번호가 발급되었습니다.',
       tempPassword, // 실제 서비스에서는 이메일로 발송
