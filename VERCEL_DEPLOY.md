@@ -46,7 +46,7 @@ Vercel 대시보드 → **Settings** → **Environment Variables**에 아래를 
 | `VITE_API_URL` | `/api` | Production, Preview (필요 시 Development) |
 
 > 같은 Vercel 도메인에서 API를 쓰므로 `https://...` 없이 `/api`만 넣으면 됩니다.  
-> 다른 백엔드(Fly.io 등)를 쓰면 `https://haesalfarm-backend.fly.dev/api`처럼 전체 URL을 넣으세요.
+> 별도 백엔드를 사용하는 경우 전체 URL을 넣으세요.
 
 ### 백엔드 (API / DB / 메일)
 
@@ -74,6 +74,6 @@ Vercel 대시보드 → **Settings** → **Environment Variables**에 아래를 
 ## 6. 로컬 개발
 
 - **프론트만**: `cd frontend && npm run dev`  
-  - `VITE_API_URL` 없으면 기본값(Fly.io 등) 사용
+  - `frontend/.env`에 `VITE_API_URL` 설정 필요 (없으면 에러)
 - **프론트 + 백엔드**: 루트에서 `npm run dev`  
   - 로컬 백 사용 시 `frontend/.env`: `VITE_API_URL=http://localhost:3001/api`

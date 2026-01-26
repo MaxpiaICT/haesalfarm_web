@@ -144,7 +144,7 @@ app.post('/api/mongodb/reconnect', async (req, res) => {
   res.json(result)
 })
 
-// Railway 서버의 외부 IP 확인 (MongoDB Atlas 화이트리스트용)
+// 서버의 외부 IP 확인 (MongoDB Atlas 화이트리스트용)
 app.get('/api/ip', async (req, res) => {
   try {
     // 외부 서비스를 통해 IP 확인

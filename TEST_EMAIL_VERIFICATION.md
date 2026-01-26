@@ -2,10 +2,7 @@
 
 ## 사전 준비
 
-### 1. Fly.io 백엔드 환경 변수 확인
-```powershell
-fly secrets list -a haesalfarm-backend
-```
+### 1. 백엔드 환경 변수 확인
 
 다음 환경 변수가 설정되어 있어야 합니다:
 - `EMAIL_USER`: 네이버 이메일 주소 (예: haesalfarm@naver.com)
@@ -70,18 +67,16 @@ npm run dev
 ### 이메일이 도착하지 않는 경우
 
 #### 1. 백엔드 로그 확인
-```powershell
-fly logs -a haesalfarm-backend
-```
+
+백엔드 배포 플랫폼의 로그를 확인하세요.
 
 **확인할 내용:**
 - `이메일 발송 성공: <messageId>` 메시지가 있는지 확인
 - `이메일 발송 실패:` 에러 메시지가 있는지 확인
 
 #### 2. 환경 변수 확인
-```powershell
-fly secrets list -a haesalfarm-backend
-```
+
+백엔드 배포 플랫폼의 환경 변수 설정을 확인하세요.
 
 **확인할 내용:**
 - `EMAIL_USER`와 `EMAIL_PASSWORD`가 설정되어 있는지 확인
@@ -118,12 +113,13 @@ console.log('API URL:', import.meta.env.VITE_API_URL)
 ```
 
 **예상 결과:**
-- 개발 환경: `undefined` (Fly.io 백엔드 자동 사용)
-- 또는: `https://haesalfarm-backend.fly.dev/api`
+- 개발 환경: `http://localhost:3001/api` (로컬 백엔드)
+- 배포 환경: `/api` (Vercel) 또는 설정한 백엔드 URL
 
 #### 2. 네트워크 탭 확인
 브라우저 개발자 도구 → Network 탭:
-- 요청 URL이 `https://haesalfarm-backend.fly.dev/api/auth/send-verification-code`인지 확인
+- 요청 URL이 설정한 `VITE_API_URL`과 일치하는지 확인
+- 응답 상태 코드 확인 (200 = 성공, 500 = 서버 오류)
 - 응답 상태 코드 확인 (200 = 성공, 500 = 서버 오류)
 
 ## 테스트 체크리스트

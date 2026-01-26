@@ -19,7 +19,7 @@ Vercel 대시보드 → **Settings** → **Environment Variables**에서 아래 
 | 용도 | 값 | 비고 |
 |------|-----|------|
 | **같은 Vercel 도메인에서 API 사용** | `/api` | 권장. 상대 경로로 `/api/*` 호출 |
-| Fly.io 등 별도 백엔드 사용 | `https://haesalfarm-backend.fly.dev/api` | 예시 |
+| 별도 백엔드 사용 | `https://your-backend.com/api` | 외부 백엔드 URL (필요 시) |
 
 - Production / Preview (필요 시 Development)에 동일하게 두면 됩니다.
 
