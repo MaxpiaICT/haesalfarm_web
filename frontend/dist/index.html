@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="vercel-toolbar" content="false" />
+    <title>스마트 농업 솔루션_dev</title>
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" />
+    <script type="module" crossorigin src="/assets/index-4u99Rbpi.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dvk1JObR.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Vercel Toolbar 비활성화 -->
+    <script>
+      // Vercel Toolbar 스크립트 차단
+      if (typeof window !== 'undefined') {
+        // Vercel Toolbar 관련 스크립트 차단
+        const originalAppendChild = Node.prototype.appendChild;
+        Node.prototype.appendChild = function(child) {
+          if (child && child.src && (
+            child.src.includes('vercel.com') || 
+            child.src.includes('vercel-insights') ||
+            child.src.includes('vercel-analytics')
+          )) {
+            return child;
+          }
+          return originalAppendChild.call(this, child);
+        };
+        
+        // Vercel Toolbar 요소 제거
+        const removeVercelToolbar = () => {
+          const toolbar = document.querySelector('[data-vercel-toolbar]') || 
+                         document.querySelector('vercel-toolbar') ||
+                         document.querySelector('[id*="vercel"]');
+          if (toolbar) {
+            toolbar.remove();
+          }
+        };
+        
+        // DOM 로드 후 실행
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', removeVercelToolbar);
+        } else {
+          removeVercelToolbar();
+        }
+        
+        // MutationObserver로 동적으로 추가되는 Toolbar 제거
+        const observer = new MutationObserver(() => {
+          removeVercelToolbar();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+    </script>
+  </body>
+</html>
