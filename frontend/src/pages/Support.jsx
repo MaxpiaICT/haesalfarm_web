@@ -74,6 +74,10 @@ export default function Support() {
         <a className="support-call" href="tel:01064719948">
           전화문의 : 010 - 6471 - 9948
         </a>
+        
+        <div className="support-email">
+          이메일 : haesalfarm@naver.com
+        </div>
       </section>
 
       {/* 탭 */}
